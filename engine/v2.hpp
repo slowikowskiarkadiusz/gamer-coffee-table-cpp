@@ -1,9 +1,8 @@
 //
 // Created by Arkadiusz on 27/07/2025.
 //
+#pragma once
 
-#ifndef V2_H
-#define V2_H
 #import <cmath>
 
 constexpr float pi = 3.141592653589793;
@@ -149,5 +148,3 @@ public:
         return {rx, ry};
     }
 };
-
-#endif //V2_H

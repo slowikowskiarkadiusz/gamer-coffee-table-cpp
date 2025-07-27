@@ -1,10 +1,7 @@
 //
 // Created by Arkadiusz on 27/07/2025.
 //
-
-#ifndef ENGINE_H
-#define ENGINE_H
-
+#pragma once
 
 class Engine {
 public:
@@ -24,6 +21,3 @@ public:
 
     void clearInterval();
 };
-
-
-#endif //ENGINE_H

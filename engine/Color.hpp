@@ -1,19 +1,12 @@
 //
 // Created by Arkadiusz on 27/07/2025.
 //
-
-#ifndef COLOR_HPP
-#define COLOR_HPP
-
-#endif //COLOR_HPP
 #pragma once
 
 #include <vector>
 #include <algorithm>
 #include <string>
 #include <sstream>
-#include <iomanip>
-#include <cmath>
 
 class Color {
 public:

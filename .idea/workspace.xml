@@ -4,6 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Environment/UserInterface/HierarchyView/ViewStyle/@EntryValue" value="SuperTypes" type="string" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
   <component name="CMakePresetLoader">{
@@ -26,17 +28,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="v2">
-      <change afterPath="$PROJECT_DIR$/engine/Color.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/Matrix.hpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="huh">
+      <change afterPath="$PROJECT_DIR$/engine/Input/Input.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/Input/InputProvider.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/Input/Key.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/Input/KeyState.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/Input/KeyboardInputProvider.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Actor.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Actor.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Engine.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/v2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/v2.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/v2.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/v2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Matrix.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/v2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/v2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +57,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -86,6 +104,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
@@ -95,7 +114,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C/C++",
+    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -128,7 +147,7 @@
       <updated>1753605285734</updated>
       <workItem from="1753605287528" duration="1724000" />
       <workItem from="1753607073586" duration="1195000" />
-      <workItem from="1753608451244" duration="1690000" />
+      <workItem from="1753608451244" duration="10413000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -138,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753609284270</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="huh">
+      <option name="closed" value="true" />
+      <created>1753610919921</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753610919921</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +178,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2" />
+    <MESSAGE value="huh" />
+    <option name="LAST_COMMIT_MESSAGE" value="huh" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

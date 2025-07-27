@@ -1,11 +1,11 @@
 //
 // Created by Arkadiusz on 27/07/2025.
 //
+#pragma once
 
-#ifndef ACTOR_H
-#define ACTOR_H
 #include <string>
-
+#include "Matrix.hpp"
+#include "v2.hpp"
 
 class Actor {
 public:

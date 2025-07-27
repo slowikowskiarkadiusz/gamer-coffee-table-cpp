@@ -1,13 +1,15 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 
-int main() {
-    sf::RenderWindow window(sf::VideoMode(320, 320), "LED Matrix");
-    while (window.isOpen()) {
-        sf::Event e;
-        while (window.pollEvent(e))
-            if (e.type == sf::Event::Closed)
-                window.close();
+#include "engine/Input/KeyboardInputProvider.hpp"
 
+extern sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
+
+int main() {
+    KeyboardInputProvider keyboard_input_provider(&window);
+
+    while (window.isOpen()) {
         window.clear();
         for (int y = 0; y < 32; y++) {
             for (int x = 0; x < 32; x++) {
