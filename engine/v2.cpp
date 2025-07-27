@@ -1,0 +1,144 @@
+//
+// Created by Arkadiusz on 27/07/2025.
+//
+
+#include "v2.h"
+#include <cmath>
+
+constexpr float pi = 3.141592653589793;
+
+v2::v2(float x, float y) {
+    this->x = x;
+    this->y = y;
+}
+
+v2 v2::copy(v2 from) {
+    return {from.x, from.y};
+}
+
+v2 v2::getZero() {
+    return {0, 0};
+}
+
+v2 v2::getOne() {
+    return {1, 1};
+}
+
+v2 v2::getNOne() {
+    return {-1, -1};
+}
+
+v2 v2::getUp() {
+    return {0, -1};
+}
+
+v2 v2::getDown() {
+    return {0, 1};
+}
+
+v2 v2::getLeft() {
+    return {-1, 0};
+}
+
+v2 v2::getRight() {
+    return {1, 0};
+}
+
+v2 v2::getLeftDown() {
+    return {-1, 1};
+}
+
+v2 v2::getLeftUp() {
+    return {-1, -1};
+}
+
+v2 v2::getRightDown() {
+    return {1, 1};
+}
+
+v2 v2::getRightUp() {
+    return {1, -1};
+}
+
+float v2::dot(v2 v1, v2 v2) {
+    return v1.x * v2.x + v1.y * v2.y;
+}
+
+float v2::distance(v2 v1, v2 v2) {
+    return std::sqrt(std::pow(v1.x - v2.x, 2) + std::pow(v1.y - v2.y, 2));
+}
+
+v2 v2::copy() const {
+    return {this->x, this->y};
+}
+
+v2 v2::add(v2 v) const {
+    return {this->x + v.x, this->y + v.y};
+}
+
+v2 v2::sub(v2 v) const {
+    return {this->x - v.x, this->y - v.y};
+}
+
+v2 v2::mul(float scalar) const {
+    return {this->x * scalar, this->y * scalar};
+};
+
+v2 v2::div(float scalar) const {
+    return {this->x / scalar, this->y / scalar};
+};
+
+float v2::mag() const {
+    return (float) std::sqrt(this->x * this->x + this->y * this->y);
+}
+
+v2 v2::setX(float newX) const {
+    return {newX, this->y};
+}
+
+v2 v2::setY(float newY) const {
+    return {newY, this->y};
+}
+
+v2 v2::floor() const {
+    return {(float) std::floor(this->x), (float) std::floor(this->y)};
+}
+
+v2 v2::round() const {
+    return {(float) std::round(this->x), (float) std::round(this->y)};
+}
+
+v2 v2::ceil() const {
+    return {(float) std::ceil(this->x), (float) std::ceil(this->y)};
+}
+
+v2 v2::norm() const {
+    v2 vec = {this->x, this->y};
+    return v2::copy(vec.div(this->mag()));
+}
+
+bool v2::eq(v2 other) const {
+    bool result = this->x == other.x && this->y == other.y;
+    return result;
+}
+
+v2 v2::updt(v2 to) {
+    this->x = to.x;
+    this->y = to.y;
+
+    return *this;
+}
+
+v2 v2::rotateAround(v2 pivot, float degrees) const {
+    float radians = (degrees * pi) / 180;
+    float dx = this->x - pivot.x;
+    float dy = this->y - pivot.y;
+
+    float cos = std::cos(radians);
+    float sin = std::sin(radians);
+
+    float rx = cos * dx - sin * dy + pivot.x;
+    float ry = sin * dx + cos * dy + pivot.y;
+
+    return {rx, ry};
+}

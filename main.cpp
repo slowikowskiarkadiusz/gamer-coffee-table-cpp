@@ -11,9 +11,11 @@ int main() {
         window.clear();
         for (int y = 0; y < 32; y++) {
             for (int x = 0; x < 32; x++) {
-                sf::RectangleShape pixel(sf::Vector2f(10, 10));
+                sf::CircleShape pixel(5);
                 pixel.setPosition(x * 10, y * 10);
-                pixel.setFillColor(sf::Color::Blue);
+                pixel.setFillColor(x % 2 == 1
+                                       ? sf::Color(0.5 * 255, 0.5 * 255, 0.5 * 255)
+                                       : sf::Color(0.5 * 255, 0 * 255, 0.5 * 255));
                 window.draw(pixel);
             }
         }
