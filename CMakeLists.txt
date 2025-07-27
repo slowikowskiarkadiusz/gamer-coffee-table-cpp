@@ -13,9 +13,10 @@ add_executable(gaming_coffee_table_cpp
         engine/Matrix.hpp
         engine/Color.hpp
         engine/Input/Input.hpp
-        engine/Input/KeyboardInputProvider.hpp
-        engine/Input/InputProvider.hpp
+        engine/Input/keyboard_input_provider.hpp
+        engine/Input/input_provider.hpp
         engine/Input/Key.hpp
-        engine/Input/KeyState.hpp
+        engine/Input/key_state.hpp
+        engine/scene.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

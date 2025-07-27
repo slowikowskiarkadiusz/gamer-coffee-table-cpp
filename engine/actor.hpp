@@ -4,10 +4,10 @@
 #pragma once
 
 #include <string>
-#include "Matrix.hpp"
+#include "matrix.hpp"
 #include "v2.hpp"
 
-class Actor {
+class actor {
 public:
     v2 getCenter();
 
@@ -35,7 +35,7 @@ public:
 
     virtual void update(int deltaTime);
 
-    virtual Matrix render();
+    virtual matrix render();
 
     virtual void fixedUpdate(int fixedDeltaTime);
 

@@ -5,17 +5,17 @@
 
 #include <memory>
 
-#include "InputProvider.hpp"
-#include "Key.hpp"
+#include "input_provider.hpp"
+#include "key.hpp"
 
 #pragma once
 
-class Input {
+class input {
 private:
-    std::unique_ptr<InputProvider> inputProvider;
+    std::unique_ptr<input_provider> inputProvider;
 
 public:
-    explicit Input(std::unique_ptr<InputProvider> inputProvider) {
+    explicit input(std::unique_ptr<input_provider> inputProvider) {
         this->inputProvider = std::move(inputProvider);
     }
 
@@ -27,7 +27,7 @@ public:
         inputProvider->lateUpdate(deltaTime);
     }
 
-    bool isKeyDown(Key key) const {
+    bool isKeyDown(key key) const {
         return inputProvider->isKeyDown(key);
     }
 
@@ -35,7 +35,7 @@ public:
         return inputProvider->isAnyKeyDown();
     }
 
-    bool isKeyUp(Key key) const {
+    bool isKeyUp(key key) const {
         return inputProvider->isKeyUp(key);
     }
 
@@ -43,7 +43,7 @@ public:
         return inputProvider->isAnyKeyUp();
     }
 
-    bool isKeyPress(Key key) const {
+    bool isKeyPress(key key) const {
         return inputProvider->isKeyPress(key);
     }
 

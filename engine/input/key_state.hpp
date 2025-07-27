@@ -5,7 +5,7 @@
 #ifndef KEYSTATE_HPP
 #define KEYSTATE_HPP
 
-enum class KeyState {
+enum class key_state {
     Down,
     Up,
     Press

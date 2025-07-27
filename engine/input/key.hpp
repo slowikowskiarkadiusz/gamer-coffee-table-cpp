@@ -3,7 +3,7 @@
 //
 #pragma once
 
-enum class Key {
+enum class key {
     P1_L_L,
     P1_L_BLUE,
     P1_L,

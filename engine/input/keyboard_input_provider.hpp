@@ -6,10 +6,10 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "InputProvider.hpp"
-#include "KeyState.hpp"
+#include "input_provider.hpp"
+#include "key_state.hpp"
 
-class KeyboardInputProvider : public InputProvider {
+class keyboard_input_provider : public input_provider {
 private:
     sf::RenderWindow *window;
     std::unordered_set<sf::Keyboard::Key> keysDown;
@@ -17,11 +17,11 @@ private:
     std::unordered_set<sf::Keyboard::Key> keysPress;
 
 public:
-    explicit KeyboardInputProvider(sf::RenderWindow *window) {
+    explicit keyboard_input_provider(sf::RenderWindow *window) {
         this->window = window;
     }
 
-    ~KeyboardInputProvider() override = default;
+    ~keyboard_input_provider() override = default;
 
     void update(float delta_time) override {
         sf::Event event{};
@@ -46,28 +46,28 @@ public:
         this->keysUp.clear();
     }
 
-    bool isKeyDown(Key key) const override {
-        return isKey(key, KeyState::Down);
+    bool isKeyDown(key key) const override {
+        return isKey(key, key_state::Down);
     }
 
     bool isAnyKeyDown() const override {
-        return isKey(std::nullopt, KeyState::Down);
+        return isKey(std::nullopt, key_state::Down);
     }
 
-    bool isKeyUp(Key key) const override {
-        return isKey(key, KeyState::Up);
+    bool isKeyUp(key key) const override {
+        return isKey(key, key_state::Up);
     }
 
     bool isAnyKeyUp() const override {
-        return isKey(std::nullopt, KeyState::Up);
+        return isKey(std::nullopt, key_state::Up);
     }
 
-    bool isKeyPress(Key key) const override {
-        return isKey(key, KeyState::Press);
+    bool isKeyPress(key key) const override {
+        return isKey(key, key_state::Press);
     }
 
     bool isAnyKeyPress() const override {
-        return isKey(std::nullopt, KeyState::Press);
+        return isKey(std::nullopt, key_state::Press);
     }
 
     void clear() override {
@@ -77,25 +77,25 @@ public:
     }
 
 private:
-    bool isKey(std::optional<Key> key, KeyState key_state) const {
+    bool isKey(std::optional<key> key, key_state key_state) const {
         std::unordered_set<sf::Keyboard::Key> mappedKey = key.has_value()
                                                               ? mapKey(key.value())
                                                               : std::unordered_set<sf::Keyboard::Key>();
 
         switch (key_state) {
-            case KeyState::Down:
+            case key_state::Down:
                 return key.has_value()
                            ? std::any_of(keysDown.begin(), keysDown.end(), [mappedKey](sf::Keyboard::Key x) {
                                return mappedKey.contains(x);
                            })
                            : !keysDown.empty();
-            case KeyState::Up:
+            case key_state::Up:
                 return key.has_value()
                            ? std::any_of(keysUp.begin(), keysUp.end(), [mappedKey](sf::Keyboard::Key x) {
                                return mappedKey.contains(x);
                            })
                            : !keysUp.empty();
-            case KeyState::Press:
+            case key_state::Press:
                 return key.has_value()
                            ? std::any_of(keysPress.begin(), keysPress.end(), [mappedKey](sf::Keyboard::Key x) {
                                return mappedKey.contains(x);
@@ -106,48 +106,48 @@ private:
         }
     }
 
-    std::unordered_set<sf::Keyboard::Key> mapKey(Key key) const {
+    std::unordered_set<sf::Keyboard::Key> mapKey(key key) const {
         std::unordered_set<sf::Keyboard::Key> a;
         std::unordered_set<sf::Keyboard::Key> b;
 
         switch (key) {
-            case Key::P1_L_L:
+            case key::P1_L_L:
                 return {sf::Keyboard::Z};
-            case Key::P1_L_BLUE:
+            case key::P1_L_BLUE:
                 return {sf::Keyboard::A};
-            case Key::P1_L:
-                a = mapKey(Key::P1_L_L);
-                b = mapKey(Key::P1_L_BLUE);
+            case key::P1_L:
+                a = mapKey(key::P1_L_L);
+                b = mapKey(key::P1_L_BLUE);
                 a.insert(b.begin(), b.end());
                 return a;
-            case Key::P1_R_R:
+            case key::P1_R_R:
                 return {sf::Keyboard::X};
-            case Key::P1_R_GREEN:
+            case key::P1_R_GREEN:
                 return {sf::Keyboard::D};
-            case Key::P1_R:
-                a = mapKey(Key::P1_R_R);
-                b = mapKey(Key::P1_R_GREEN);
+            case key::P1_R:
+                a = mapKey(key::P1_R_R);
+                b = mapKey(key::P1_R_GREEN);
                 a.insert(b.begin(), b.end());
                 return a;
-            case Key::P2_L_L:
+            case key::P2_L_L:
                 return {sf::Keyboard::N};
-            case Key::P2_L_BLUE:
+            case key::P2_L_BLUE:
                 return {sf::Keyboard::H};
-            case Key::P2_L:
-                a = mapKey(Key::P2_L_L);
-                b = mapKey(Key::P2_L_BLUE);
+            case key::P2_L:
+                a = mapKey(key::P2_L_L);
+                b = mapKey(key::P2_L_BLUE);
                 a.insert(b.begin(), b.end());
                 return a;
-            case Key::P2_R_R:
+            case key::P2_R_R:
                 return {sf::Keyboard::M};
-            case Key::P2_R_GREEN:
+            case key::P2_R_GREEN:
                 return {sf::Keyboard::K};
-            case Key::P2_R:
-                a = mapKey(Key::P2_R_R);
-                b = mapKey(Key::P2_R_GREEN);
+            case key::P2_R:
+                a = mapKey(key::P2_R_R);
+                b = mapKey(key::P2_R_GREEN);
                 a.insert(b.begin(), b.end());
                 return a;
-            case Key::START:
+            case key::START:
                 return {sf::Keyboard::Y};
             default: return {};
         }

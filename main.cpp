@@ -2,12 +2,12 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "engine/Input/KeyboardInputProvider.hpp"
+#include "engine/input/keyboard_input_provider.hpp"
 
 extern sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
 
 int main() {
-    KeyboardInputProvider keyboard_input_provider(&window);
+    keyboard_input_provider keyboard_input_provider(&window);
 
     while (window.isOpen()) {
         window.clear();
