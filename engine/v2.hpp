@@ -21,47 +21,47 @@ public:
         return {from.x, from.y};
     }
 
-    static v2 getZero() {
+    static v2 get_zero() {
         return {0, 0};
     }
 
-    static v2 getOne() {
+    static v2 get_one() {
         return {1, 1};
     }
 
-    static v2 getNOne() {
+    static v2 get_n_one() {
         return {-1, -1};
     }
 
-    static v2 getUp() {
+    static v2 get_up() {
         return {0, -1};
     }
 
-    static v2 getDown() {
+    static v2 get_down() {
         return {0, 1};
     }
 
-    static v2 getLeft() {
+    static v2 get_left() {
         return {-1, 0};
     }
 
-    static v2 getRight() {
+    static v2 get_right() {
         return {1, 0};
     }
 
-    static v2 getLeftDown() {
+    static v2 get_left_down() {
         return {-1, 1};
     }
 
-    static v2 getLeftUp() {
+    static v2 get_left_up() {
         return {-1, -1};
     }
 
-    static v2 getRightDown() {
+    static v2 get_right_down() {
         return {1, 1};
     }
 
-    static v2 getRightUp() {
+    static v2 get_right_up() {
         return {1, -1};
     }
 
@@ -134,7 +134,7 @@ public:
         return *this;
     }
 
-    v2 rotateAround(v2 pivot, float degrees) const {
+    v2 rotate_around(v2 pivot, float degrees) const {
         float radians = (degrees * pi) / 180;
         float dx = this->x - pivot.x;
         float dy = this->y - pivot.y;

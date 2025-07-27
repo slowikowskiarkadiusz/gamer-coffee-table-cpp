@@ -46,27 +46,27 @@ public:
         this->keysUp.clear();
     }
 
-    bool isKeyDown(key key) const override {
+    bool is_key_down(key key) const override {
         return isKey(key, key_state::Down);
     }
 
-    bool isAnyKeyDown() const override {
+    bool is_any_key_down() const override {
         return isKey(std::nullopt, key_state::Down);
     }
 
-    bool isKeyUp(key key) const override {
+    bool is_key_up(key key) const override {
         return isKey(key, key_state::Up);
     }
 
-    bool isAnyKeyUp() const override {
+    bool is_any_key_up() const override {
         return isKey(std::nullopt, key_state::Up);
     }
 
-    bool isKeyPress(key key) const override {
+    bool is_key_press(key key) const override {
         return isKey(key, key_state::Press);
     }
 
-    bool isAnyKeyPress() const override {
+    bool is_any_key_press() const override {
         return isKey(std::nullopt, key_state::Press);
     }
 

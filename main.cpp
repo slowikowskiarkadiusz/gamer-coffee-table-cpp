@@ -1,13 +1,15 @@
-#pragma once
-
 #include <SFML/Graphics.hpp>
+
+#include "./engine/engine.hpp"
 
 #include "engine/input/keyboard_input_provider.hpp"
 
-extern sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
+sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
 
 int main() {
     keyboard_input_provider keyboard_input_provider(&window);
+
+    engine engine = {};
 
     while (window.isOpen()) {
         window.clear();

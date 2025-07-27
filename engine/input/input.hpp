@@ -12,10 +12,10 @@
 
 class input {
 private:
-    std::unique_ptr<input_provider> inputProvider;
+    std::shared_ptr<input_provider> inputProvider;
 
 public:
-    explicit input(std::unique_ptr<input_provider> inputProvider) {
+    explicit input(std::shared_ptr<input_provider> inputProvider) {
         this->inputProvider = std::move(inputProvider);
     }
 
@@ -23,32 +23,32 @@ public:
         inputProvider->update(deltaTime);
     }
 
-    void lateUpdate(float deltaTime) {
+    void late_update(float deltaTime) {
         inputProvider->lateUpdate(deltaTime);
     }
 
-    bool isKeyDown(key key) const {
-        return inputProvider->isKeyDown(key);
+    bool is_key_down(key key) const {
+        return inputProvider->is_key_down(key);
     }
 
-    bool isAnyKeyDown() const {
-        return inputProvider->isAnyKeyDown();
+    bool is_any_key_down() const {
+        return inputProvider->is_any_key_down();
     }
 
-    bool isKeyUp(key key) const {
-        return inputProvider->isKeyUp(key);
+    bool is_key_up(key key) const {
+        return inputProvider->is_key_up(key);
     }
 
-    bool isAnyKeyUp() const {
-        return inputProvider->isAnyKeyUp();
+    bool is_any_key_up() const {
+        return inputProvider->is_any_key_up();
     }
 
-    bool isKeyPress(key key) const {
-        return inputProvider->isKeyPress(key);
+    bool is_key_press(key key) const {
+        return inputProvider->is_key_press(key);
     }
 
-    bool isAnyKeyPress() const {
-        return inputProvider->isAnyKeyPress();
+    bool is_any_key_press() const {
+        return inputProvider->is_any_key_press();
     }
 
     void clear() {

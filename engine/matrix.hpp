@@ -9,34 +9,34 @@
 
 class matrix {
 protected:
-    std::vector<std::vector<color> > matrix;
+    std::vector<std::vector<color> > _matrix;
 
 public:
     matrix(int x, int y, const color &defaultColor = color::none()) {
         x = std::round(x);
         y = std::round(y);
-        matrix = std::vector<std::vector<color> >(x, std::vector<color>(y, defaultColor));
+        _matrix = std::vector<std::vector<color> >(x, std::vector<color>(y, defaultColor));
     }
 
     const std::vector<std::vector<color> > &pixels() const {
-        return matrix;
+        return _matrix;
     }
 
     void setPixelV2(const v2 &point, const color &color) {
-        matrix[point.x][point.y] = color.copy();
+        _matrix[point.x][point.y] = color.copy();
     }
 
     void setPixel(int x, int y, const color &color) {
-        matrix[x][y] = color.copy();
+        _matrix[x][y] = color.copy();
     }
 
     matrix &writeAtOrigin(const matrix &other, const v2 &origin) {
-        for (size_t x = 0; x < other.matrix.size(); x++) {
-            for (size_t y = 0; y < other.matrix[x].size(); y++) {
+        for (size_t x = 0; x < other._matrix.size(); x++) {
+            for (size_t y = 0; y < other._matrix[x].size(); y++) {
                 int tx = x + origin.x;
                 int ty = y + origin.y;
-                if (tx >= 0 && tx < matrix.size() && ty >= 0 && ty < matrix[0].size()) {
-                    matrix[tx][ty] = other.matrix[x][y].copy();
+                if (tx >= 0 && tx < _matrix.size() && ty >= 0 && ty < _matrix[0].size()) {
+                    _matrix[tx][ty] = other._matrix[x][y].copy();
                 }
             }
         }
@@ -44,15 +44,15 @@ public:
     }
 
     matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f) {
-        std::vector<std::vector<std::vector<color> > > result(matrix.size(),
-                                                              std::vector<std::vector<color> >(matrix[0].size()));
+        std::vector<std::vector<std::vector<color> > > result(_matrix.size(),
+                                                              std::vector<std::vector<color> >(_matrix[0].size()));
 
         float radians = (otherRotation * M_PI) / 180.0f;
         float cosA = std::cos(radians);
         float sinA = std::sin(radians);
 
-        int otherWidth = other.matrix.size();
-        int otherHeight = otherWidth > 0 ? other.matrix[0].size() : 0;
+        int otherWidth = other._matrix.size();
+        int otherHeight = otherWidth > 0 ? other._matrix[0].size() : 0;
         if (otherWidth == 0 || otherHeight == 0) return *this;
 
         v2 center(otherWidth / 2.0f, otherHeight / 2.0f);
@@ -68,7 +68,7 @@ public:
                 int rx = std::round(cosA * dx - sinA * dy + otherCenter.x);
                 int ry = std::round(sinA * dx + cosA * dy + otherCenter.y);
 
-                if (rx >= 0 && rx < matrix.size() && ry >= 0 && ry < matrix[0].size()) {
+                if (rx >= 0 && rx < _matrix.size() && ry >= 0 && ry < _matrix[0].size()) {
                     result[rx][ry].push_back(color);
                 }
             }
@@ -76,9 +76,9 @@ public:
 
         for (size_t x = 0; x < result.size(); x++) {
             for (size_t y = 0; y < result[0].size(); y++) {
-                std::vector<color> combined = {matrix[x][y]};
+                std::vector<color> combined = {_matrix[x][y]};
                 combined.insert(combined.end(), result[x][y].begin(), result[x][y].end());
-                matrix[x][y] = color::blendColors(combined);
+                _matrix[x][y] = color::blendColors(combined);
             }
         }
 
@@ -90,8 +90,8 @@ public:
         float sinA = std::abs(std::sin(radians));
         float cosA = std::abs(std::cos(radians));
 
-        int oldWidth = matrix.size();
-        int oldHeight = matrix[0].size();
+        int oldWidth = _matrix.size();
+        int oldHeight = _matrix[0].size();
         int newWidth = std::ceil(oldWidth * cosA + oldHeight * sinA);
         int newHeight = std::ceil(oldWidth * sinA + oldHeight * cosA);
 
@@ -111,12 +111,12 @@ public:
                 int ry = std::round(std::sin(radians) * dx + std::cos(radians) * dy + cyNew);
 
                 if (rx >= 0 && rx < newWidth && ry >= 0 && ry < newHeight) {
-                    rotated.matrix[rx][ry] = matrix[x][y];
+                    rotated._matrix[rx][ry] = _matrix[x][y];
                 }
             }
         }
 
-        matrix = rotated.matrix;
+        _matrix = rotated._matrix;
         return *this;
     }
 
@@ -124,14 +124,14 @@ public:
         matrix result(to.x - from.x, to.y - from.y);
         for (int x = from.x; x < to.x; x++) {
             for (int y = from.y; y < to.y; y++) {
-                result.matrix[x - from.x][y - from.y] = matrix[x][y];
+                result._matrix[x - from.x][y - from.y] = _matrix[x][y];
             }
         }
         return result;
     }
 
     matrix &clear() {
-        for (auto &col: matrix)
+        for (auto &col: _matrix)
             for (auto &px: col)
                 px = color::none();
         return *this;
@@ -139,9 +139,9 @@ public:
 
     matrix &printToConsole() {
         std::string result = "\n";
-        for (size_t y = 0; y < matrix[0].size(); y++) {
-            for (size_t x = 0; x < matrix.size(); x++) {
-                result += matrix[x][y].isNone() ? "  " : "O ";
+        for (size_t y = 0; y < _matrix[0].size(); y++) {
+            for (size_t x = 0; x < _matrix.size(); x++) {
+                result += _matrix[x][y].isNone() ? "  " : "O ";
             }
             result += "|\n";
         }

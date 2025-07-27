@@ -7,16 +7,19 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 add_executable(gaming_coffee_table_cpp
         main.cpp
-        engine/Engine.hpp
-        engine/Actor.hpp
+        engine/engine.hpp
+        engine/actor.hpp
         engine/v2.hpp
-        engine/Matrix.hpp
-        engine/Color.hpp
-        engine/Input/Input.hpp
-        engine/Input/keyboard_input_provider.hpp
-        engine/Input/input_provider.hpp
-        engine/Input/Key.hpp
-        engine/Input/key_state.hpp
+        engine/matrix.hpp
+        engine/color.hpp
+        engine/input/input.hpp
+        engine/input/keyboard_input_provider.hpp
+        engine/input/input_provider.hpp
+        engine/input/key.hpp
+        engine/input/key_state.hpp
         engine/scene.hpp
+        engine/scenes/menu/menu-scene.hpp
+        engine/actors/rectangle-actor.hpp
+        engine/actors/arrow-actor.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

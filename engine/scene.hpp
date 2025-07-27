@@ -8,9 +8,9 @@
 
 template<typename T>
 class scene {
-    std::vector<actor> actors;
-
 public:
+    std::vector<std::shared_ptr<actor> > actors;
+
     explicit scene(T param) {
     }
 

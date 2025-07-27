@@ -9,11 +9,11 @@ public:
     virtual ~input_provider() = default;
     virtual void update(float delta_time) = 0;
     virtual void lateUpdate(float delta_time) = 0;
-    virtual bool isKeyDown(key key) const = 0;
-    virtual bool isAnyKeyDown() const = 0;
-    virtual bool isKeyUp(key key) const = 0;
-    virtual bool isAnyKeyUp() const = 0;
-    virtual bool isKeyPress(key key) const = 0;
-    virtual bool isAnyKeyPress() const = 0;
+    virtual bool is_key_down(key key) const = 0;
+    virtual bool is_any_key_down() const = 0;
+    virtual bool is_key_up(key key) const = 0;
+    virtual bool is_any_key_up() const = 0;
+    virtual bool is_key_press(key key) const = 0;
+    virtual bool is_any_key_press() const = 0;
     virtual void clear() = 0;
 };
