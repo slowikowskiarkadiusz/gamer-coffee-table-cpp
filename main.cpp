@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include "./engine/engine.hpp"
-#include "engine/input/keyboard_input_provider.hpp"
+#include "./src/engine.hpp"
+#include "src/input/keyboard_input_provider.hpp"
 
 sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
 

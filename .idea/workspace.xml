@@ -29,9 +29,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/matrix.hpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="renders!!!">
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/actors/arrow-actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/arrow-actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/actors/rectangle-actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle-actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/actors/rectangle-actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle-actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/input/input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/input/input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/input/key.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/key.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/input/key_state.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/key_state.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/input/keyboard_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/scenes/menu/menu-scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu-scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/scenes/menu/menu-scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu-scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/v2.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -229,7 +246,7 @@
     "RunOnceActivity.west.config.association.type.startup.service": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/ark/Desktop/gaming_coffee_table_cpp/engine",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -272,7 +289,7 @@
       <workItem from="1753608451244" duration="12946000" />
       <workItem from="1753633976117" duration="1039000" />
       <workItem from="1753635085669" duration="1932000" />
-      <workItem from="1753638733136" duration="15623000" />
+      <workItem from="1753638733136" duration="15711000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -330,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753699864057</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="renders!!!">
+      <option name="closed" value="true" />
+      <created>1753700251586</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753700251586</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,23 +373,24 @@
     <MESSAGE value="added scene" />
     <MESSAGE value="not work" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="renders!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="renders!!!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine/engine.hpp</url>
+          <url>file://$PROJECT_DIR$/src/engine.hpp</url>
           <line>53</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine/engine.hpp</url>
+          <url>file://$PROJECT_DIR$/src/engine.hpp</url>
           <line>66</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine/engine.hpp</url>
+          <url>file://$PROJECT_DIR$/src/engine.hpp</url>
           <line>147</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
