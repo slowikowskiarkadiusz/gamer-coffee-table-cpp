@@ -137,7 +137,7 @@ public:
         return *this;
     }
 
-    matrix &printToConsole() {
+    matrix &print_to_console() {
         std::string result = "\n";
         for (size_t y = 0; y < _matrix[0].size(); y++) {
             for (size_t x = 0; x < _matrix.size(); x++) {

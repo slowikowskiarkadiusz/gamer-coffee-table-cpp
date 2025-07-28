@@ -23,9 +23,11 @@ int main() {
         for (int y = 0; y < 32; y++) {
             for (int x = 0; x < 32; x++) {
                 auto matrixPixel = engineObj.screen.pixels()[x][y];
+                if (matrixPixel.r > 0 || matrixPixel.g > 0 || matrixPixel.b > 0 || matrixPixel.a > 0)
+                    std::cout << std::format("{0}, {1}, {2}, {3}", matrixPixel.r, matrixPixel.g, matrixPixel.b, matrixPixel.a) << std::endl;
                 sf::CircleShape pixel(5);
                 pixel.setPosition(x * 10, y * 10);
-                pixel.setFillColor(sf::Color(matrixPixel.r / 255, matrixPixel.g / 255, matrixPixel.b / 255, matrixPixel.a / 255));
+                pixel.setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
                 window.draw(pixel);
             }
         }

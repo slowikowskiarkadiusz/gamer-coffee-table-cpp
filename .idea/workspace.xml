@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
     <option name="/Default/Environment/UserInterface/HierarchyView/ViewStyle/@EntryValue" value="SuperTypes" type="string" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
@@ -28,22 +29,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="not work">
-      <change afterPath="$PROJECT_DIR$/engine/actor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/actors/rectangle-actor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/engine.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/scenes/menu/menu-scene.cpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/actors/rectangle-actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/actors/rectangle-actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/color.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/input/keyboard_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/input/keyboard_input_provider.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/scene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/scenes/menu/menu-scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/scenes/menu/menu-scene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/v2.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -284,7 +272,7 @@
       <workItem from="1753608451244" duration="12946000" />
       <workItem from="1753633976117" duration="1039000" />
       <workItem from="1753635085669" duration="1932000" />
-      <workItem from="1753638733136" duration="15199000" />
+      <workItem from="1753638733136" duration="15623000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -334,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753643458764</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update">
+      <option name="closed" value="true" />
+      <created>1753699864057</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753699864057</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +347,8 @@
     <MESSAGE value="OOOOOOF" />
     <MESSAGE value="added scene" />
     <MESSAGE value="not work" />
-    <option name="LAST_COMMIT_MESSAGE" value="not work" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
