@@ -87,11 +87,28 @@ public:
 
     v2 mul(float scalar) const {
         return {this->x * scalar, this->y * scalar};
-    };
+    }
 
     v2 div(float scalar) const {
         return {this->x / scalar, this->y / scalar};
-    };
+    }
+
+    v2 operator+(const v2 &v) const {
+        return add(v);
+    }
+
+    v2 operator-(const v2 &v) const {
+        return sub(v);
+    }
+
+    v2 operator*(float scalar) const {
+        return mul(scalar);
+    }
+
+    v2 operator/(float scalar) const {
+        return div(scalar);
+    }
+
 
     float mag() const {
         return (float) std::sqrt(this->x * this->x + this->y * this->y);

@@ -6,12 +6,11 @@
 #define SCENES_HPP
 #include "actor.hpp"
 
-template<typename T>
 class scene {
 public:
     std::vector<std::shared_ptr<actor> > actors;
 
-    explicit scene(T param) {
+    explicit scene() {
     }
 
     virtual ~scene() = default;

@@ -8,7 +8,6 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 add_executable(gaming_coffee_table_cpp
         main.cpp
         engine/engine.hpp
-        engine/actor.hpp
         engine/v2.hpp
         engine/matrix.hpp
         engine/color.hpp
@@ -21,5 +20,10 @@ add_executable(gaming_coffee_table_cpp
         engine/scenes/menu/menu-scene.hpp
         engine/actors/rectangle-actor.hpp
         engine/actors/arrow-actor.hpp
+        engine/actor.hpp
+        engine/actor.cpp
+        engine/engine.cpp
+        engine/scenes/menu/menu-scene.cpp
+        engine/actors/rectangle-actor.cpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

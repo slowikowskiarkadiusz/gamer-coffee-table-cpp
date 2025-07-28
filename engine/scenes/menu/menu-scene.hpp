@@ -5,13 +5,16 @@
 #pragma once
 
 #include "../../scene.hpp"
+#include "../../actors/rectangle-actor.hpp"
 
-#include <map>
-#include <string>
-#include <memory>
+class menu_scene : public scene {
+public:
+    menu_scene() {
+    }
 
-class menu_scene : public scene<std::nullptr_t> {
-    menu_scene(): scene<std::nullptr_t>(nullptr) {
-        std::cout << "huj" << std::endl;
+    void update(float delta_time) override;
+
+    void fixed_update(float delta_time) override {
+        auto a = delta_time + 1;
     }
 };

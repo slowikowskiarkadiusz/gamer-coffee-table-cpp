@@ -27,7 +27,7 @@ private:
     long lastFixedTimestamp = 0;
     float goBackToMenuTimer = 0;
 
-    std::shared_ptr<scene<std::nullptr_t> > current_scene = nullptr;
+    std::shared_ptr<scene> current_scene = nullptr;
     std::vector<std::shared_ptr<actor> > temp_actors;
 
     std::vector<std::future<void> > timeouts;
@@ -45,7 +45,7 @@ private:
 public:
     static engine *instance_ptr;
 
-    v2 screen_size = v2::get_one().mul(32);
+    v2 screen_size = v2(32, 32);
     matrix screen = matrix(screen_size.x, screen_size.y);
     float delta_time = 0;
     float fixed_delta_time = 0;
@@ -108,8 +108,10 @@ public:
                 fixed_delta_time = static_cast<float>(new_time - lastFixedTimestamp);
                 lastFixedTimestamp = new_time;
 
+                auto aaaa = dynamic_cast<menu_scene *>(current_scene.get());
+
                 current_scene->fixed_update(fixed_delta_time);
-                for (auto &a: current_scene->actors) {
+                for (auto a: current_scene->actors) {
                     a->fixed_update(fixed_delta_time);
                 }
 
@@ -133,21 +135,20 @@ public:
 
     void unregister_actor(std::shared_ptr<actor> a) {
         if (!current_scene) {
-            temp_actors.erase(std::remove(temp_actors.begin(), temp_actors.end(), a), temp_actors.end());
+            std::erase(temp_actors, a);
         } else {
-            current_scene->actors.erase(std::remove(current_scene->actors.begin(), current_scene->actors.end(), a),
-                                        current_scene->actors.end());
+            std::erase(current_scene->actors, a);
         }
     }
 
-    void open_scene(std::shared_ptr<scene<std::nullptr_t> > scene_ptr) {
+    void open_scene(std::shared_ptr<scene> scene_ptr) {
         for (auto &f: timeouts) f.wait();
         for (auto &f: intervals) f.wait();
 
         if (current_scene)
             current_scene->actors.clear();
 
-        current_scene = scene_ptr;
+        current_scene = std::move(scene_ptr);
         current_scene->actors = temp_actors;
         temp_actors.clear();
     }
@@ -160,7 +161,7 @@ public:
     }
 
     void set_interval(std::function<void()> callback, int ms) {
-        intervals.push_back(std::async(std::launch::async, [=]() {
+        intervals.push_back(std::async(std::launch::async, [&]() {
             while (running) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(ms));
                 callback();

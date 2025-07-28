@@ -26,14 +26,14 @@ public:
     static color black(float a = 1) { return color(0, 0, 0, a); }
     static color none() { return color::black(0); }
 
-    static color blendColors(const std::vector<color> &inputColors) {
+    static color blend_colors(const std::vector<color> &inputColors) {
         std::vector<color> colors;
         for (const auto &c: inputColors) {
-            if (!c.isNone()) colors.push_back(c);
+            if (!c.is_none()) colors.push_back(c);
         }
         if (colors.empty()) return color::none();
         if (colors.size() == 1) return colors[0].copy();
-        return additiveBlending(colors);
+        return additive_blending(colors);
     }
 
     static color lerp(const color &from, const color &to, float step) {
@@ -48,7 +48,7 @@ public:
         return color(r, g, b, a);
     }
 
-    bool isNone() const {
+    bool is_none() const {
         return r == 0 && g == 0 && b == 0 && a == 0;
     }
 
@@ -56,7 +56,7 @@ public:
         return r == other.r && g == other.g && b == other.b && a == other.a;
     }
 
-    std::string toRGBAString() const {
+    std::string to_rgba_string() const {
         std::ostringstream oss;
         oss << "rgba("
                 << static_cast<int>(r * 255) << ", "
@@ -67,7 +67,7 @@ public:
     }
 
 private:
-    static color additiveBlending(const std::vector<color> &colors) {
+    static color additive_blending(const std::vector<color> &colors) {
         float r = 0, g = 0, b = 0, totalAlpha = 0;
         for (const auto &c: colors) {
             r += c.r * c.a;
@@ -78,7 +78,7 @@ private:
         return color(std::min(1.0f, r), std::min(1.0f, g), std::min(1.0f, b), std::min(1.0f, totalAlpha));
     }
 
-    static color subtractiveBlending(const std::vector<color> &colors) {
+    static color subtractive_blending(const std::vector<color> &colors) {
         float r = 1, g = 1, b = 1, transmission = 1;
         for (const auto &c: colors) {
             float alpha = c.a;

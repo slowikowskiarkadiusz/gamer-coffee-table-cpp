@@ -11,23 +11,22 @@
 
 class keyboard_input_provider : public input_provider {
 private:
-    sf::RenderWindow *window;
     std::unordered_set<sf::Keyboard::Key> keysDown;
     std::unordered_set<sf::Keyboard::Key> keysUp;
     std::unordered_set<sf::Keyboard::Key> keysPress;
 
 public:
-    explicit keyboard_input_provider(sf::RenderWindow *window) {
-        this->window = window;
+    std::queue<sf::Event> sfEventQueue = std::queue<sf::Event>();
+
+    explicit keyboard_input_provider() {
     }
 
     ~keyboard_input_provider() override = default;
 
     void update(float delta_time) override {
-        sf::Event event{};
-        if (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window->close();
+        while (!sfEventQueue.empty()) {
+            auto event = sfEventQueue.front();
+            sfEventQueue.pop();
 
             if (event.type == sf::Event::KeyPressed) {
                 keysDown.insert(event.key.code);

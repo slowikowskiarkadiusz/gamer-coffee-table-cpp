@@ -60,7 +60,7 @@ public:
         for (int x = 0; x < otherWidth; x++) {
             for (int y = 0; y < otherHeight; y++) {
                 color color = other.pixels()[x][y];
-                if (color.isNone()) continue;
+                if (color.is_none()) continue;
 
                 float dx = x - center.x;
                 float dy = y - center.y;
@@ -78,7 +78,7 @@ public:
             for (size_t y = 0; y < result[0].size(); y++) {
                 std::vector<color> combined = {_matrix[x][y]};
                 combined.insert(combined.end(), result[x][y].begin(), result[x][y].end());
-                _matrix[x][y] = color::blendColors(combined);
+                _matrix[x][y] = color::blend_colors(combined);
             }
         }
 
@@ -141,7 +141,7 @@ public:
         std::string result = "\n";
         for (size_t y = 0; y < _matrix[0].size(); y++) {
             for (size_t x = 0; x < _matrix.size(); x++) {
-                result += _matrix[x][y].isNone() ? "  " : "O ";
+                result += _matrix[x][y].is_none() ? "  " : "O ";
             }
             result += "|\n";
         }
