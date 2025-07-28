@@ -8,7 +8,6 @@
 #include <functional>
 #include <atomic>
 #include <future>
-#include <unordered_map>
 #include <algorithm>
 
 #include "v2.hpp"
@@ -17,9 +16,6 @@
 #include "color.hpp"
 #include "input/input.hpp"
 #include "input/key.hpp"
-#include "scenes/menu/menu-scene.hpp"
-
-class actor;
 
 class engine {
 private:
@@ -28,7 +24,6 @@ private:
     float goBackToMenuTimer = 0;
 
     std::shared_ptr<scene> current_scene = nullptr;
-    std::vector<std::shared_ptr<actor> > temp_actors;
 
     std::vector<std::future<void> > timeouts;
     std::vector<std::future<void> > intervals;
@@ -63,62 +58,7 @@ public:
         on_frame_finished = callback;
     }
 
-    void run() {
-        running = true;
-
-        update_thread = std::thread([&]() {
-            while (running) {
-                long new_time = now_ms();
-                delta_time = static_cast<float>(new_time - lastTimestamp);
-                lastTimestamp = new_time;
-
-                if (!current_scene) {
-                    open_scene(std::make_shared<menu_scene>());
-                }
-
-                input.update(delta_time);
-                // gesture_handler.update(delta_time);
-
-                check_go_back_to_menu(delta_time);
-
-                current_scene->update(delta_time);
-                for (auto &a: current_scene->actors) {
-                    a->update(delta_time);
-                }
-
-                screen.clear();
-                for (auto &a: current_scene->actors) {
-                    screen.write(a->render(), a->center(), a->rotation());
-                }
-
-                if (on_frame_finished) {
-                    on_frame_finished(screen.pixels());
-                }
-
-                input.late_update(delta_time);
-                // gesture_handler.late_update(delta_time);
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(33));
-            }
-        });
-
-        fixed_update_thread = std::thread([&]() {
-            while (running) {
-                long new_time = now_ms();
-                fixed_delta_time = static_cast<float>(new_time - lastFixedTimestamp);
-                lastFixedTimestamp = new_time;
-
-                auto aaaa = dynamic_cast<menu_scene *>(current_scene.get());
-
-                current_scene->fixed_update(fixed_delta_time);
-                for (auto a: current_scene->actors) {
-                    a->fixed_update(fixed_delta_time);
-                }
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(16));
-            }
-        });
-    }
+    void run();
 
     void stop() {
         running = false;
@@ -127,18 +67,11 @@ public:
     }
 
     void register_actor(std::shared_ptr<actor> a) {
-        if (!current_scene)
-            temp_actors.push_back(a);
-        else
-            current_scene->actors.push_back(a);
+        current_scene->actors.push_back(a);
     }
 
     void unregister_actor(std::shared_ptr<actor> a) {
-        if (!current_scene) {
-            std::erase(temp_actors, a);
-        } else {
-            std::erase(current_scene->actors, a);
-        }
+        std::erase(current_scene->actors, a);
     }
 
     void open_scene(std::shared_ptr<scene> scene_ptr) {
@@ -149,8 +82,7 @@ public:
             current_scene->actors.clear();
 
         current_scene = std::move(scene_ptr);
-        current_scene->actors = temp_actors;
-        temp_actors.clear();
+        current_scene->init();
     }
 
     void set_timeout(std::function<void()> callback, int ms) {
@@ -176,14 +108,5 @@ private:
         ).count();
     }
 
-    void check_go_back_to_menu(float dt) {
-        if (input.is_key_press(key::START)) {
-            goBackToMenuTimer += dt;
-        }
-
-        if (goBackToMenuTimer > 3000.0f) {
-            goBackToMenuTimer = 0;
-            open_scene(std::make_shared<menu_scene>());
-        }
-    }
+    void check_go_back_to_menu(float dt);
 };

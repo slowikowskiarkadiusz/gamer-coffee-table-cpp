@@ -1,9 +1,5 @@
-//
-// Created by Arkadiusz on 27/07/2025.
-//
+#pragma once
 
-#ifndef SCENES_HPP
-#define SCENES_HPP
 #include "actor.hpp"
 
 class scene {
@@ -15,8 +11,7 @@ public:
 
     virtual ~scene() = default;
 
+    virtual void init() = 0;
     virtual void update(float delta_time) = 0;
     virtual void fixed_update(float delta_time) = 0;
 };
-
-#endif //SCENES_HPP

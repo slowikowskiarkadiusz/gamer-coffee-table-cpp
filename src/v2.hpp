@@ -1,6 +1,3 @@
-//
-// Created by Arkadiusz on 27/07/2025.
-//
 #pragma once
 
 #import <cmath>
@@ -21,47 +18,47 @@ public:
         return {from.x, from.y};
     }
 
-    static v2 get_zero() {
+    static v2 zero() {
         return {0, 0};
     }
 
-    static v2 get_one() {
+    static v2 one() {
         return {1, 1};
     }
 
-    static v2 get_n_one() {
+    static v2 n_one() {
         return {-1, -1};
     }
 
-    static v2 get_up() {
+    static v2 up() {
         return {0, -1};
     }
 
-    static v2 get_down() {
+    static v2 down() {
         return {0, 1};
     }
 
-    static v2 get_left() {
+    static v2 left() {
         return {-1, 0};
     }
 
-    static v2 get_right() {
+    static v2 right() {
         return {1, 0};
     }
 
-    static v2 get_left_down() {
+    static v2 left_down() {
         return {-1, 1};
     }
 
-    static v2 get_left_up() {
+    static v2 left_up() {
         return {-1, -1};
     }
 
-    static v2 get_right_down() {
+    static v2 right_down() {
         return {1, 1};
     }
 
-    static v2 get_right_up() {
+    static v2 right_up() {
         return {1, -1};
     }
 

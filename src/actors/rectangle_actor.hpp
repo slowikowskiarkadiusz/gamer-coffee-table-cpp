@@ -8,13 +8,12 @@ class rectangle_actor : public actor {
     matrix _matrix;
     color _color;
 
-protected:
+public:
     rectangle_actor(const v2 &center, const v2 &size, const color &col = color::white())
         : actor("rectangle", center, size), _color(col), _matrix(make_rectangle(size, col)) {
     }
 
-public:
-    static rectangle_actor instantiate(const v2 &center, const v2 &size, const color &col);
+    static std::shared_ptr<rectangle_actor> instantiate(const v2 &center, const v2 &size, const color &col);
 
     void update(float a) override {
     }
@@ -88,4 +87,7 @@ private:
     static bool do_intersect(const v2 &A, const v2 &B, const v2 &C, const v2 &D) {
         return ccw(A, C, D) != ccw(B, C, D) && ccw(A, B, C) != ccw(A, B, D);
     }
+
+public:
+    ~rectangle_actor() override;
 };

@@ -1,6 +1,3 @@
-//
-// Created by Arkadiusz on 27/07/2025.
-//
 #pragma once
 
 #include <memory>
@@ -11,12 +8,17 @@
 #pragma once
 
 class input {
-private:
+    static input *instance_ptr;
     std::shared_ptr<input_provider> inputProvider;
 
 public:
     explicit input(std::shared_ptr<input_provider> inputProvider) {
         this->inputProvider = std::move(inputProvider);
+        instance_ptr = this;
+    }
+
+    static input &instance() {
+        return *instance_ptr;
     }
 
     void update(float deltaTime) {

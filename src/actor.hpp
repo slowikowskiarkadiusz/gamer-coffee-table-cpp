@@ -5,6 +5,8 @@
 #include <string>
 #include <memory>
 
+class engine;
+
 class actor : public std::enable_shared_from_this<actor> {
 protected:
     std::string _name = "actor";

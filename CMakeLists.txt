@@ -17,13 +17,23 @@ add_executable(gaming_coffee_table_cpp
         src/input/key.hpp
         src/input/key_state.hpp
         src/scene.hpp
-        src/scenes/menu/menu-scene.hpp
-        src/actors/rectangle-actor.hpp
-        src/actors/arrow-actor.hpp
+        src/scenes/menu/menu_scene.hpp
+        src/actors/rectangle_actor.hpp
+        src/actors/arrow_actor.hpp
         src/actor.hpp
         src/actor.cpp
         src/engine.cpp
-        src/scenes/menu/menu-scene.cpp
-        src/actors/rectangle-actor.cpp
+        src/scenes/menu/menu_scene.cpp
+        src/actors/rectangle_actor.cpp
+        src/actors/arrow_actor.cpp
+        src/actors/text_actor.cpp
+        src/actors/text_actor.hpp
+        src/actors/letter.cpp
+        src/actors/letter.hpp
+        src/scenes/tetris/tetris_scene.cpp
+        src/scenes/tetris/tetris_scene.hpp
+        src/scenes/pong/pong_scene.cpp
+        src/scenes/pong/pong_scene.hpp
+        src/input/input.cpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

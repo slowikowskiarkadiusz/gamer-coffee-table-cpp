@@ -22,15 +22,23 @@ public:
         return _matrix;
     }
 
-    void setPixelV2(const v2 &point, const color &color) {
+    const uint width() const {
+        return _matrix.size();
+    }
+
+    const uint height() const {
+        return _matrix[0].size();
+    }
+
+    void set_pixel_v2(const v2 &point, const color &color) {
         _matrix[point.x][point.y] = color.copy();
     }
 
-    void setPixel(int x, int y, const color &color) {
+    void set_pixel(int x, int y, const color &color) {
         _matrix[x][y] = color.copy();
     }
 
-    matrix &writeAtOrigin(const matrix &other, const v2 &origin) {
+    matrix &write_at_origin(const matrix &other, const v2 &origin) {
         for (size_t x = 0; x < other._matrix.size(); x++) {
             for (size_t y = 0; y < other._matrix[x].size(); y++) {
                 int tx = x + origin.x;

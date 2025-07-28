@@ -1,6 +1,3 @@
-//
-// Created by Arkadiusz on 27/07/2025.
-//
 #pragma once
 #include "key.hpp"
 
