@@ -4,10 +4,14 @@
 #include "../engine.hpp"
 
 text_actor::text_actor(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts)
-    : actor("text", top_left + container_size / 2.0f, container_size), _inbound(_inbound),
-      _text(text), _top_left(top_left), _bottom_right(top_left + container_size), _opts(opts) {
+    : actor("text", top_left + container_size / 2.0f, container_size),
+      text(text),
+      _top_left(top_left),
+      _bottom_right(top_left + container_size),
+      _opts(opts) {
     auto [inbound, outbound] = generate_word_matrix(text, static_cast<int>(container_size.x), opts.col, opts.anchor_center);
-    _outbound = outbound;
+    _inbound = std::move(inbound);
+    _outbound = std::move(outbound);
 }
 
 std::shared_ptr<text_actor> text_actor::instantiate(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts) {

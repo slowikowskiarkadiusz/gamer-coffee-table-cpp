@@ -49,7 +49,7 @@ matrix arrow_actor::shape(float size_y, const color &c) {
     int height = static_cast<int>(size_y);
     matrix m(width, height);
 
-    for (int y = 0; y < height / 2; ++y) {
+    for (int y = 0; y < height / 2 + 1; ++y) {
         m.set_pixel(0, y, c);
 
         for (int x = 1; x <= y; ++x) {

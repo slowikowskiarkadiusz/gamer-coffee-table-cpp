@@ -22,6 +22,7 @@ void engine::run() {
             check_go_back_to_menu(delta_time);
 
             current_scene->update(delta_time);
+
             for (auto &a: current_scene->actors) {
                 a->update(delta_time);
             }

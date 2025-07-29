@@ -11,17 +11,18 @@ struct text_actor_opts {
 };
 
 class text_actor : public actor {
-    matrix _inbound;
+    matrix _inbound = matrix(0, 0);
     std::optional<matrix> _outbound;
     int _animation_index_offset = 0;
     bool _do_animate = false;
     float _animation_runtime = 0;
-    std::string _text;
     v2 _top_left;
     v2 _bottom_right;
     text_actor_opts _opts;
 
 public:
+    std::string text;
+
     text_actor(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts = {});
 
     static std::shared_ptr<text_actor> instantiate(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts = {});

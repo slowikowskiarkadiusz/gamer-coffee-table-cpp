@@ -25,7 +25,7 @@ public:
             auto event = sfEventQueue.front();
             sfEventQueue.pop();
 
-            if (event.type == sf::Event::KeyPressed) {
+            if (event.type == sf::Event::KeyPressed && !keysPress.contains(event.key.code)) {
                 keysDown.insert(event.key.code);
                 keysPress.insert(event.key.code);
             }

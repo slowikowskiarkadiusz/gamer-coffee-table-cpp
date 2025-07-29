@@ -14,14 +14,14 @@ void menu_scene::init() {
         [] { return std::make_shared<tetris_scene>(); },
         [] { return std::make_shared<pong_scene>(); },
         [] { return std::make_shared<pong_scene>(); },
-        [] { return std::make_shared<pong_scene>(); } // placeholder
+        [] { return std::make_shared<pong_scene>(); }
     };
 
     for (size_t i = 0; i < titles.size(); ++i) {
         auto pos = v2(4, i * 6);
         auto size = v2(screen.x - 4, 5);
         auto text = text_actor::instantiate(titles[i], pos, size);
-        _options[titles[i]] = {next_scenes[i], text};
+        _options.push_back({next_scenes[i], text, titles[i]});
     }
 
     auto opts = arrow_actor_opts{};
@@ -40,6 +40,7 @@ void menu_scene::update(float delta_time) {
         _cursor_position--;
         changed = true;
     } else if (input::instance().is_key_down(key::START)) {
+        std::cout << "HALO" << std::endl;
         // auto it = std::next(_options.begin(), _cursor_position);
         // engine::instance().open_scene(std::make_shared<controls_scene>(), it->second.next_scene());
     }
@@ -50,8 +51,10 @@ void menu_scene::update(float delta_time) {
 
     if (changed) {
         int i = 0;
-        for (auto &[_, opt]: _options)
-            opt.actor->set_animation(i++ == _cursor_position);
+        for (auto &opt: _options) {
+            opt.actor->set_animation(i == _cursor_position);
+            i++;
+        }
         _arrow->reset_blinking();
         render();
     }

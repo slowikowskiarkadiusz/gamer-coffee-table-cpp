@@ -14,7 +14,7 @@ struct arrow_actor_opts {
 class arrow_actor : public actor {
     matrix _matrix;
     bool _is_blinking = false;
-    float _blinking_offset = 0.5f; // in seconds
+    float _blinking_offset = 500; // in seconds
     arrow_actor_opts _opts;
     float _blink_timer = 0;
     bool _visible = true;

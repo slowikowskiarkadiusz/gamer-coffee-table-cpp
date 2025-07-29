@@ -12,11 +12,12 @@ class engine;
 struct menu_option {
     std::function<std::shared_ptr<scene>()> next_scene;
     std::shared_ptr<text_actor> actor;
+    std::string title;
 };
 
 class menu_scene : public scene {
     int _cursor_position = 0;
-    std::map<std::string, menu_option> _options;
+    std::vector<menu_option> _options;
     std::shared_ptr<arrow_actor> _arrow;
 
 public:

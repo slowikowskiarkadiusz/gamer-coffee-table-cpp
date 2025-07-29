@@ -29,38 +29,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="renamed engine to src">
-      <change afterPath="$PROJECT_DIR$/src/actors/arrow_actor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actors/arrow_actor.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actors/letter.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actors/text_actor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actors/text_actor.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/input/input.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.hpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="oof">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/arrow-actor.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle-actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle-actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/arrow_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/arrow_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/arrow_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/arrow_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input_provider.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/key.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/key.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu-scene.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu-scene.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/v2.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +54,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -359,7 +346,7 @@
       <workItem from="1753608451244" duration="12946000" />
       <workItem from="1753633976117" duration="1039000" />
       <workItem from="1753635085669" duration="1932000" />
-      <workItem from="1753638733136" duration="22710000" />
+      <workItem from="1753638733136" duration="27524000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -433,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753700357573</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="oof">
+      <option name="closed" value="true" />
+      <created>1753721992044</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1753721992044</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,7 +448,8 @@
     <MESSAGE value="update" />
     <MESSAGE value="renders!!!" />
     <MESSAGE value="renamed engine to src" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed engine to src" />
+    <MESSAGE value="oof" />
+    <option name="LAST_COMMIT_MESSAGE" value="oof" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
