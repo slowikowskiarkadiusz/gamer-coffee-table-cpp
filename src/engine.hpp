@@ -101,12 +101,12 @@ public:
         }));
     }
 
-private:
-    long now_ms() const {
+    static long now_ms() {
         return std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::system_clock::now().time_since_epoch()
         ).count();
     }
 
+private:
     void check_go_back_to_menu(float dt);
 };

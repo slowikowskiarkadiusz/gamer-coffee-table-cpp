@@ -15,3 +15,5 @@ enum class key {
     P2_R,
     START
 };
+
+inline uint keys_length = static_cast<uint>(key::START);

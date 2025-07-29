@@ -35,5 +35,7 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/pong/pong_scene.cpp
         src/scenes/pong/pong_scene.hpp
         src/input/input.cpp
+        src/input/gestures.hpp
+        src/max_heap.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)
