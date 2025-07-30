@@ -1,33 +1,37 @@
 #include "menu_scene.hpp"
 #include "../pong/pong_scene.hpp"
 #include "../tetris/tetris_scene.hpp"
+#include "../controls/controls_scene.hpp"
 #include "../../input/input.hpp"
 
-menu_scene::menu_scene() {
-}
+menu_scene::menu_scene() = default;
 
 void menu_scene::init() {
     auto screen = engine::instance().screen_size;
 
     std::vector<std::string> titles = {"tetris", "pong 1", "pong 2", "music visualizer"};
-    std::vector<std::function<std::shared_ptr<scene>()> > next_scenes = {
-        [] { return std::make_shared<tetris_scene>(); },
-        [] { return std::make_shared<pong_scene>(); },
-        [] { return std::make_shared<pong_scene>(); },
-        [] { return std::make_shared<pong_scene>(); }
+    std::vector<std::pair<std::function<std::shared_ptr<scene>()>, std::string> > next_scenes = {
+        {[] { return std::make_shared<tetris_scene>(); }, "tetris_scene"},
+        {[] { return std::make_shared<pong_scene>(); }, "pong_scene"},
+        {[] { return std::make_shared<pong_scene>(); }, "pong_scene"},
+        {[] { return std::make_shared<pong_scene>(); }, "pong_scene"},
     };
 
     for (size_t i = 0; i < titles.size(); ++i) {
         auto pos = v2(4, i * 6);
         auto size = v2(screen.x - 4, 5);
         auto text = text_actor::instantiate(titles[i], pos, size);
-        _options.push_back({next_scenes[i], text, titles[i]});
+        _options.push_back({next_scenes[i].first, text, titles[i], next_scenes[i].second});
     }
 
     auto opts = arrow_actor_opts{};
     opts.blink = true;
     _arrow = arrow_actor::instantiate(v2(1.5f, 2.5f), 5, opts);
     render();
+
+    engine::instance().set_interval([]() {
+        std::cout << "ABC" << std::endl;
+    }, 1000);
 }
 
 void menu_scene::update(float delta_time) {
@@ -40,8 +44,8 @@ void menu_scene::update(float delta_time) {
         _cursor_position--;
         changed = true;
     } else if (input::i().is_key_down(key::START)) {
-        // auto it = std::next(_options.begin(), _cursor_position);
-        // engine::instance().open_scene(std::make_shared<controls_scene>(), it->second.next_scene());
+        auto it = std::next(_options.begin(), _cursor_position);
+        engine::instance().open_scene(std::make_shared<controls_scene>(it->next_scene, it->scene_name));
     }
 
     int option_count = static_cast<int>(_options.size());

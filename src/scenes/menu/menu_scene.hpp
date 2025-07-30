@@ -13,6 +13,7 @@ struct menu_option {
     std::function<std::shared_ptr<scene>()> next_scene;
     std::shared_ptr<text_actor> actor;
     std::string title;
+    std::string scene_name;
 };
 
 class menu_scene : public scene {

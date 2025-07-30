@@ -39,5 +39,7 @@ add_executable(gaming_coffee_table_cpp
         src/input/gestures.cpp
         src/max_heap.hpp
         src/now_ms.hpp
+        src/scenes/controls/controls_scene.hpp
+        src/scenes/controls/button_icon_actor.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

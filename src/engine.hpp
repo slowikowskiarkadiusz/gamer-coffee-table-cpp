@@ -18,6 +18,11 @@
 #include "input/gestures.hpp"
 #include "input/input.hpp"
 
+struct timeout {
+    std::function<void()> function;
+    long ms;
+};
+
 class engine {
 private:
     long lastTimestamp = 0;
