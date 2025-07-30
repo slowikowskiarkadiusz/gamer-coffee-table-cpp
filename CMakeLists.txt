@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 add_executable(gaming_coffee_table_cpp
-        main.cpp
+        main.mm
         src/engine.hpp
         src/v2.hpp
         src/matrix.hpp
@@ -36,6 +36,8 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/pong/pong_scene.hpp
         src/input/input.cpp
         src/input/gestures.hpp
+        src/input/gestures.cpp
         src/max_heap.hpp
+        src/now_ms.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

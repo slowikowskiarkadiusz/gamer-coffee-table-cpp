@@ -33,14 +33,13 @@ void menu_scene::init() {
 void menu_scene::update(float delta_time) {
     bool changed = false;
 
-    if (input::instance().is_key_down(key::P1_L_L) || input::instance().is_key_down(key::P1_R_R)) {
+    if (input::i().is_key_down(key::P1_L_L) || input::i().is_key_down(key::P1_R_R)) {
         _cursor_position++;
         changed = true;
-    } else if (input::instance().is_key_down(key::P1_L_BLUE) || input::instance().is_key_down(key::P1_R_GREEN)) {
+    } else if (input::i().is_key_down(key::P1_L_BLUE) || input::i().is_key_down(key::P1_R_GREEN)) {
         _cursor_position--;
         changed = true;
-    } else if (input::instance().is_key_down(key::START)) {
-        std::cout << "HALO" << std::endl;
+    } else if (input::i().is_key_down(key::START)) {
         // auto it = std::next(_options.begin(), _cursor_position);
         // engine::instance().open_scene(std::make_shared<controls_scene>(), it->second.next_scene());
     }

@@ -5,8 +5,6 @@
 #include "input_provider.hpp"
 #include "key.hpp"
 
-#pragma once
-
 class input {
     static input *instance_ptr;
     std::shared_ptr<input_provider> inputProvider;
@@ -17,7 +15,7 @@ public:
         instance_ptr = this;
     }
 
-    static input &instance() {
+    static input &i() {
         return *instance_ptr;
     }
 

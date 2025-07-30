@@ -14,8 +14,9 @@
 #include "matrix.hpp"
 #include "scene.hpp"
 #include "color.hpp"
+#include "now_ms.hpp"
+#include "input/gestures.hpp"
 #include "input/input.hpp"
-#include "input/key.hpp"
 
 class engine {
 private:
@@ -35,7 +36,7 @@ private:
     std::function<void(const std::vector<std::vector<color> > &)> on_frame_finished;
 
     input input;
-    // gestures gesture_handler;
+    gestures gesture_handler;
 
 public:
     static engine *instance_ptr;
@@ -99,12 +100,6 @@ public:
                 callback();
             }
         }));
-    }
-
-    static long now_ms() {
-        return std::chrono::duration_cast<std::chrono::milliseconds>(
-            std::chrono::system_clock::now().time_since_epoch()
-        ).count();
     }
 
 private:

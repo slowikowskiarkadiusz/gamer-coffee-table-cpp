@@ -17,7 +17,7 @@ void engine::run() {
             }
 
             input.update(delta_time);
-            // gesture_handler.update(delta_time);
+            gesture_handler.update(delta_time);
 
             check_go_back_to_menu(delta_time);
 
@@ -37,7 +37,7 @@ void engine::run() {
             }
 
             input.late_update(delta_time);
-            // gesture_handler.late_update(delta_time);
+            gesture_handler.late_update(delta_time);
 
             std::this_thread::sleep_for(std::chrono::milliseconds(33));
         }
