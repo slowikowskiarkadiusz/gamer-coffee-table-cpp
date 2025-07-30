@@ -41,5 +41,6 @@ add_executable(gaming_coffee_table_cpp
         src/now_ms.hpp
         src/scenes/controls/controls_scene.hpp
         src/scenes/controls/button_icon_actor.hpp
+        src/scenes/controls/controls_scene.cpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

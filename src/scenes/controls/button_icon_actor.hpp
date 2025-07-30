@@ -70,6 +70,12 @@ public:
         : actor("button-icon", center, v2::one() * size), mat(make_matrix(size, opts.key)) {
     }
 
+    static std::shared_ptr<button_icon_actor> instantiate(const v2 &center, int size = 5, button_icon_actor_opts opts = {key::P1_L}) {
+        auto rect_actor = std::make_shared<button_icon_actor>(center, size, opts);
+        engine::instance().register_actor(rect_actor);
+        return rect_actor;
+    }
+
     matrix render() override { return mat; }
 
     void update(float) override {

@@ -26,7 +26,6 @@ struct controls_data {
 class controls_scene : public scene {
     bool can_proceed = false;
     std::shared_ptr<rectangle_actor> divider_actor;
-    std::vector<std::shared_ptr<actor> > current_page_actors;
     std::vector<std::vector<controls_data> > pages;
     size_t page_index = 0;
     std::function<std::shared_ptr<scene>()> next_scene;
@@ -41,14 +40,14 @@ public:
 
     void init() override {
         auto screen = engine::instance().screen_size;
-        divider_actor = std::make_shared<rectangle_actor>(screen / 2, v2(screen.x, 2), color::white(0.5f));
+        divider_actor = rectangle_actor::instantiate(screen / 2, v2(screen.x, 2), color::white(0.5f));
 
         engine::instance().set_timeout([this]() {
             can_proceed = true;
             auto create_arrow = [](bool is_p1) {
                 auto pos = engine::instance().screen_size - v2::one() * 1.5f;
                 if (is_p1) pos.y -= engine::instance().screen_size.y / 2;
-                auto arrow = std::make_shared<arrow_actor>(pos, 3.0f, arrow_actor_opts{.blink = true});
+                auto arrow = arrow_actor::instantiate(pos, 3.0f, arrow_actor_opts{.blink = true});
                 if (is_p1) {
                     auto rot_center = engine::instance().screen_size / 2 - v2::one();
                     rot_center.y -= engine::instance().screen_size.y / 4;
@@ -90,20 +89,20 @@ private:
     void print_page() {
         if (pages.size() == 0)
             return;
-        for (auto &a: current_page_actors) a->kill();
-        current_page_actors.clear();
 
         auto &current = pages[page_index];
         for (int is_p1 = 0; is_p1 <= 1; ++is_p1) {
+            std::vector<std::shared_ptr<actor> > current_page_actors;
+
             for (int i = 0; i < current.size(); ++i) {
                 float y = engine::instance().screen_size.y / 2 - (button_size + 1) * (i + 1) + (is_p1 ? 0 : engine::instance().screen_size.y / 2);
                 float x = 0;
                 for (auto k: current[current.size() - 1 - i].keys) {
-                    auto icon = std::make_shared<button_icon_actor>(v2((button_size / 2) + x, y), button_size, button_icon_actor_opts{k});
+                    auto icon = button_icon_actor::instantiate(v2((button_size / 2) + x, y), button_size, button_icon_actor_opts{k});
                     current_page_actors.push_back(icon);
                     x += (button_size + 1);
                 }
-                auto text = std::make_shared<text_actor>(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::instance().screen_size.x - x, button_size));
+                auto text = text_actor::instantiate(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::instance().screen_size.x - x, button_size));
                 current_page_actors.push_back(text);
             }
             if (is_p1) {
@@ -119,9 +118,4 @@ private:
             print_page();
         }, 1600);
     }
-};
-
-std::map<std::string, std::vector<controls_data> > controls_scene::controls = {
-    {"pong_scene", {{{key::P1_L, key::P1_R}, "move"}}},
-    {"tetris_scene", {{{key::P1_L, key::P1_R}, "move"}, {{key::P1_L_BLUE}, "drop"}, {{key::P1_R_GREEN}, "swap"}}}
 };

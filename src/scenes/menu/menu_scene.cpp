@@ -29,7 +29,7 @@ void menu_scene::init() {
     _arrow = arrow_actor::instantiate(v2(1.5f, 2.5f), 5, opts);
     render();
 
-    engine::instance().set_interval([]() {
+    engine::instance().set_timeout([]() {
         std::cout << "ABC" << std::endl;
     }, 1000);
 }

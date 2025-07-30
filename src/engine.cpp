@@ -1,5 +1,8 @@
 #include "engine.hpp"
+
+#include "scenes/controls/controls_scene.hpp"
 #include "scenes/menu/menu_scene.hpp"
+#include "scenes/pong/pong_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
 
@@ -13,7 +16,7 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<menu_scene>());
+                open_scene(std::make_shared<controls_scene>([] { return std::make_shared<pong_scene>(); }, "pong_scene"));
             }
 
             input.update(delta_time);
@@ -27,9 +30,11 @@ void engine::run() {
                 a->update(delta_time);
             }
 
+            run_asyncable(delta_time);
+
             screen.clear();
             for (auto &a: current_scene->actors) {
-                screen.write(a->render(), a->center(), a->rotation());
+                screen.write(a->render(), a->center(), a->rotation()).print_to_console();
             }
 
             if (on_frame_finished) {

@@ -18,9 +18,10 @@
 #include "input/gestures.hpp"
 #include "input/input.hpp"
 
-struct timeout {
+struct asyncable {
     std::function<void()> function;
-    long ms;
+    float ms;
+    float timer = 0;
 };
 
 class engine {
@@ -31,8 +32,10 @@ private:
 
     std::shared_ptr<scene> current_scene = nullptr;
 
-    std::vector<std::future<void> > timeouts;
-    std::vector<std::future<void> > intervals;
+    std::vector<asyncable> timeouts;
+    std::vector<asyncable> pending_timeouts;
+    std::vector<asyncable> intervals;
+    std::vector<asyncable> pending_intervals;
 
     std::thread update_thread;
     std::thread fixed_update_thread;
@@ -73,6 +76,7 @@ public:
     }
 
     void register_actor(std::shared_ptr<actor> a) {
+        std::cout << 'register_actor' << " " << a->name() << std::endl;
         current_scene->actors.push_back(a);
     }
 
@@ -81,8 +85,10 @@ public:
     }
 
     void open_scene(std::shared_ptr<scene> scene_ptr) {
-        for (auto &f: timeouts) f.wait();
-        for (auto &f: intervals) f.wait();
+        timeouts.clear();
+        intervals.clear();
+
+        std::cout << timeouts.size() << std::endl;
 
         if (current_scene)
             current_scene->actors.clear();
@@ -91,22 +97,49 @@ public:
         current_scene->init();
     }
 
-    void set_timeout(const std::function<void()> &callback, int ms) {
-        timeouts.push_back(std::async(std::launch::async, [=]() {
-            std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-            callback();
-        }));
+    void set_timeout(const std::function<void()> &callback, float ms) {
+        pending_timeouts.push_back({callback, ms});
     }
 
-    void set_interval(const std::function<void()> &callback, int ms) {
-        intervals.push_back(std::async(std::launch::async, [&]() {
-            while (running) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-                callback();
-            }
-        }));
+    void set_interval(const std::function<void()> &callback, float ms) {
+        pending_intervals.push_back({callback, ms});
     }
 
 private:
     void check_go_back_to_menu(float dt);
+
+    void run_asyncable(float delta_time) {
+        if (!pending_timeouts.empty()) {
+            timeouts.insert(timeouts.end(),
+                            std::make_move_iterator(pending_timeouts.begin()),
+                            std::make_move_iterator(pending_timeouts.end()));
+            pending_timeouts.clear();
+        }
+
+        for (auto it = timeouts.begin(); it != timeouts.end();) {
+            it->timer += delta_time;
+
+            if (it->timer >= it->ms) {
+                it->function();
+                it = timeouts.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        if (!pending_intervals.empty()) {
+            intervals.insert(intervals.end(),
+                             std::make_move_iterator(pending_intervals.begin()),
+                             std::make_move_iterator(pending_intervals.end()));
+            pending_intervals.clear();
+        }
+
+        for (auto &e: intervals) {
+            e.timer += delta_time;
+            if (e.timer >= e.ms) {
+                e.timer = 0;
+                e.function();
+            }
+        }
+    }
 };
