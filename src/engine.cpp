@@ -34,7 +34,10 @@ void engine::run() {
 
             screen.clear();
             for (auto &a: current_scene->actors) {
-                screen.write(a->render(), a->center(), a->rotation()).print_to_console();
+                if (a->name() == "ball")
+                    auto b = 0;
+
+                screen.write(a->render(), a->center(), a->rotation());
             }
 
             if (on_frame_finished) {

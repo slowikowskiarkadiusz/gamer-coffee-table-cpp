@@ -1,29 +1,29 @@
 #include "pong_scene.hpp"
 #include "../menu/menu_scene.hpp"
 
-constexpr float paddle_speed = 30;
-constexpr float max_bounce_speed = 30;
-constexpr float original_ball_speed = 7;
+constexpr float paddle_speed = 0.03;
+constexpr float max_bounce_speed = 0.03;
+constexpr float original_ball_speed = 0.007;
 
-pong_scene::pong_scene() : ball(std::make_shared<rectangle_actor>(v2(15, 16), v2(2, 2))) {
-}
+pong_scene::pong_scene() = default;
 
 void pong_scene::init() {
     auto screen = engine::instance().screen_size;
-    p1Paddle = std::make_shared<rectangle_actor>(v2(screen.x / 2, 3), v2(7, 1));
-    p2Paddle = std::make_shared<rectangle_actor>(v2(screen.x / 2, screen.y - 4), v2(7, 1));
-    p1ScoreZone = std::make_shared<rectangle_actor>(v2(screen.x / 2, -4), v2(screen.x, 10), color::none());
-    p2ScoreZone = std::make_shared<rectangle_actor>(v2(screen.x / 2, screen.y + 4), v2(screen.x, 10), color::none());
+    p1Paddle = rectangle_actor::instantiate(v2(screen.x / 2, 3), v2(7, 1));
+    p2Paddle = rectangle_actor::instantiate(v2(screen.x / 2, screen.y - 4), v2(7, 1));
+    p1ScoreZone = rectangle_actor::instantiate(v2(screen.x / 2, -4), v2(screen.x, 10), color::none());
+    p2ScoreZone = rectangle_actor::instantiate(v2(screen.x / 2, screen.y + 4), v2(screen.x, 10), color::none());
+    ball = rectangle_actor::instantiate(engine::instance().screen_size / 2, v2(2, 2), color::white());
     reset_ball();
     print_score();
 }
 
 void pong_scene::update(float delta_time) {
     handle_input(delta_time);
-    ball->move_by(ballSpeed * delta_time);
 }
 
 void pong_scene::fixed_update(float delta_time) {
+    ball->move_by(ballSpeed * delta_time);
     check_ball_bounce();
     check_collisions();
     check_scoring();
@@ -58,13 +58,14 @@ void pong_scene::move_paddle(std::shared_ptr<rectangle_actor> &paddle, float dx)
 // }
 
 void pong_scene::reset_ball(bool instant) {
-    instant = false;
+    instant = true;
     print_score();
     canScore = true;
     canBounce = true;
     canCollide[0] = canCollide[1] = true;
     ball->move_to(engine::instance().screen_size / 2);
     ballSpeed = v2::zero();
+    ball->rename("ball");
 
     auto setBall = [&]() {
         float x = ((float) rand() / RAND_MAX) * 2 * original_ball_speed - original_ball_speed;
@@ -143,11 +144,11 @@ void pong_scene::print_score() {
     if (p1ScoreActor) engine::instance().unregister_actor(p1ScoreActor);
     if (p2ScoreActor) engine::instance().unregister_actor(p2ScoreActor);
 
-    p1ScoreActor = std::make_shared<text_actor>(std::to_string(score.first), v2::zero(), v2(4 * std::to_string(score.first).length(), 5));
+    p1ScoreActor = text_actor::instantiate(std::to_string(score.first), v2::zero(), v2(4 * std::to_string(score.first).length(), 5), {.col = color::blue(0.5)});
     p1ScoreActor->rotate(-90);
     p1ScoreActor->move_to(v2(5, engine::instance().screen_size.y / 2 - 5));
 
-    p2ScoreActor = std::make_shared<text_actor>(std::to_string(score.second), v2::zero(), v2(4 * std::to_string(score.second).length(), 5));
+    p2ScoreActor = text_actor::instantiate(std::to_string(score.second), v2::zero(), v2(4 * std::to_string(score.second).length(), 5), {.col = color::blue(0.5)});
     p2ScoreActor->rotate(-90);
     p2ScoreActor->move_to(v2(5, engine::instance().screen_size.y / 2 + 3));
 }

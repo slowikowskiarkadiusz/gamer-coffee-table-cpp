@@ -13,7 +13,7 @@ public:
         : actor("rectangle", center, size), _color(col), _matrix(make_rectangle(size, col)) {
     }
 
-    static std::shared_ptr<rectangle_actor> instantiate(const v2 &center, const v2 &size, const color &col);
+    static std::shared_ptr<rectangle_actor> instantiate(const v2 &center, const v2 &size, const color &col = color::white());
 
     void update(float a) override {
     }

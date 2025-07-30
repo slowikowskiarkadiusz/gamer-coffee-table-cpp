@@ -76,7 +76,6 @@ public:
     }
 
     void register_actor(std::shared_ptr<actor> a) {
-        std::cout << 'register_actor' << " " << a->name() << std::endl;
         current_scene->actors.push_back(a);
     }
 
@@ -87,8 +86,6 @@ public:
     void open_scene(std::shared_ptr<scene> scene_ptr) {
         timeouts.clear();
         intervals.clear();
-
-        std::cout << timeouts.size() << std::endl;
 
         if (current_scene)
             current_scene->actors.clear();

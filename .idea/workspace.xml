@@ -29,15 +29,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="changing timeouts">
-      <change afterPath="$PROJECT_DIR$/src/scenes/controls/controls_scene.cpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="contorls scene">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +51,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -414,7 +415,7 @@
       <workItem from="1753633976117" duration="1039000" />
       <workItem from="1753635085669" duration="1932000" />
       <workItem from="1753638733136" duration="39453000" />
-      <workItem from="1753856053686" duration="15023000" />
+      <workItem from="1753856053686" duration="21085000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -536,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753867592593</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="contorls scene">
+      <option name="closed" value="true" />
+      <created>1753880369083</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1753880369083</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,7 +571,24 @@
     <MESSAGE value="gestures working" />
     <MESSAGE value="pong scene" />
     <MESSAGE value="changing timeouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing timeouts" />
+    <MESSAGE value="contorls scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="contorls scene" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/engine.cpp</url>
+          <line>37</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp</url>
+          <line>72</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
