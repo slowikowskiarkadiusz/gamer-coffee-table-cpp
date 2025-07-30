@@ -32,10 +32,10 @@ private:
 
     std::shared_ptr<scene> current_scene = nullptr;
 
-    std::vector<asyncable> timeouts;
-    std::vector<asyncable> pending_timeouts;
-    std::vector<asyncable> intervals;
-    std::vector<asyncable> pending_intervals;
+    std::vector<asyncable *> timeouts;
+    std::vector<asyncable *> pending_timeouts;
+    std::vector<asyncable *> intervals;
+    std::vector<asyncable *> pending_intervals;
 
     std::thread update_thread;
     std::thread fixed_update_thread;
@@ -94,12 +94,34 @@ public:
         current_scene->init();
     }
 
-    void set_timeout(const std::function<void()> &callback, float ms) {
-        pending_timeouts.push_back({callback, ms});
+    asyncable *set_timeout(const std::function<void()> &callback, float ms) {
+        auto obj = new asyncable({callback, ms});
+        pending_timeouts.push_back(obj);
+        return obj;
     }
 
-    void set_interval(const std::function<void()> &callback, float ms) {
-        pending_intervals.push_back({callback, ms});
+    asyncable *set_interval(const std::function<void()> &callback, float ms) {
+        auto obj = new asyncable({callback, ms});
+        pending_intervals.push_back(obj);
+        return obj;
+    }
+
+    void *clear_timeout(asyncable *asyncable) {
+        if (asyncable != nullptr) {
+            const auto it = std::ranges::find(timeouts, asyncable);
+            timeouts.erase(it);
+        }
+
+        return 0;
+    }
+
+    void *clear_interval(asyncable *asyncable) {
+        if (asyncable != nullptr) {
+            const auto it = std::ranges::find(intervals, asyncable);
+            intervals.erase(it);
+        }
+
+        return 0;
     }
 
 private:
@@ -114,10 +136,10 @@ private:
         }
 
         for (auto it = timeouts.begin(); it != timeouts.end();) {
-            it->timer += delta_time;
+            (*it)->timer += delta_time;
 
-            if (it->timer >= it->ms) {
-                it->function();
+            if ((*it)->timer >= (*it)->ms) {
+                (*it)->function();
                 it = timeouts.erase(it);
             } else {
                 ++it;
@@ -132,10 +154,10 @@ private:
         }
 
         for (auto &e: intervals) {
-            e.timer += delta_time;
-            if (e.timer >= e.ms) {
-                e.timer = 0;
-                e.function();
+            e->timer += delta_time;
+            if (e->timer >= e->ms) {
+                e->timer = 0;
+                e->function();
             }
         }
     }

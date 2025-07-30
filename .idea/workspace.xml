@@ -29,14 +29,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="contorls scene">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="pong has bugs">
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_block_colors.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_shape.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +416,7 @@
       <workItem from="1753633976117" duration="1039000" />
       <workItem from="1753635085669" duration="1932000" />
       <workItem from="1753638733136" duration="39453000" />
-      <workItem from="1753856053686" duration="21085000" />
+      <workItem from="1753856053686" duration="25638000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -545,7 +546,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753880369083</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="pong has bugs">
+      <option name="closed" value="true" />
+      <created>1753902473864</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1753902473864</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,6 +564,17 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v2" />
@@ -572,7 +592,8 @@
     <MESSAGE value="pong scene" />
     <MESSAGE value="changing timeouts" />
     <MESSAGE value="contorls scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="contorls scene" />
+    <MESSAGE value="pong has bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="pong has bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
