@@ -86,14 +86,14 @@ public:
         current_scene->init();
     }
 
-    void set_timeout(std::function<void()> callback, int ms) {
+    void set_timeout(const std::function<void()> &callback, int ms) {
         timeouts.push_back(std::async(std::launch::async, [=]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(ms));
             callback();
         }));
     }
 
-    void set_interval(std::function<void()> callback, int ms) {
+    void set_interval(const std::function<void()> &callback, int ms) {
         intervals.push_back(std::async(std::launch::async, [&]() {
             while (running) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(ms));
