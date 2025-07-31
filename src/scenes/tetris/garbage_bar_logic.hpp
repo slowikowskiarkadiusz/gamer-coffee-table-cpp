@@ -25,11 +25,12 @@ private:
     bool blinkOn = true;
     float blinkingTimer = 0;
     bool skipTextPop = false;
-    v2 center;
-    v2 size;
     garbage_bar_opts opts;
 
 public:
+    v2 size;
+    v2 center;
+
     garbage_bar_logic(v2 center, v2 size, garbage_bar_opts opts = {})
         : center(center), size(size), opts(opts), _matrix(makeRectangle(size, opts.color)), blinkOffmatrix(makeRectangle(size, opts.color)) {
         if (opts.color.is_none())

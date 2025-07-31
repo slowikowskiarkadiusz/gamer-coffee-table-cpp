@@ -43,9 +43,11 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/controls/button_icon_actor.hpp
         src/scenes/controls/controls_scene.cpp
         src/scenes/tetris/tetris_block.hpp
-        src/scenes/tetris/tetris_shape.cpp
+        src/scenes/tetris/tetris_shape.hpp
         src/scenes/tetris/tetris_block_colors.cpp
         src/scenes/tetris/garbage_bar_logic.hpp
-        src/scenes/tetris/hold_logic.cpp
+        src/scenes/tetris/hold_logic.hpp
+        src/scenes/tetris/tetris_board_actor.cpp
+        src/scenes/tetris/tetris_board_actor.h
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

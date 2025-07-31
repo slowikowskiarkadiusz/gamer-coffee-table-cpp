@@ -5,39 +5,40 @@
 #include <unordered_map>
 #include "../../matrix.hpp"
 #include "tetris_block_colors.cpp"
-#include "tetris_shape.cpp"
+#include "tetris_shape.hpp"
 
 class tetris_block {
 private:
     matrix _matrix;
-    int blockRotation = 0;
-    v2 center;
+    int block_rotation = 0;
     tetris_shape shape;
 
 public:
+    v2 center;
+
     tetris_block(v2 center, tetris_shape shape, bool isShadow)
-        : center(center), shape(shape), _matrix(generateShape(shape, 0, isShadow)) {
+        : center(center), shape(shape), _matrix(generate_shape(shape, 0, isShadow)) {
     }
 
-    tetris_shape getShape() const {
+    tetris_shape get_shape() const {
         return shape;
     }
 
-    int getBlockRotation() const {
-        return blockRotation;
+    int get_block_rotation() const {
+        return block_rotation;
     }
 
     matrix render() const {
         return _matrix;
     }
 
-    void rotateBlock(int by) {
+    void rotate_block(int by) {
         if (by < 0) by = 360 + by;
-        blockRotation = (blockRotation + by) % 360;
-        _matrix = rotateMatrix(_matrix, by);
+        block_rotation = (block_rotation + by) % 360;
+        _matrix = rotate_matrix(_matrix, by);
     }
 
-    std::vector<v2> getTakenSpots() const {
+    std::vector<v2> get_taken_spots() const {
         v2 start = center.floor().sub(v2(_matrix.width() / 2, _matrix.height() / 2));
         std::vector<v2> coords;
 
@@ -51,24 +52,24 @@ public:
         return coords;
     }
 
-    std::vector<v2> getKicks(int to) const {
-        std::string kickKey = std::to_string(to % 360) + "->" + std::to_string(blockRotation);
-        std::string setKey = (shape == tetris_shape::I) ? "I" : "Others";
+    std::vector<v2> get_kicks(int to) const {
+        std::string kickKey = std::to_string(to % 360) + "->" + std::to_string(block_rotation);
 
         if (shape == tetris_shape::O)
             return {};
 
-        const auto &raw = kicks[setKey][kickKey];
+        std::string setKey = (shape == tetris_shape::I) ? "I" : "Others";
+        const auto &raw = kicks.at(setKey).at(kickKey);
         std::vector<v2> result;
         for (const auto &pair: raw)
             result.emplace_back(pair[0], pair[1]);
         return result;
     }
 
-    static matrix generateShape(tetris_shape shape, int rotation, bool isShadow) {
-        v2 size = getSize(shape);
+    static matrix generate_shape(tetris_shape shape, int rotation, bool isShadow) {
+        v2 size = get_size(shape);
         matrix matrix(size.x, size.y);
-        color color = isShadow ? color::white(0.2f) : tetris_block_colors.at(shape);
+        color color = isShadow ? color::white(0.2f) : tetris_block_colors[static_cast<int>(shape)];
 
         switch (shape) {
             case tetris_shape::I:
@@ -115,7 +116,7 @@ public:
     }
 
 private:
-    matrix rotateMatrix(const matrix &mat, int degrees) {
+    matrix rotate_matrix(const matrix &mat, int degrees) {
         matrix newMatrix = (degrees == 90 || degrees == 270)
                                ? matrix(mat.height(), mat.width())
                                : matrix(mat.width(), mat.height());
@@ -137,7 +138,7 @@ private:
         return newMatrix;
     }
 
-    static v2 getSize(tetris_shape shape) {
+    static v2 get_size(tetris_shape shape) {
         switch (shape) {
             case tetris_shape::I: return v2(4, 4);
             case tetris_shape::O: return v2(4, 3);

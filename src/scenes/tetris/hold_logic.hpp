@@ -1,3 +1,5 @@
+#pragma once
+
 #include <optional>
 
 #include "tetris_block.hpp"
@@ -7,9 +9,10 @@ private:
     matrix _matrix;
     std::optional<tetris_shape> heldPiece;
     v2 size;
-    v2 center;
 
 public:
+    v2 center;
+
     hold_logic(v2 center) : center(center), size(v2::one().mul(4)), _matrix(matrix(size.x, size.y, color::none())) {
     }
 
@@ -21,11 +24,11 @@ public:
         std::optional<tetris_shape> prevPiece = heldPiece;
         heldPiece = shape;
 
-        _matrix = tetris_block::generateShape(*heldPiece, 0, false);
+        _matrix = tetris_block::generate_shape(*heldPiece, 0, false);
         return prevPiece;
     }
 
-    v2 getSize() const {
+    v2 get_size() const {
         return size;
     }
 };
