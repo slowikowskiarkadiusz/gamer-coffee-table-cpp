@@ -59,12 +59,9 @@ void tetris_scene::on_players_death(bool isP1) {
     printText(false)->rotate_around(rotateAround, 180);
 }
 
+
 void tetris_scene::update(float delta_time) {
-    if (p1Board) p1Board->update(delta_time);
-    // if (p2Board) p2Board->update(delta_time);
 }
 
 void tetris_scene::fixed_update(float fixed_delta_time) {
-    if (p1Board) p1Board->fixed_update(fixed_delta_time);
-    // if (p2Board) p2Board->fixed_update(fixed_delta_time);
 }
