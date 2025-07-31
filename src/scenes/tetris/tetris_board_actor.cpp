@@ -28,7 +28,34 @@ tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
 void tetris_board_actor::update(float deltaTime) {
     if (!do_play) return;
     garbage_bar_logic.update(deltaTime);
-    fall(deltaTime);
+
+    if (current_agent) {
+        if (gestures::i().is(is_p1 ? std::vector{key::P1_L_BLUE} : std::vector{key::P2_L_BLUE}, state::press, gesture::_long) && !switched_pieces) {
+            auto held_shape = hold_logic.use(current_agent->shape);
+            auto center = this->current_agent->center;
+            delete &this->current_agent;
+            delete &this->current_agent_shadow;
+            this->spawn(center, held_shape);
+            switched_pieces = true;
+        } else if (gestures::i().is(is_p1 ? std::vector{key::P1_L_L, key::P1_R_R} : std::vector{key::P2_L_L, key::P2_R_R}, state::press, gesture::_single))
+            dropping_delay_value = faster_dropping_delay;
+        else {
+            dropping_delay_value = dropping_delay;
+            if (gestures::i().is(is_p1 ? std::vector{key::P1_L_L} : std::vector{key::P2_L_L}, state::down, gesture::_single) || gestures::i().is(is_p1 ? std::vector{key::P1_L_L} : std::vector{key::P2_L_L}, state::press, gesture::_long))
+                move_block_by(v2::left());
+
+            if (gestures::i().is(is_p1 ? std::vector{key::P1_R_R} : std::vector{key::P2_R_R}, state::down, gesture::_single) || gestures::i().is(is_p1 ? std::vector{key::P1_R_R} : std::vector{key::P2_R_R}, state::press, gesture::_long))
+                move_block_by(v2::right());
+        }
+
+        if (gestures::i().is(is_p1 ? std::vector{key::P1_R_GREEN} : std::vector{key::P2_R_GREEN}, state::down, gesture::_single))
+            drop();
+
+        if (gestures::i().is(is_p1 ? std::vector{key::P1_L_BLUE} : std::vector{key::P2_L_BLUE}, state::down, gesture::_single))
+            rotate_block();
+
+        fall(deltaTime);
+    }
 }
 
 matrix tetris_board_actor::render() {
@@ -208,27 +235,34 @@ void tetris_board_actor::drop() {
     current_agent_shadow.reset();
     can_drop_again = false;
 
-    clear_lines();
-    pop_garbage_lines();
-
-    engine::instance().set_timeout([this]() {
-        spawn();
-        can_drop_again = true;
-    }, after_drop_delay);
+    post_drop().handle.resume();
 }
 
-void tetris_board_actor::clear_lines() {
+task tetris_board_actor::post_drop() {
+    co_await clear_lines();
+    co_await pop_garbage_lines();
+
+    co_await wait_for_ms(after_drop_delay);
+
+    spawn();
+    can_drop_again = true;
+}
+
+task tetris_board_actor::clear_lines() {
     std::vector<int> lines;
     for (int y = 0; y < board_height; ++y) {
         if (std::all_of(is_taken.begin(), is_taken.end(), [y](const std::vector<bool> &col) { return col[y]; }))
             lines.push_back(y);
     }
-    if (lines.empty()) return;
+    if (lines.empty()) co_return;
     deal_damage(static_cast<int>(lines.size()));
 
     for (int line: lines) {
-        for (int x = 0; x < board_width; ++x)
+        for (int x = 0; x < board_width; ++x) {
             static_board_matrix.set_pixel(x, line, color::none());
+
+            co_await wait_for_ms(std::sqrt(75 * x));
+        }
     }
 
     for (int line: lines) {
@@ -239,9 +273,11 @@ void tetris_board_actor::clear_lines() {
             }
         }
     }
+
+    co_return;
 }
 
-void tetris_board_actor::pop_garbage_lines() {
+task tetris_board_actor::pop_garbage_lines() {
     int hole = std::rand() % board_width;
     while (garbage_bar_logic.pop()) {
         for (int y = 0; y < board_height - 1; ++y) {
@@ -256,4 +292,7 @@ void tetris_board_actor::pop_garbage_lines() {
             static_board_matrix.set_pixel(x, board_height - 1, x != hole ? color::white(0.5f) : color::none());
         }
     }
+
+    co_await wait_for_ms(engine::instance().delta_time);
+    co_return;
 }

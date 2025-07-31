@@ -8,6 +8,7 @@
 #include "tetris_shape.hpp"
 #include "tetris_block.hpp"
 #include "hold_logic.hpp"
+#include "../../coroutine/task.hpp"
 
 class tetris_board_actor : public actor {
 public:
@@ -59,13 +60,17 @@ private:
     void write_border(v2 from, v2 to);
     int calc_drop(int i = 0);
     bool is_position_taken(int x, int y);
-    void clear_lines();
-    void pop_garbage_lines();
+    task clear_lines();
+    task pop_garbage_lines();
     void drop();
+    task post_drop();
     void fall(float deltaTime);
     tetris_shape generate_block(int seed, int index);
 
 public:
-    void redraw() override{}
-    void fixed_update(float fixed_delta_time) override{}
+    void redraw() override {
+    }
+
+    void fixed_update(float fixed_delta_time) override {
+    }
 };

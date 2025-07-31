@@ -49,5 +49,7 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/tetris/hold_logic.hpp
         src/scenes/tetris/tetris_board_actor.cpp
         src/scenes/tetris/tetris_board_actor.h
+        src/coroutine/task.hpp
+        src/coroutine/wait_for_ms.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

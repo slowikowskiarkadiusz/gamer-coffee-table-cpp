@@ -24,6 +24,11 @@ struct asyncable {
     float timer = 0;
 };
 
+struct coroutine {
+    std::function<int()> function;
+    float timer_left = 0;
+};
+
 class engine {
 private:
     long lastTimestamp = 0;
@@ -34,6 +39,8 @@ private:
 
     std::vector<asyncable *> timeouts;
     std::vector<asyncable *> pending_timeouts;
+    std::vector<coroutine *> coroutines;
+    std::vector<coroutine *> pending_coroutines;
     std::vector<asyncable *> intervals;
     std::vector<asyncable *> pending_intervals;
 
@@ -100,6 +107,12 @@ public:
         return obj;
     }
 
+    coroutine *set_coroutine(const std::function<int()> &callback) {
+        auto obj = new coroutine({callback});
+        pending_coroutines.push_back(obj);
+        return obj;
+    }
+
     asyncable *set_interval(const std::function<void()> &callback, float ms) {
         auto obj = new asyncable({callback, ms});
         pending_intervals.push_back(obj);
@@ -110,6 +123,15 @@ public:
         if (asyncable != nullptr) {
             const auto it = std::ranges::find(timeouts, asyncable);
             timeouts.erase(it);
+        }
+
+        return 0;
+    }
+
+    void *clear_coroutine(coroutine *coroutine) {
+        if (coroutine != nullptr) {
+            const auto it = std::ranges::find(coroutines, coroutine);
+            coroutines.erase(it);
         }
 
         return 0;
@@ -148,6 +170,24 @@ private:
             if ((*it)->timer >= (*it)->ms) {
                 (*it)->function();
                 it = timeouts.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        if (!pending_coroutines.empty()) {
+            coroutines.insert(coroutines.end(),
+                              std::make_move_iterator(pending_coroutines.begin()),
+                              std::make_move_iterator(pending_coroutines.end()));
+            pending_coroutines.clear();
+        }
+
+        for (auto it = coroutines.begin(); it != coroutines.end();) {
+            (*it)->timer_left -= delta_time;
+
+            if ((*it)->timer_left <= 0) {
+                (*it)->timer_left = (*it)->function();
+                it = coroutines.erase(it);
             } else {
                 ++it;
             }

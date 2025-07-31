@@ -11,10 +11,10 @@ class tetris_block {
 private:
     matrix _matrix;
     int block_rotation = 0;
-    tetris_shape shape;
 
 public:
     v2 center;
+    tetris_shape shape;
 
     tetris_block(v2 center, tetris_shape shape, bool is_shadow)
         : center(center), shape(shape), _matrix(generate_shape(shape, 0, is_shadow)) {

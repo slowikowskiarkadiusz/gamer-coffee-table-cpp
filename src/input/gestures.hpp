@@ -70,7 +70,7 @@ public:
         return single ? single_gestures_this_frame[id] == g : gestures_this_frame[id];
     }
 
-    bool is(const std::vector<key> &keys, state s, gesture g, bool single) {
+    bool is(const std::vector<key> &keys, state s, gesture g, bool single = false) {
         return std::all_of(keys.begin(), keys.end(), [&](key k) { return is(k, s, g, single); });
     }
 
