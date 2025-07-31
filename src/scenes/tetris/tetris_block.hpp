@@ -16,8 +16,8 @@ private:
 public:
     v2 center;
 
-    tetris_block(v2 center, tetris_shape shape, bool isShadow)
-        : center(center), shape(shape), _matrix(generate_shape(shape, 0, isShadow)) {
+    tetris_block(v2 center, tetris_shape shape, bool is_shadow)
+        : center(center), shape(shape), _matrix(generate_shape(shape, 0, is_shadow)) {
     }
 
     tetris_shape get_shape() const {
@@ -146,7 +146,7 @@ private:
         }
     }
 
-    const std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::array<int, 2> > > > tetris_block::kicks = {
+    const std::unordered_map<std::string, std::unordered_map<std::string, std::vector<std::array<int, 2> > > > kicks = {
         {
             "I", {
                 {"0->90", {{0, 0}, {-2, 0}, {1, 0}, {-2, -1}, {1, 2}}},

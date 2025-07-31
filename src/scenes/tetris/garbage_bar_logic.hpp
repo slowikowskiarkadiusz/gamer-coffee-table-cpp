@@ -32,14 +32,14 @@ public:
     v2 center;
 
     garbage_bar_logic(v2 center, v2 size, garbage_bar_opts opts = {})
-        : center(center), size(size), opts(opts), _matrix(makeRectangle(size, opts.color)), blinkOffmatrix(makeRectangle(size, opts.color)) {
+        : center(center), size(size), opts(opts), _matrix(make_rectangle(size, opts.color)), blinkOffmatrix(make_rectangle(size, opts.color)) {
         if (opts.color.is_none())
             opts.color = color::white(0.5f);
 
         maxLevel = size.y;
     }
 
-    void addLines(int noOfLines) {
+    void add_lines(int noOfLines) {
         skipTextPop = false;
         engine::instance().clear_interval(currentAnim);
         currentAnim = anim(noOfLines);
@@ -69,14 +69,14 @@ public:
         }
     }
 
-    int decreaseAndGetLeft(int by) {
+    int decrease_and_get_left(int by) {
         skipTextPop = true;
         int left = std::max(by - currentLevel, 0);
         currentLevel -= by;
         currentLevel = std::max(currentLevel, 0);
         animCurrentLevel = currentLevel;
 
-        drawLevelOnmatrix();
+        draw_level_on_matrix();
 
         return left;
     }
@@ -100,13 +100,13 @@ public:
 private:
     asyncable *anim(int levelsToAdd) {
         return engine::instance().set_interval([this]() {
-            drawLevelOnmatrix();
+            draw_level_on_matrix();
             animCurrentLevel++;
-            drawLevelOnmatrix();
+            draw_level_on_matrix();
         }, 0);
     }
 
-    void drawLevelOnmatrix() {
+    void draw_level_on_matrix() {
         color color = color::lerp(color::yellow(), color::red(), float(animCurrentLevel) / maxLevel);
 
         for (int y = 0; y < animCurrentLevel; ++y) {
@@ -118,7 +118,7 @@ private:
         }
     }
 
-    matrix makeRectangle(v2 size, const color &color) {
+    matrix make_rectangle(v2 size, const color &color) {
         if (color.is_none())
             return matrix(std::abs(size.x), std::abs(size.y));
         return matrix(std::abs(size.x), std::abs(size.y), color);

@@ -6,9 +6,9 @@
 
 class hold_logic {
 private:
+    v2 size;
     matrix _matrix;
     std::optional<tetris_shape> heldPiece;
-    v2 size;
 
 public:
     v2 center;

@@ -15,9 +15,14 @@ public:
                        std::function<void(int, bool)> onDealDamage,
                        std::function<void(bool)> onDeath);
 
+    static std::shared_ptr<tetris_board_actor> instantiate(v2 center, int seed, bool isP1,
+                       std::function<void(int, bool)> onDealDamage,
+                       std::function<void(bool)> onDeath);
+
     void update(float deltaTime) override;
     matrix render() override;
     void stop();
+    void take_damage(int count);
 
 private:
     static constexpr int board_width = 10;
@@ -63,4 +68,8 @@ private:
     void drop();
     void fall(float deltaTime);
     tetris_shape generate_block(int seed, int index);
+
+public:
+    void redraw() override{}
+    void fixed_update(float fixed_delta_time) override{}
 };

@@ -5,8 +5,8 @@
 #include <chrono>
 
 tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
-                                   std::function<void(int, bool)> on_deal_damage,
-                                   std::function<void(bool)> on_death)
+                                       std::function<void(int, bool)> on_deal_damage,
+                                       std::function<void(bool)> on_death)
     : actor("tetris-board", center, v2(engine::instance().screen_size.x / 2, engine::instance().screen_size.y)),
       center(center), seed(seed), is_p1(is_p1),
       on_deal_damage(on_deal_damage), on_death(on_death),
@@ -14,16 +14,21 @@ tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
       hold_logic(v2::zero()),
       static_board_matrix(board_width, board_height),
       borders_matrix(size().x, size().y) {
-
     is_taken.resize(board_width, std::vector<bool>(board_height, false));
     write_border(v2(0, size().y - 1), v2(board_width + 1, size().y - 1 - board_height - 1));
     write_border(v2(board_width + 1, size().y - 1), v2(board_width + 1 + garbage_bar_logic.size.x + 1, size().y - 1 - board_height - 1));
 
     hold_logic.center = v2(hold_logic.get_size().x / 2 + 1, size().y - 1 - board_height - 1 - hold_logic.get_size().y / 2);
     write_border(v2(0, size().y - 1 - board_height - 1 - hold_logic.get_size().y - 1),
-                v2(1 + hold_logic.get_size().x, size().y - 1 - board_height - 1));
+                 v2(1 + hold_logic.get_size().x, size().y - 1 - board_height - 1));
 
     spawn();
+}
+
+std::shared_ptr<tetris_board_actor> tetris_board_actor::instantiate(v2 center, int seed, bool isP1, std::function<void(int, bool)> onDealDamage, std::function<void(bool)> onDeath) {
+    auto arrow_act = std::make_shared<tetris_board_actor>(center, seed, isP1, onDealDamage, onDeath);
+    engine::instance().register_actor(arrow_act);
+    return arrow_act;
 }
 
 void tetris_board_actor::update(float deltaTime) {
@@ -61,15 +66,15 @@ void tetris_board_actor::spawn(std::optional<v2> center, std::optional<tetris_sh
     v2 agentCenter = center.value_or(v2(board_width / 2, 0));
 
     current_agent = std::make_unique<tetris_block>(agentCenter, block, false);
-    v2 dropPos = v2(current_agent->center.x, current_agent->center.y + calc_drop());
-    current_agent_shadow = std::make_unique<tetris_block>(dropPos, block, true);
+    v2 drop_pos = v2(current_agent->center.x, current_agent->center.y + calc_drop());
+    current_agent_shadow = std::make_unique<tetris_block>(drop_pos, block, true);
 }
 
-void tetris_board_actor::move_block_by(const v2& by) {
+void tetris_board_actor::move_block_by(const v2 &by) {
     if (!current_agent) return;
-    if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2& spot) {
-            return is_position_taken(spot.x + by.x, spot.y + by.y);
-        })) {
+    if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2 &spot) {
+        return is_position_taken(spot.x + by.x, spot.y + by.y);
+    })) {
         current_agent->center = current_agent->center.add(by);
         current_agent_shadow->center = v2(current_agent->center.x, current_agent->center.y + calc_drop());
     }
@@ -83,11 +88,11 @@ void tetris_board_actor::rotate_block() {
     v2 post = current_agent->center;
 
     bool didKick = false;
-    for (const auto& kick : kicks) {
+    for (const auto &kick: kicks) {
         current_agent->center = post.add(kick);
-        if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2& spot) {
-                return is_position_taken(spot.x, spot.y);
-            })) {
+        if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2 &spot) {
+            return is_position_taken(spot.x, spot.y);
+        })) {
             didKick = true;
             break;
         }
@@ -103,8 +108,12 @@ void tetris_board_actor::rotate_block() {
 }
 
 void tetris_board_actor::deal_damage(int count) {
-    int left = garbage_bar_logic.decreaseAndGetLeft(count);
+    int left = garbage_bar_logic.decrease_and_get_left(count);
     if (left > 0) on_deal_damage(left, is_p1);
+}
+
+void tetris_board_actor::take_damage(int count) {
+    garbage_bar_logic.add_lines(count);
 }
 
 void tetris_board_actor::write_border(v2 from, v2 to) {
@@ -119,9 +128,9 @@ void tetris_board_actor::write_border(v2 from, v2 to) {
 }
 
 int tetris_board_actor::calc_drop(int i) {
-    if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2& spot) {
-            return is_position_taken(spot.x, spot.y + i);
-        })) {
+    if (!std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2 &spot) {
+        return is_position_taken(spot.x, spot.y + i);
+    })) {
         int next = calc_drop(i + 1);
         return next ? next : i;
     } else {
@@ -146,9 +155,11 @@ tetris_shape tetris_board_actor::generate_block(int seed, int index) {
 void tetris_board_actor::fall(float deltaTime) {
     if ((continue_dropping && current_agent) || lock_delay_timer > 0) {
         bool dropped = false;
-        if (std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2& spot) {
-                return is_position_taken(spot.x, spot.y + 1);
-            })) {
+        bool is_any_taken = std::any_of(current_agent->get_taken_spots().begin(), current_agent->get_taken_spots().end(), [&](const v2 &spot) {
+            return is_position_taken(spot.x, spot.y + 1);
+        });
+
+        if (is_any_taken) {
             lock_delay_timer += deltaTime;
             if (lock_delay_timer > lock_delay) {
                 drop();
@@ -156,13 +167,16 @@ void tetris_board_actor::fall(float deltaTime) {
                 dropped = true;
             }
         } else {
+            std::cout << "AAA" << std::endl;
             current_agent->center.y++;
         }
+
         if (!dropped)
             continue_dropping = false;
     } else {
         drop_timer += deltaTime;
         if (drop_timer > dropping_delay_value) {
+            std::cout << dropping_delay_value << " " << drop_timer << std::endl;
             drop_timer = 0;
             continue_dropping = true;
         }
@@ -173,7 +187,7 @@ void tetris_board_actor::drop() {
     if (!can_drop_again) return;
 
     current_agent->center = current_agent_shadow->center;
-    for (const auto& spot : current_agent->get_taken_spots()) {
+    for (const auto &spot: current_agent->get_taken_spots()) {
         is_taken[spot.x][spot.y] = true;
         static_board_matrix.set_pixel(spot.x, spot.y, tetris_block_colors[static_cast<int>(current_agent->get_shape())]);
 
@@ -197,18 +211,18 @@ void tetris_board_actor::drop() {
 void tetris_board_actor::clear_lines() {
     std::vector<int> lines;
     for (int y = 0; y < board_height; ++y) {
-        if (std::all_of(is_taken.begin(), is_taken.end(), [y](const std::vector<bool>& col) { return col[y]; }))
+        if (std::all_of(is_taken.begin(), is_taken.end(), [y](const std::vector<bool> &col) { return col[y]; }))
             lines.push_back(y);
     }
     if (lines.empty()) return;
     deal_damage(static_cast<int>(lines.size()));
 
-    for (int line : lines) {
+    for (int line: lines) {
         for (int x = 0; x < board_width; ++x)
             static_board_matrix.set_pixel(x, line, color::none());
     }
 
-    for (int line : lines) {
+    for (int line: lines) {
         for (int y = line; y > 0; --y) {
             for (int x = 0; x < board_width; ++x) {
                 is_taken[x][y] = is_taken[x][y - 1];
