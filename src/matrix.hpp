@@ -51,7 +51,7 @@ public:
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f) {
+    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, bool debuuuuug = false) {
         std::vector<std::vector<std::vector<color> > > result(_matrix.size(),
                                                               std::vector<std::vector<color> >(_matrix[0].size()));
 
@@ -73,8 +73,8 @@ public:
                 float dx = x - center.x;
                 float dy = y - center.y;
 
-                int rx = std::round(cosA * dx - sinA * dy + otherCenter.x);
-                int ry = std::round(sinA * dx + cosA * dy + otherCenter.y);
+                float rx = std::floor(cosA * dx - sinA * dy + otherCenter.x + 0.5);
+                float ry = std::floor(sinA * dx + cosA * dy + otherCenter.y + 0.5);
 
                 if (rx >= 0 && rx < _matrix.size() && ry >= 0 && ry < _matrix[0].size()) {
                     result[rx][ry].push_back(color);
@@ -148,6 +148,7 @@ public:
     matrix &print_to_console() {
         std::string result = "\n";
         for (size_t y = 0; y < _matrix[0].size(); y++) {
+            result += "|";
             for (size_t x = 0; x < _matrix.size(); x++) {
                 result += _matrix[x][y].is_none() ? "  " : "O ";
             }

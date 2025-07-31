@@ -14,16 +14,16 @@ void tetris_scene::init() {
         center.sub(v2(engine::instance().screen_size.x / 4, 0)),
         seed,
         true,
-        std::bind(&tetris_scene::on_lines_cleared, this, std::placeholders::_1, std::placeholders::_2),
-        std::bind(&tetris_scene::on_players_death, this, std::placeholders::_1)
+        [this](auto && PH1, auto && PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
+        [this](auto && PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
     );
 
-    // p2Board = tetris_board_actor::instantiate(
+    // p2Board = engine::instantiate<tetris_board_actor>(
     //     center.add(v2(engine::instance().screen_size.x / 4, 0)),
     //     seed,
     //     false,
-    //     std::bind(&tetris_scene::on_lines_cleared, this, std::placeholders::_1, std::placeholders::_2),
-    //     std::bind(&tetris_scene::on_players_death, this, std::placeholders::_1)
+    //     [this](auto && PH1, auto && PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
+    //     [this](auto && PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
     // );
     //
     // p2Board->rotate(180);

@@ -63,6 +63,10 @@ public:
         return oss.str();
     }
 
+    std::string to_string() const {
+        return std::format("color({0}, {1}, {2}, {3})", r, g, b, a);
+    }
+
 private:
     static color additive_blending(const std::vector<color> &colors) {
         float r = 0, g = 0, b = 0, totalAlpha = 0;

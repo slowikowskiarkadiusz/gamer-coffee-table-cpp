@@ -29,11 +29,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="coroutines not working">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="dropping lines works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +51,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -812,7 +818,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753966039163</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="dropping lines works">
+      <option name="closed" value="true" />
+      <created>1753971271856</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1753971271856</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -856,7 +870,8 @@
     <MESSAGE value="tetris too quick" />
     <MESSAGE value="fixed tetris a bit. lacks input" />
     <MESSAGE value="coroutines not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="coroutines not working" />
+    <MESSAGE value="dropping lines works" />
+    <option name="LAST_COMMIT_MESSAGE" value="dropping lines works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -41,7 +41,8 @@ public:
 
     void add_lines(int noOfLines) {
         skipTextPop = false;
-        engine::instance().clear_interval(currentAnim);
+        if (currentAnim != nullptr)
+            engine::instance().clear_interval(currentAnim);
         currentAnim = anim(noOfLines);
 
         currentLevel += noOfLines;
@@ -105,8 +106,10 @@ private:
             animCurrentLevel++;
             draw_level_on_matrix();
 
-            if (levelsToAdd <= 0)
+            if (levelsToAdd <= 0) {
+                currentAnim = nullptr;
                 return;
+            }
 
             anim(levelsToAdd);
         }, 0);
