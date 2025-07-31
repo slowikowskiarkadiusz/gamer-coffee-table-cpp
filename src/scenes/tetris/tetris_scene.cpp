@@ -10,7 +10,7 @@ void tetris_scene::init() {
     int seed = std::rand() % 10000;
     v2 center = engine::instance().screen_size.div(2);
 
-    p1Board = tetris_board_actor::instantiate(
+    p1Board = engine::instantiate<tetris_board_actor>(
         center.sub(v2(engine::instance().screen_size.x / 4, 0)),
         seed,
         true,
@@ -32,9 +32,9 @@ void tetris_scene::init() {
 
 void tetris_scene::on_lines_cleared(int count, bool isP1) {
     auto *target =
-        // isP1
-    // ? p2Board.get() :
-    p1Board.get();
+            // isP1
+            // ? p2Board.get() :
+            p1Board.get();
     if (target)
         target->take_damage(count);
 }

@@ -40,14 +40,14 @@ public:
 
     void init() override {
         auto screen = engine::instance().screen_size;
-        divider_actor = rectangle_actor::instantiate(screen / 2, v2(screen.x, 2), color::white(0.5f));
+        divider_actor = engine::instantiate<rectangle_actor>(screen / 2, v2(screen.x, 2), color::white(0.5f));
 
         engine::instance().set_timeout([this]() {
             can_proceed = true;
             auto create_arrow = [](bool is_p1) {
                 auto pos = engine::instance().screen_size - v2::one() * 1.5f;
                 if (is_p1) pos.y -= engine::instance().screen_size.y / 2;
-                auto arrow = arrow_actor::instantiate(pos, 3.0f, arrow_actor_opts{.blink = true});
+                auto arrow = engine::instantiate<arrow_actor>(pos, 3.0f, arrow_actor_opts{.blink = true});
                 if (is_p1) {
                     auto rot_center = engine::instance().screen_size / 2 - v2::one();
                     rot_center.y -= engine::instance().screen_size.y / 4;
@@ -98,11 +98,11 @@ private:
                 float y = engine::instance().screen_size.y / 2 - (button_size + 1) * (i + 1) + (is_p1 ? 0 : engine::instance().screen_size.y / 2);
                 float x = 0;
                 for (auto k: current[current.size() - 1 - i].keys) {
-                    auto icon = button_icon_actor::instantiate(v2((button_size / 2) + x, y), button_size, button_icon_actor_opts{k});
+                    auto icon = engine::instantiate<button_icon_actor>(v2((button_size / 2) + x, y), button_size, button_icon_actor_opts{k});
                     current_page_actors.push_back(icon);
                     x += (button_size + 1);
                 }
-                auto text = text_actor::instantiate(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::instance().screen_size.x - x, button_size));
+                auto text = engine::instantiate<text_actor>(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::instance().screen_size.x - x, button_size));
                 current_page_actors.push_back(text);
             }
             if (is_p1) {

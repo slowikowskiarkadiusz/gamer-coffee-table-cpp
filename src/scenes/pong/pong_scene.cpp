@@ -9,11 +9,11 @@ pong_scene::pong_scene() = default;
 
 void pong_scene::init() {
     auto screen = engine::instance().screen_size;
-    p1Paddle = rectangle_actor::instantiate(v2(screen.x / 2, 3), v2(7, 1));
-    p2Paddle = rectangle_actor::instantiate(v2(screen.x / 2, screen.y - 4), v2(7, 1));
-    p1ScoreZone = rectangle_actor::instantiate(v2(screen.x / 2, -4), v2(screen.x, 10), color::none());
-    p2ScoreZone = rectangle_actor::instantiate(v2(screen.x / 2, screen.y + 4), v2(screen.x, 10), color::none());
-    ball = rectangle_actor::instantiate(engine::instance().screen_size / 2, v2(2, 2), color::white());
+    p1Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, 3), v2(7, 1));
+    p2Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y - 4), v2(7, 1));
+    p1ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, -4), v2(screen.x, 10), color::none());
+    p2ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y + 4), v2(screen.x, 10), color::none());
+    ball = engine::instantiate<rectangle_actor>(engine::instance().screen_size / 2, v2(2, 2), color::white());
     reset_ball();
     print_score();
 }
@@ -126,7 +126,7 @@ void pong_scene::check_scoring() {
             doPlay = false;
             std::string winner = score.first > score.second ? "P1 WON" : "P2 WON";
             auto center = engine::instance().screen_size / 2;
-            auto winText = std::make_shared<text_actor>(winner, v2::zero(), v2(engine::instance().screen_size.x, 5));
+            auto winText = engine::instantiate<text_actor>(winner, v2::zero(), v2(engine::instance().screen_size.x, 5));
             winText->move_to(center);
             p1Paddle->kill();
             p2Paddle->kill();
@@ -144,11 +144,11 @@ void pong_scene::print_score() {
     if (p1ScoreActor) engine::instance().unregister_actor(p1ScoreActor);
     if (p2ScoreActor) engine::instance().unregister_actor(p2ScoreActor);
 
-    p1ScoreActor = text_actor::instantiate(std::to_string(score.first), v2::zero(), v2(4 * std::to_string(score.first).length(), 5), {.col = color::blue(0.5)});
+    p1ScoreActor = engine::instantiate<text_actor>(std::to_string(score.first), v2::zero(), v2(4 * std::to_string(score.first).length(), 5), text_actor_opts{.col = color::blue(0.5)});
     p1ScoreActor->rotate(-90);
     p1ScoreActor->move_to(v2(5, engine::instance().screen_size.y / 2 - 5));
 
-    p2ScoreActor = text_actor::instantiate(std::to_string(score.second), v2::zero(), v2(4 * std::to_string(score.second).length(), 5), {.col = color::blue(0.5)});
+    p2ScoreActor = engine::instantiate<text_actor>(std::to_string(score.second), v2::zero(), v2(4 * std::to_string(score.second).length(), 5), text_actor_opts{.col = color::blue(0.5)});
     p2ScoreActor->rotate(-90);
     p2ScoreActor->move_to(v2(5, engine::instance().screen_size.y / 2 + 3));
 }

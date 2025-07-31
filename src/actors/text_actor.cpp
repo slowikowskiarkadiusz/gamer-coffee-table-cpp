@@ -3,6 +3,10 @@
 #include <algorithm>
 #include "../engine.hpp"
 
+text_actor::text_actor(const std::string &text, const v2 &top_left, const v2 &container_size)
+    : text_actor(text, top_left, container_size, {}) {
+}
+
 text_actor::text_actor(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts)
     : actor("text", top_left + container_size / 2.0f, container_size),
       text(text),
@@ -12,12 +16,6 @@ text_actor::text_actor(const std::string &text, const v2 &top_left, const v2 &co
     auto [inbound, outbound] = generate_word_matrix(text, static_cast<int>(container_size.x), opts.col, opts.anchor_center);
     _inbound = std::move(inbound);
     _outbound = std::move(outbound);
-}
-
-std::shared_ptr<text_actor> text_actor::instantiate(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts) {
-    auto rect_actor = std::make_shared<text_actor>(text, top_left, container_size, opts);
-    engine::instance().register_actor(rect_actor);
-    return rect_actor;
 }
 
 void text_actor::update(float delta_time) {

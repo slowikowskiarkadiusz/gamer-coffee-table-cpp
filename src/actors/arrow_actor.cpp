@@ -6,12 +6,6 @@ arrow_actor::arrow_actor(const v2 &center, float size_y, const arrow_actor_opts 
     if (_is_blinking) _blink_timer = _blinking_offset;
 }
 
-std::shared_ptr<arrow_actor> arrow_actor::instantiate(const v2 &center, float size_y, const arrow_actor_opts &opts) {
-    auto arrow_act = std::make_shared<arrow_actor>(center, size_y, opts);
-    engine::instance().register_actor(arrow_act);
-    return arrow_act;
-}
-
 v2 arrow_actor::calc_size(float size_y) {
     return v2(std::ceil(size_y / 2.0f), size_y);
 }

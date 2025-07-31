@@ -22,8 +22,6 @@ class arrow_actor : public actor {
 public:
     arrow_actor(const v2 &center, float size_y, const arrow_actor_opts &opts = {});
 
-    static std::shared_ptr<arrow_actor> instantiate(const v2 &center, float size_y, const arrow_actor_opts &opts = {});
-
     void update(float delta_time) override;
     void fixed_update(float delta_time) override;
     matrix render() override;

@@ -21,10 +21,10 @@ class text_actor : public actor {
     text_actor_opts _opts;
 
 public:
-    text_actor(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts = {});
+    text_actor(const std::string &text, const v2 &top_left, const v2 &container_size);
+    text_actor(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts);
 
     std::string text;
-    static std::shared_ptr<text_actor> instantiate(const std::string &text, const v2 &top_left, const v2 &container_size, const text_actor_opts &opts = {});
 
     void update(float delta_time) override;
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #import <cmath>
+#include <format>
+#include <string>
 
 constexpr float pi = 3.141592653589793;
 
@@ -160,5 +162,9 @@ public:
         float ry = sin * dx + cos * dy + pivot.y;
 
         return {rx, ry};
+    }
+
+    std::string to_string() {
+        return std::format(("v2({0}, {1})"), x, y);
     }
 };

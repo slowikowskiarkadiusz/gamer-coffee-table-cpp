@@ -124,6 +124,13 @@ public:
         return 0;
     }
 
+    template<class T, class... args>
+    static std::shared_ptr<T> instantiate(args &&... _args) {
+        auto obj = std::make_shared<T>(std::forward<args>(_args)...);
+        instance().register_actor(obj);
+        return obj;
+    }
+
 private:
     void check_go_back_to_menu(float dt);
 

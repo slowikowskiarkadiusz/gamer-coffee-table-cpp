@@ -15,10 +15,6 @@ public:
                        std::function<void(int, bool)> onDealDamage,
                        std::function<void(bool)> onDeath);
 
-    static std::shared_ptr<tetris_board_actor> instantiate(v2 center, int seed, bool isP1,
-                       std::function<void(int, bool)> onDealDamage,
-                       std::function<void(bool)> onDeath);
-
     void update(float deltaTime) override;
     matrix render() override;
     void stop();

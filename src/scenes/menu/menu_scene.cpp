@@ -20,18 +20,14 @@ void menu_scene::init() {
     for (size_t i = 0; i < titles.size(); ++i) {
         auto pos = v2(4, i * 6);
         auto size = v2(screen.x - 4, 5);
-        auto text = text_actor::instantiate(titles[i], pos, size);
+        auto text = engine::instantiate<text_actor>(titles[i], pos, size);
         _options.push_back({next_scenes[i].first, text, titles[i], next_scenes[i].second});
     }
 
     auto opts = arrow_actor_opts{};
     opts.blink = true;
-    _arrow = arrow_actor::instantiate(v2(1.5f, 2.5f), 5, opts);
+    _arrow = engine::instantiate<arrow_actor>(v2(1.5f, 2.5f), 5, opts);
     render();
-
-    engine::instance().set_timeout([]() {
-        std::cout << "ABC" << std::endl;
-    }, 1000);
 }
 
 void menu_scene::update(float delta_time) {
