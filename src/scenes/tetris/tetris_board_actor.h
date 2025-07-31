@@ -27,7 +27,7 @@ private:
     static constexpr int after_drop_delay = 250;
     static constexpr int line_clearing_animation_factor = 75;
     static constexpr int dropping_delay = 1000;
-    static constexpr int faster_dropping_delay = 300;
+    static constexpr int faster_dropping_delay = 100;
     static constexpr int lock_delay = 1000;
 
     std::vector<std::vector<bool> > is_taken;
@@ -60,10 +60,10 @@ private:
     void write_border(v2 from, v2 to);
     int calc_drop(int i = 0);
     bool is_position_taken(int x, int y);
-    task clear_lines();
-    task pop_garbage_lines();
+    int clear_lines();
+    int pop_garbage_lines();
     void drop();
-    task post_drop();
+    int post_drop();
     void fall(float deltaTime);
     tetris_shape generate_block(int seed, int index);
 

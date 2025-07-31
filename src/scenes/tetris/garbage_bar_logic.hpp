@@ -99,10 +99,16 @@ public:
 
 private:
     asyncable *anim(int levelsToAdd) {
-        return engine::instance().set_interval([this]() {
+        return engine::instance().set_timeout([this, &levelsToAdd]() {
+            --levelsToAdd;
             draw_level_on_matrix();
             animCurrentLevel++;
             draw_level_on_matrix();
+
+            if (levelsToAdd <= 0)
+                return;
+
+            anim(levelsToAdd);
         }, 0);
     }
 

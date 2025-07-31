@@ -235,49 +235,61 @@ void tetris_board_actor::drop() {
     current_agent_shadow.reset();
     can_drop_again = false;
 
-    post_drop().handle.resume();
+    post_drop();
 }
 
-task tetris_board_actor::post_drop() {
-    co_await clear_lines();
-    co_await pop_garbage_lines();
+int tetris_board_actor::post_drop() {
+    auto a = clear_lines();
+    auto b = pop_garbage_lines();
 
-    co_await wait_for_ms(after_drop_delay);
+    engine::instance().set_timeout([this]() {
+        spawn();
+        can_drop_again = true;
+    }, after_drop_delay);
 
-    spawn();
-    can_drop_again = true;
+    return a + b + after_drop_delay;
 }
 
-task tetris_board_actor::clear_lines() {
+int tetris_board_actor::clear_lines() {
     std::vector<int> lines;
     for (int y = 0; y < board_height; ++y) {
         if (std::all_of(is_taken.begin(), is_taken.end(), [y](const std::vector<bool> &col) { return col[y]; }))
             lines.push_back(y);
     }
-    if (lines.empty()) co_return;
+    if (lines.empty()) return 0;
     deal_damage(static_cast<int>(lines.size()));
+
+    double totalWaiting = 0;
+    for (int x = 0; x < board_width; ++x)
+        totalWaiting += std::sqrt(2500 * x);
 
     for (int line: lines) {
         for (int x = 0; x < board_width; ++x) {
-            static_board_matrix.set_pixel(x, line, color::none());
-
-            co_await wait_for_ms(std::sqrt(75 * x));
+            engine::instance().set_timeout([this, x, line]() {
+                this->static_board_matrix.set_pixel(x, line, color::none());
+            }, std::sqrt(2500 * x));
         }
     }
 
-    for (int line: lines) {
-        for (int y = line; y > 0; --y) {
-            for (int x = 0; x < board_width; ++x) {
-                is_taken[x][y] = is_taken[x][y - 1];
-                static_board_matrix.set_pixel(x, y, static_board_matrix.pixels()[x][y - 1]);
+    engine::instance().set_timeout([this, lines]() {
+        for (int line: lines) {
+            std::cout << "line " << line << std::endl;
+
+            for (int y = line; y > 0; --y) {
+                std::cout << "y " << y << std::endl;
+                for (int x = 0; x < board_width; ++x) {
+                    std::cout << "y - 1 " << y - 1 << std::endl;
+                    is_taken[x][y] = is_taken[x][y - 1];
+                    static_board_matrix.set_pixel(x, y, static_board_matrix.pixels()[x][y - 1]);
+                }
             }
         }
-    }
+    }, totalWaiting);
 
-    co_return;
+    return totalWaiting;
 }
 
-task tetris_board_actor::pop_garbage_lines() {
+int tetris_board_actor::pop_garbage_lines() {
     int hole = std::rand() % board_width;
     while (garbage_bar_logic.pop()) {
         for (int y = 0; y < board_height - 1; ++y) {
@@ -293,6 +305,5 @@ task tetris_board_actor::pop_garbage_lines() {
         }
     }
 
-    co_await wait_for_ms(engine::instance().delta_time);
-    co_return;
+    return engine::instance().delta_time;
 }
