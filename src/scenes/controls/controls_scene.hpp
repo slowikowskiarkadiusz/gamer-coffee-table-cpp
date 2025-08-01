@@ -39,18 +39,18 @@ public:
     }
 
     void init() override {
-        auto screen = engine::instance().screen_size;
+        auto screen = engine::screen_size;
         divider_actor = engine::instantiate<rectangle_actor>(screen / 2, v2(screen.x, 2), color::white(0.5f));
 
-        engine::instance().set_timeout([this]() {
+        engine::set_timeout([this]() {
             can_proceed = true;
             auto create_arrow = [](bool is_p1) {
-                auto pos = engine::instance().screen_size - v2::one() * 1.5f;
-                if (is_p1) pos.y -= engine::instance().screen_size.y / 2;
+                auto pos = engine::screen_size - v2::one() * 1.5f;
+                if (is_p1) pos.y -= engine::screen_size.y / 2;
                 auto arrow = engine::instantiate<arrow_actor>(pos, 3.0f, arrow_actor_opts{.blink = true});
                 if (is_p1) {
-                    auto rot_center = engine::instance().screen_size / 2 - v2::one();
-                    rot_center.y -= engine::instance().screen_size.y / 4;
+                    auto rot_center = engine::screen_size / 2 - v2::one();
+                    rot_center.y -= engine::screen_size.y / 4;
                     arrow->rotate_around(rot_center, 180);
                 }
                 return arrow;
@@ -67,8 +67,8 @@ public:
     }
 
     void update(float) override {
-        if (can_proceed && input::i().is_any_key_down()) {
-            engine::instance().open_scene(next_scene());
+        if (can_proceed && input::is_any_key_down()) {
+            engine::open_scene(next_scene());
         }
     }
 
@@ -95,25 +95,25 @@ private:
             std::vector<std::shared_ptr<actor> > current_page_actors;
 
             for (int i = 0; i < current.size(); ++i) {
-                float y = engine::instance().screen_size.y / 2 - (button_size + 1) * (i + 1) + (is_p1 ? 0 : engine::instance().screen_size.y / 2);
+                float y = engine::screen_size.y / 2 - (button_size + 1) * (i + 1) + (is_p1 ? 0 : engine::screen_size.y / 2);
                 float x = 0;
                 for (auto k: current[current.size() - 1 - i].keys) {
                     auto icon = engine::instantiate<button_icon_actor>(v2((button_size / 2) + x, y), button_size, button_icon_actor_opts{k});
                     current_page_actors.push_back(icon);
                     x += (button_size + 1);
                 }
-                auto text = engine::instantiate<text_actor>(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::instance().screen_size.x - x, button_size));
+                auto text = engine::instantiate<text_actor>(current[current.size() - 1 - i].text, v2(x, y - (button_size / 2)), v2(engine::screen_size.x - x, button_size));
                 current_page_actors.push_back(text);
             }
             if (is_p1) {
-                auto rot_center = engine::instance().screen_size / 2 - v2::one();
-                rot_center.y -= engine::instance().screen_size.y / 4;
+                auto rot_center = engine::screen_size / 2 - v2::one();
+                rot_center.y -= engine::screen_size.y / 4;
                 for (auto &actor: current_page_actors)
                     actor->rotate_around(rot_center, 180);
             }
         }
 
-        engine::instance().set_timeout([this]() {
+        engine::set_timeout([this]() {
             page_index = (page_index + 1) % pages.size();
             print_page();
         }, 1600);

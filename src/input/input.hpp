@@ -9,14 +9,14 @@ class input {
     static input *instance_ptr;
     std::shared_ptr<input_provider> inputProvider;
 
+    static input &instance() {
+        return *instance_ptr;
+    }
+
 public:
     explicit input(std::shared_ptr<input_provider> inputProvider) {
         this->inputProvider = std::move(inputProvider);
         instance_ptr = this;
-    }
-
-    static input &i() {
-        return *instance_ptr;
     }
 
     void update(float deltaTime) {
@@ -27,28 +27,28 @@ public:
         inputProvider->lateUpdate(deltaTime);
     }
 
-    bool is_key_down(key key) const {
-        return inputProvider->is_key_down(key);
+    static bool is_key_down(key key) {
+        return instance().inputProvider->is_key_down(key);
     }
 
-    bool is_any_key_down() const {
-        return inputProvider->is_any_key_down();
+    static bool is_any_key_down() {
+        return instance().inputProvider->is_any_key_down();
     }
 
-    bool is_key_up(key key) const {
-        return inputProvider->is_key_up(key);
+    static bool is_key_up(key key) {
+        return instance().inputProvider->is_key_up(key);
     }
 
-    bool is_any_key_up() const {
-        return inputProvider->is_any_key_up();
+    static bool is_any_key_up() {
+        return instance().inputProvider->is_any_key_up();
     }
 
-    bool is_key_press(key key) const {
-        return inputProvider->is_key_press(key);
+    static bool is_key_press(key key) {
+        return instance().inputProvider->is_key_press(key);
     }
 
-    bool is_any_key_press() const {
-        return inputProvider->is_any_key_press();
+    static bool is_any_key_press() {
+        return instance().inputProvider->is_any_key_press();
     }
 
     void clear() {

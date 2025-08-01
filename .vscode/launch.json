@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "C++ Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/main", // lub inny plik binarny
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb", // lub "gdb" dla gcc/g++
+        "preLaunchTask": "build"
+      }
+    ]
+  }
+  

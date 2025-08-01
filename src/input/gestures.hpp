@@ -26,17 +26,20 @@ enum class gesture { _single = 1, _double = 2, _triple = 3, _long = 4, _repeater
 class gestures {
     static gestures *instance_ptr;
 
-public:
     std::unordered_map<state, std::function<bool(key)> > states = {
-        {state::down, [](key k) { return input::i().is_key_down(k); }},
-        {state::up, [](key k) { return input::i().is_key_up(k); }},
-        {state::press, [](key k) { return input::i().is_key_press(k); }},
+        {state::down, [](key k) { return input::is_key_down(k); }},
+        {state::up, [](key k) { return input::is_key_up(k); }},
+        {state::press, [](key k) { return input::is_key_press(k); }},
     };
 
     std::vector<std::map<state, max_heap *> > last_action_timestamps;
     std::unordered_map<std::string, bool> gestures_this_frame;
     std::unordered_map<std::string, gesture> single_gestures_this_frame;
     std::unordered_map<int, float> press_timers;
+
+    static gestures &instance() {
+        return *instance_ptr;
+    }
 
 public:
     gestures() {
@@ -48,29 +51,25 @@ public:
         instance_ptr = this;
     }
 
-    static gestures &i() {
-        return *instance_ptr;
-    }
-
     ~gestures() {
         for (auto &map: last_action_timestamps)
             for (auto &[_, ptr]: map)
                 delete ptr;
     }
 
-    std::string make_key(key k, state s, std::optional<gesture> g = std::nullopt) const {
+    static std::string make_key(key k, state s, std::optional<gesture> g = std::nullopt) {
         std::string res = std::format("{}_{}", static_cast<int>(k), static_cast<int>(s));
         if (g.has_value())
             res += std::format("_{}", static_cast<int>(g.value()));
         return res;
     }
 
-    bool is(key k, state s, gesture g, bool single = false) {
+    static bool is(key k, state s, gesture g, bool single = false) {
         auto id = make_key(k, s, single ? std::nullopt : std::optional(g));
-        return single ? single_gestures_this_frame[id] == g : gestures_this_frame[id];
+        return single ? instance().single_gestures_this_frame[id] == g : instance().gestures_this_frame[id];
     }
 
-    bool is(const std::vector<key> &keys, state s, gesture g, bool single = false) {
+    static bool is(const std::vector<key> &keys, state s, gesture g, bool single = false) {
         return std::all_of(keys.begin(), keys.end(), [&](key k) { return is(k, s, g, single); });
     }
 

@@ -30,7 +30,6 @@ struct coroutine {
 };
 
 class engine {
-private:
     long lastTimestamp = 0;
     long lastFixedTimestamp = 0;
     float goBackToMenuTimer = 0;
@@ -53,25 +52,25 @@ private:
     input input;
     gestures gesture_handler;
 
+    static engine &instance() {
+        return *instance_ptr;
+    }
+
 public:
     static engine *instance_ptr;
 
-    v2 screen_size = v2(32, 32);
+    static v2 screen_size;
     matrix screen = matrix(screen_size.x, screen_size.y);
-    float delta_time = 0;
-    float fixed_delta_time = 0;
+    static float delta_time;
+    static float fixed_delta_time;
 
     explicit engine(std::shared_ptr<input_provider> input_provider): input(std::move(input_provider)) {
         lastTimestamp = lastFixedTimestamp = now_ms();
         instance_ptr = this;
     }
 
-    static engine &instance() {
-        return *instance_ptr;
-    }
-
-    void set_on_frame_finished(const std::function<void(const std::vector<std::vector<color> > &)> &callback) {
-        on_frame_finished = callback;
+    static void set_on_frame_finished(const std::function<void(const std::vector<std::vector<color> > &)> &callback) {
+        instance().on_frame_finished = callback;
     }
 
     void run();
@@ -82,50 +81,50 @@ public:
         if (fixed_update_thread.joinable()) fixed_update_thread.join();
     }
 
-    void register_actor(std::shared_ptr<actor> a) {
-        current_scene->actors.push_back(a);
+    static void register_actor(std::shared_ptr<actor> a) {
+        instance().current_scene->actors.push_back(a);
     }
 
-    void unregister_actor(std::shared_ptr<actor> a) {
-        std::erase(current_scene->actors, a);
+    static void unregister_actor(std::shared_ptr<actor> a) {
+        std::erase(instance().current_scene->actors, a);
     }
 
-    void open_scene(std::shared_ptr<scene> scene_ptr) {
-        timeouts.clear();
-        intervals.clear();
+    static void open_scene(std::shared_ptr<scene> scene_ptr) {
+        instance().timeouts.clear();
+        instance().intervals.clear();
 
-        if (current_scene)
-            current_scene->actors.clear();
+        if (instance().current_scene)
+            instance().current_scene->actors.clear();
 
-        current_scene = std::move(scene_ptr);
-        current_scene->init();
+        instance().current_scene = std::move(scene_ptr);
+        instance().current_scene->init();
     }
 
-    asyncable *set_timeout(const std::function<void()> &callback, float ms) {
+    static asyncable *set_timeout(const std::function<void()> &callback, float ms) {
         auto obj = new asyncable({callback, ms});
-        pending_timeouts.push_back(obj);
+        instance().pending_timeouts.push_back(obj);
         return obj;
     }
 
-    asyncable *set_interval(const std::function<void()> &callback, float ms) {
+    static asyncable *set_interval(const std::function<void()> &callback, float ms) {
         auto obj = new asyncable({callback, ms});
-        pending_intervals.push_back(obj);
+        instance().pending_intervals.push_back(obj);
         return obj;
     }
 
-    void *clear_timeout(asyncable *asyncable) {
-        if (asyncable != nullptr) {
-            const auto it = std::ranges::find(timeouts, asyncable);
-            timeouts.erase(it);
+    static void *clear_timeout(asyncable *asyncable) {
+        if (asyncable != nullptr && instance_ptr->timeouts.size() > 0) {
+            const auto it = std::ranges::find(instance_ptr->timeouts, asyncable);
+            instance_ptr->timeouts.erase(it);
         }
 
         return 0;
     }
 
-    void *clear_interval(asyncable *asyncable) {
-        if (asyncable != nullptr) {
-            const auto it = std::ranges::find(intervals, asyncable);
-            intervals.erase(it);
+    static void *clear_interval(asyncable *asyncable) {
+        if (asyncable != nullptr && instance_ptr->intervals.size() > 0) {
+            const auto it = std::ranges::find(instance_ptr->intervals, asyncable);
+            instance_ptr->intervals.erase(it);
         }
 
         return 0;

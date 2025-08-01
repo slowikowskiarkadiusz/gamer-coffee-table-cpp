@@ -42,13 +42,12 @@ public:
     void add_lines(int noOfLines) {
         skipTextPop = false;
         if (currentAnim != nullptr)
-            engine::instance().clear_interval(currentAnim);
+            engine::clear_interval(currentAnim);
+        currentLevel += noOfLines;
         currentAnim = anim(noOfLines);
 
-        currentLevel += noOfLines;
-
         if (gettingReadyTimeout == nullptr) {
-            gettingReadyTimeout = engine::instance().set_timeout([this]() {
+            gettingReadyTimeout = engine::set_timeout([this]() {
                 isReadyToDrop = true;
                 gettingReadyTimeout = nullptr;
             }, garbageInsertionDelay);
@@ -100,18 +99,16 @@ public:
 
 private:
     asyncable *anim(int levelsToAdd) {
-        return engine::instance().set_timeout([this, &levelsToAdd]() {
-            --levelsToAdd;
+        if (levelsToAdd <= 0) {
+            return nullptr;
+        }
+
+        return engine::set_timeout([this, levelsToAdd]() {
             draw_level_on_matrix();
             animCurrentLevel++;
             draw_level_on_matrix();
 
-            if (levelsToAdd <= 0) {
-                currentAnim = nullptr;
-                return;
-            }
-
-            anim(levelsToAdd);
+            anim(levelsToAdd - 1);
         }, 0);
     }
 

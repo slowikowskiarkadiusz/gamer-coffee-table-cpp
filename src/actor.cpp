@@ -68,7 +68,7 @@ void actor::move_by(const v2 &by) {
 }
 
 void actor::kill() {
-    engine::instance().unregister_actor(shared_from_this());
+    engine::unregister_actor(shared_from_this());
 }
 
 void actor::set_size(const v2 &new_size) {

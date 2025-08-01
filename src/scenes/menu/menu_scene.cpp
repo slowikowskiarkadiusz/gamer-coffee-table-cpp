@@ -7,7 +7,7 @@
 menu_scene::menu_scene() = default;
 
 void menu_scene::init() {
-    auto screen = engine::instance().screen_size;
+    auto screen = engine::screen_size;
 
     std::vector<std::string> titles = {"tetris", "pong 1", "pong 2", "music visualizer"};
     std::vector<std::pair<std::function<std::shared_ptr<scene>()>, std::string> > next_scenes = {
@@ -33,15 +33,18 @@ void menu_scene::init() {
 void menu_scene::update(float delta_time) {
     bool changed = false;
 
-    if (input::i().is_key_down(key::P1_L_L) || input::i().is_key_down(key::P1_R_R)) {
+    if (gestures::is(key::P1_L_L, state::press, gesture::_repeater))
+        std::cout << "AAAA" << std::endl;
+
+    if (input::is_key_down(key::P1_L_L) || input::is_key_down(key::P1_R_R)) {
         _cursor_position++;
         changed = true;
-    } else if (input::i().is_key_down(key::P1_L_BLUE) || input::i().is_key_down(key::P1_R_GREEN)) {
+    } else if (input::is_key_down(key::P1_L_BLUE) || input::is_key_down(key::P1_R_GREEN)) {
         _cursor_position--;
         changed = true;
-    } else if (input::i().is_key_down(key::START)) {
+    } else if (input::is_key_down(key::START)) {
         auto it = std::next(_options.begin(), _cursor_position);
-        engine::instance().open_scene(std::make_shared<controls_scene>(it->next_scene, it->scene_name));
+        engine::open_scene(std::make_shared<controls_scene>(it->next_scene, it->scene_name));
     }
 
     int option_count = static_cast<int>(_options.size());

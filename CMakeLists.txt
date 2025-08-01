@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 add_executable(gaming_coffee_table_cpp
-        main.mm
+        main.cpp
         src/engine.hpp
         src/v2.hpp
         src/matrix.hpp

@@ -6,6 +6,9 @@
 #include "scenes/tetris/tetris_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
+float engine::delta_time = 0;
+float engine::fixed_delta_time = 0;
+v2 engine::screen_size = v2(32, 32);;
 
 void engine::run() {
     running = true;
