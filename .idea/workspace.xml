@@ -29,24 +29,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="uhh">
-      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.cpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="can hold piece">
+      <change afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +53,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -160,7 +160,7 @@
       <workItem from="1753856053686" duration="37111000" />
       <workItem from="1753976998947" duration="73000" />
       <workItem from="1753977306895" duration="6196000" />
-      <workItem from="1754136620003" duration="12803000" />
+      <workItem from="1754136620003" duration="14444000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -354,7 +354,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754051978366</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="can hold piece">
+      <option name="closed" value="true" />
+      <created>1754160928991</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1754160928991</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +408,8 @@
     <MESSAGE value="coroutines not working" />
     <MESSAGE value="dropping lines works" />
     <MESSAGE value="uhh" />
-    <option name="LAST_COMMIT_MESSAGE" value="uhh" />
+    <MESSAGE value="can hold piece" />
+    <option name="LAST_COMMIT_MESSAGE" value="can hold piece" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -409,11 +418,6 @@
           <url>file://$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp</url>
           <line>72</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp</url>
-          <line>55</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

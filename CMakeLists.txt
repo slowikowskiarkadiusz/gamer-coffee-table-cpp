@@ -52,5 +52,7 @@ add_executable(gaming_coffee_table_cpp
         src/coroutine/task.hpp
         src/coroutine/wait_for_ms.hpp
         src/scenes/tetris/hold_logic.cpp
+        src/scenes/snake/snake_scene.cpp
+        src/scenes/snake/snake_scene.h
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

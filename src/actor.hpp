@@ -29,10 +29,10 @@ public:
     void rename(const std::string &new_name);
     void resize(const v2 &new_size);
     void rotate(float degrees);
-    void rotate_around(const v2 &around, float degrees);
+    actor *rotate_around(const v2 &around, float degrees);
     void set_rotation(float degrees);
-    void move_to(const v2 &to);
-    void move_by(const v2 &by);
+    actor *move_to(const v2 &to);
+    actor *move_by(const v2 &by);
     void kill();
 
     virtual void redraw() = 0;

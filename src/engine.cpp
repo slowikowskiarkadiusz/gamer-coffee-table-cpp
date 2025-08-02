@@ -31,7 +31,8 @@ void engine::run() {
             current_scene->update(delta_time);
 
             for (auto &a: current_scene->actors) {
-                a->update(delta_time);
+                if (a != nullptr)
+                    a->update(delta_time);
             }
 
             run_asyncable(delta_time);

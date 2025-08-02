@@ -1,6 +1,7 @@
 #include "tetris_scene.hpp"
 #include <functional>
 
+#include "../../actors/rectangle_actor.hpp"
 #include "../../actors/text_actor.hpp"
 
 tetris_scene::tetris_scene() = default;
@@ -22,10 +23,6 @@ void tetris_scene::init() {
 
     p1Board->set_center(v2(p1Board->size().x, engine::screen_size.y - p1Board->size().y));
 
-    engine::set_timeout([this]() {
-        std::cout << p1Board->size().x << std::endl;
-    }, 1000);
-
     p2Board = engine::instantiate<tetris_board_actor>(
         center.add(v2(engine::screen_size.x / 4, 0)),
         seed,
@@ -41,10 +38,7 @@ void tetris_scene::init() {
 }
 
 void tetris_scene::on_lines_cleared(int count, bool isP1) {
-    auto *target =
-            isP1
-                ? p2Board.get()
-                : p1Board.get();
+    auto *target = isP1 ? p2Board.get() : p1Board.get();
     if (target)
         target->take_damage(count);
 }
@@ -52,6 +46,8 @@ void tetris_scene::on_lines_cleared(int count, bool isP1) {
 void tetris_scene::on_players_death(bool isP1) {
     if (p1Board) p1Board->stop();
     if (p2Board) p2Board->stop();
+
+    auto background = engine::instantiate<rectangle_actor>(engine::screen_size / 2, engine::screen_size, color::black(0.5));
 
     auto printText = [](bool isP1) {
         std::string text = "P" + std::to_string(isP1 ? 1 : 2) + " WON";
@@ -66,7 +62,7 @@ void tetris_scene::on_players_death(bool isP1) {
     rotateAround.y -= engine::screen_size.y / 4;
 
     printText(true);
-    printText(false)->rotate_around(rotateAround, 180);
+    printText(false)->rotate_around(rotateAround, 180)->move_by(v2(0, 0.5));
 }
 
 void tetris_scene::update(float delta_time) {

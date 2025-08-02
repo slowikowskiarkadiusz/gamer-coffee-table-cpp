@@ -38,9 +38,11 @@ void actor::rotate(float degrees) {
     set_rotation(degrees + _rotation);
 }
 
-void actor::rotate_around(const v2 &around, float degrees) {
+actor *actor::rotate_around(const v2 &around, float degrees) {
     set_rotation(degrees + _rotation);
     _center = _center.rotate_around(around, degrees);
+
+    return this;
 }
 
 void actor::set_rotation(float degrees) {
@@ -57,14 +59,18 @@ void actor::set_rotation(float degrees) {
     redraw();
 }
 
-void actor::move_to(const v2 &to) {
+actor *actor::move_to(const v2 &to) {
     _center = to;
     redraw();
+
+    return this;
 }
 
-void actor::move_by(const v2 &by) {
+actor *actor::move_by(const v2 &by) {
     _center = _center.add(by);
     redraw();
+
+    return this;
 }
 
 void actor::kill() {
