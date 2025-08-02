@@ -3,13 +3,15 @@
 #include "./src/engine.hpp"
 #include "src/input/keyboard_input_provider.hpp"
 
-sf::RenderWindow window(sf::VideoMode(320, 320), "gamer-coffee-table-cpp");
 
 int main() {
     std::shared_ptr<keyboard_input_provider> input_provider = std::make_shared<keyboard_input_provider>();
 
     engine engineObj(input_provider);
     engineObj.run();
+
+    sf::RenderWindow window(sf::VideoMode(engine::screen_size.x * 10, engine::screen_size.y * 10), "gamer-coffee-table-cpp");
+
     while (window.isOpen()) {
         window.clear();
 
@@ -20,8 +22,8 @@ int main() {
                 window.close();
         }
 
-        for (int y = 0; y < 32; y++) {
-            for (int x = 0; x < 32; x++) {
+        for (int y = 0; y < engine::screen_size.y; y++) {
+            for (int x = 0; x < engine::screen_size.x; x++) {
                 auto matrixPixel = engineObj.screen.pixels()[x][y];
                 sf::CircleShape pixel(5);
                 pixel.setPosition(x * 10, y * 10);

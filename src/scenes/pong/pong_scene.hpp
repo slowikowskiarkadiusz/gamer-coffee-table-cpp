@@ -10,6 +10,7 @@ class pong_scene : public scene {
     std::shared_ptr<rectangle_actor> p1Paddle, p2Paddle, p1ScoreZone, p2ScoreZone, ball;
     v2 ballSpeed = v2::zero();
     float ballSpeedMultiplier = 1;
+    float size_factor;
     bool canScore = true;
     bool canCollide[2] = {true, true};
     bool canBounce = true;

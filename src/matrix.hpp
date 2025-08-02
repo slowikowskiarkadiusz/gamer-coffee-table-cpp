@@ -98,33 +98,55 @@ public:
         float sinA = std::abs(std::sin(radians));
         float cosA = std::abs(std::cos(radians));
 
-        int oldWidth = _matrix.size();
-        int oldHeight = _matrix[0].size();
-        int newWidth = std::ceil(oldWidth * cosA + oldHeight * sinA);
-        int newHeight = std::ceil(oldWidth * sinA + oldHeight * cosA);
+        int old_width = _matrix.size();
+        int old_height = _matrix[0].size();
+        int new_width = std::ceil(old_width * cosA + old_height * sinA);
+        int new_height = std::ceil(old_width * sinA + old_height * cosA);
 
-        matrix rotated(newWidth, newHeight, color::none());
+        matrix rotated(new_width, new_height, color::none());
 
-        float cxOld = oldWidth / 2.0f;
-        float cyOld = oldHeight / 2.0f;
-        float cxNew = newWidth / 2.0f;
-        float cyNew = newHeight / 2.0f;
+        float cxOld = old_width / 2.0f;
+        float cyOld = old_height / 2.0f;
+        float cxNew = new_width / 2.0f;
+        float cyNew = new_height / 2.0f;
 
-        for (int x = 0; x < oldWidth; x++) {
-            for (int y = 0; y < oldHeight; y++) {
+        for (int x = 0; x < old_width; x++) {
+            for (int y = 0; y < old_height; y++) {
                 float dx = x - cxOld;
                 float dy = y - cyOld;
 
                 int rx = std::round(std::cos(radians) * dx - std::sin(radians) * dy + cxNew);
                 int ry = std::round(std::sin(radians) * dx + std::cos(radians) * dy + cyNew);
 
-                if (rx >= 0 && rx < newWidth && ry >= 0 && ry < newHeight) {
+                if (rx >= 0 && rx < new_width && ry >= 0 && ry < new_height) {
                     rotated._matrix[rx][ry] = _matrix[x][y];
                 }
             }
         }
 
         _matrix = rotated._matrix;
+        return *this;
+    }
+
+    matrix &scale(const float factor) {
+        int old_width = _matrix.size();
+        int old_height = _matrix[0].size();
+        int new_width = std::round(old_width * factor);
+        int new_height = std::round(old_height * factor);
+
+        matrix scaled(new_width, new_height, color::none());
+
+        for (int x = 0; x < new_width; x++) {
+            for (int y = 0; y < new_height; y++) {
+                int srcX = std::floor(x / factor);
+                int srcY = std::floor(y / factor);
+                if (srcX < old_width && srcY < old_height) {
+                    scaled._matrix[x][y] = _matrix[srcX][srcY];
+                }
+            }
+        }
+
+        _matrix = scaled._matrix;
         return *this;
     }
 

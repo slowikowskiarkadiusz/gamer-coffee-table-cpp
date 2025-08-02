@@ -21,7 +21,7 @@ protected:
 public:
     virtual ~actor() = default;
 
-    v2 center() const;
+    v2 get_center() const;
     void set_center(const v2 &new_center);
     v2 size() const;
     float rotation() const;

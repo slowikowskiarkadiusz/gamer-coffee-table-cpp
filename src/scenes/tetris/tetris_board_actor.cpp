@@ -7,7 +7,7 @@
 tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
                                        std::function<void(int, bool)> on_deal_damage,
                                        std::function<void(bool)> on_death)
-    : actor("tetris-board", center, v2(engine::screen_size.x / 2, engine::screen_size.y)),
+    : actor("tetris-board", center, v2(1 + board_width + 1 + 1 + 1, 1 + board_height + 1 + hold_logic::default_size.y + 1)),
       center(center), seed(seed), is_p1(is_p1),
       on_deal_damage(on_deal_damage), on_death(on_death),
       garbage_bar_logic(v2(board_width + 2, size().y - 1 - board_height / 2), v2(1, board_height), {color::white(0.1f)}),
@@ -33,8 +33,6 @@ void tetris_board_actor::update(float deltaTime) {
         if (gestures::is(is_p1 ? std::vector{key::P1_L_BLUE} : std::vector{key::P2_L_BLUE}, state::press, gesture::_long) && !switched_pieces) {
             auto held_shape = hold_logic.use(current_agent->shape);
             auto center = this->current_agent->center;
-            delete &this->current_agent;
-            delete &this->current_agent_shadow;
             this->spawn(center, held_shape);
             switched_pieces = true;
         } else if (gestures::is(is_p1 ? std::vector{key::P1_L_L, key::P1_R_R} : std::vector{key::P2_L_L, key::P2_R_R}, state::press, gesture::_single))
@@ -75,7 +73,7 @@ matrix tetris_board_actor::render() {
 
     _matrix.write(boardMatrix, boardOffset);
     _matrix.write(static_board_matrix, boardOffset, 0);
-    return _matrix;
+    return _matrix.scale(engine::screen_size.x / 32);
 }
 
 void tetris_board_actor::stop() {

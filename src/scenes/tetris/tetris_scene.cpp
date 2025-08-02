@@ -10,42 +10,52 @@ void tetris_scene::init() {
     int seed = std::rand() % 10000;
     v2 center = engine::screen_size.div(2);
 
+    float size_factor = engine::screen_size.x / 32;
+
     p1Board = engine::instantiate<tetris_board_actor>(
-        center.sub(v2(engine::screen_size.x / 4, 0)),
+        center,
         seed,
         true,
-        [this](auto && PH1, auto && PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
-        [this](auto && PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
+        [this](auto &&PH1, auto &&PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
+        [this](auto &&PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
     );
 
-    // p2Board = engine::instantiate<tetris_board_actor>(
-    //     center.add(v2(engine::screen_size.x / 4, 0)),
-    //     seed,
-    //     false,
-    //     [this](auto && PH1, auto && PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
-    //     [this](auto && PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
-    // );
-    //
-    // p2Board->rotate(180);
-    // p2Board->move_by(v2::one().mul(-1));
+    p1Board->set_center(v2(p1Board->size().x, engine::screen_size.y - p1Board->size().y));
+
+    engine::set_timeout([this]() {
+        std::cout << p1Board->size().x << std::endl;
+    }, 1000);
+
+    p2Board = engine::instantiate<tetris_board_actor>(
+        center.add(v2(engine::screen_size.x / 4, 0)),
+        seed,
+        false,
+        [this](auto &&PH1, auto &&PH2) { on_lines_cleared(std::forward<decltype(PH1)>(PH1), std::forward<decltype(PH2)>(PH2)); },
+        [this](auto &&PH1) { on_players_death(std::forward<decltype(PH1)>(PH1)); }
+    );
+
+    p2Board->set_center(v2(engine::screen_size.x - p2Board->size().x, p2Board->size().y));
+
+    p2Board->rotate(180);
+    p2Board->move_by(v2::one().mul(-1));
 }
 
 void tetris_scene::on_lines_cleared(int count, bool isP1) {
     auto *target =
-            // isP1
-            // ? p2Board.get() :
-            p1Board.get();
+            isP1
+                ? p2Board.get()
+                : p1Board.get();
     if (target)
         target->take_damage(count);
 }
 
 void tetris_scene::on_players_death(bool isP1) {
     if (p1Board) p1Board->stop();
-    // if (p2Board) p2Board->stop();
+    if (p2Board) p2Board->stop();
 
     auto printText = [](bool isP1) {
         std::string text = "P" + std::to_string(isP1 ? 1 : 2) + " WON";
-        auto actor = std::make_unique<text_actor>(text, v2::zero(), v2(engine::screen_size.x, 5), text_actor_opts{true});
+        auto actor = engine::instantiate<text_actor>(text, v2::zero(), v2(engine::screen_size.x, 5), text_actor_opts{true});
         v2 newCenter = engine::screen_size.div(2);
         newCenter.y += (isP1 ? 1 : -1) * engine::screen_size.y / 4;
         actor->move_to(newCenter);
@@ -58,7 +68,6 @@ void tetris_scene::on_players_death(bool isP1) {
     printText(true);
     printText(false)->rotate_around(rotateAround, 180);
 }
-
 
 void tetris_scene::update(float delta_time) {
 }

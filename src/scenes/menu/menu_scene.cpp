@@ -33,9 +33,6 @@ void menu_scene::init() {
 void menu_scene::update(float delta_time) {
     bool changed = false;
 
-    if (gestures::is(key::P1_L_L, state::press, gesture::_repeater))
-        std::cout << "AAAA" << std::endl;
-
     if (input::is_key_down(key::P1_L_L) || input::is_key_down(key::P1_R_R)) {
         _cursor_position++;
         changed = true;

@@ -5,15 +5,15 @@
 #include "tetris_block.hpp"
 
 class hold_logic {
-private:
     v2 size;
     matrix _matrix;
     std::optional<tetris_shape> heldPiece;
 
 public:
+    static v2 default_size;
     v2 center;
 
-    hold_logic(v2 center) : center(center), size(v2::one().mul(4)), _matrix(matrix(size.x, size.y, color::none())) {
+    hold_logic(v2 center) : center(center), size(default_size), _matrix(matrix(size.x, size.y, color::none())) {
     }
 
     matrix render() const {

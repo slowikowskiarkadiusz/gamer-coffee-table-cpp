@@ -8,7 +8,7 @@
 engine *engine::instance_ptr = nullptr;
 float engine::delta_time = 0;
 float engine::fixed_delta_time = 0;
-v2 engine::screen_size = v2(32, 32);;
+v2 engine::screen_size = v2(64, 64);
 
 void engine::run() {
     running = true;
@@ -41,7 +41,7 @@ void engine::run() {
                 if (a->name() == "ball")
                     auto b = 0;
 
-                screen.write(a->render(), a->center(), a->rotation());
+                screen.write(a->render(), a->get_center(), a->rotation());
             }
 
             if (on_frame_finished) {

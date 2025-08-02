@@ -24,15 +24,15 @@ public:
     }
 
     bool does_rectangle_overlap(const rectangle_actor &other) {
-        return does_overlap(other.center(), other.size(), other.rotation());
+        return does_overlap(other.get_center(), other.size(), other.rotation());
     }
 
     bool does_overlap(const v2 &other_center, const v2 &other_size, float other_rotation) {
         std::vector<v2> vertices = {
-            center() + v2(size().x / 2, size().y / 2),
-            center() + v2(size().x / 2, -size().y / 2),
-            center() + v2(-size().x / 2, -size().y / 2),
-            center() + v2(-size().x / 2, size().y / 2)
+            get_center() + v2(size().x / 2, size().y / 2),
+            get_center() + v2(size().x / 2, -size().y / 2),
+            get_center() + v2(-size().x / 2, -size().y / 2),
+            get_center() + v2(-size().x / 2, size().y / 2)
         };
 
         std::vector<v2> other_vertices = {

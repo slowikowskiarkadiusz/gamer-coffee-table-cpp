@@ -5,7 +5,7 @@ actor::actor(const std::string &name, const v2 &center, const v2 &size)
     : _name(name), _center(center.copy()), _size(size), original_size(size) {
 }
 
-v2 actor::center() const {
+v2 actor::get_center() const {
     return _center;
 }
 
@@ -51,7 +51,7 @@ void actor::set_rotation(float degrees) {
     float new_x = original_size.x * cos_r - original_size.y * sin_r;
     float new_y = original_size.x * sin_r + original_size.y * cos_r;
 
-    set_size(v2(std::abs(new_x), std::abs(new_y)));
+    set_size(v2(std::round(std::abs(new_x)), std::round(std::abs(new_y))));
 
     _rotation = std::fmod(degrees, 360.0f);
     redraw();

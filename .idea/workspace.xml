@@ -29,21 +29,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="dropping lines works">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="uhh">
+      <change afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.mm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +61,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -112,7 +119,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -126,9 +133,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="gaming_coffee_table_cpp" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gaming_coffee_table_cpp" TARGET_NAME="gaming_coffee_table_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="gaming_coffee_table_cpp" RUN_TARGET_NAME="gaming_coffee_table_cpp">
@@ -152,7 +159,8 @@
       <workItem from="1753638733136" duration="39453000" />
       <workItem from="1753856053686" duration="37111000" />
       <workItem from="1753976998947" duration="73000" />
-      <workItem from="1753977306895" duration="2870000" />
+      <workItem from="1753977306895" duration="6196000" />
+      <workItem from="1754136620003" duration="12803000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -338,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753971271856</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="uhh">
+      <option name="closed" value="true" />
+      <created>1754051978366</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1754051978366</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,15 +399,21 @@
     <MESSAGE value="fixed tetris a bit. lacks input" />
     <MESSAGE value="coroutines not working" />
     <MESSAGE value="dropping lines works" />
-    <option name="LAST_COMMIT_MESSAGE" value="dropping lines works" />
+    <MESSAGE value="uhh" />
+    <option name="LAST_COMMIT_MESSAGE" value="uhh" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp</url>
-          <line>71</line>
+          <line>72</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp</url>
+          <line>55</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

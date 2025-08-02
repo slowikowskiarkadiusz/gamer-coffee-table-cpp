@@ -13,7 +13,7 @@ public:
 
 private:
     std::shared_ptr<tetris_board_actor> p1Board;
-    // std::shared_ptr<tetris_board_actor> p2Board;
+    std::shared_ptr<tetris_board_actor> p2Board;
 
     void on_lines_cleared(int count, bool isP1);
     void on_players_death(bool isP1);

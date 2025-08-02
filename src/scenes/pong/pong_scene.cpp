@@ -9,11 +9,12 @@ pong_scene::pong_scene() = default;
 
 void pong_scene::init() {
     auto screen = engine::screen_size;
-    p1Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, 3), v2(7, 1));
-    p2Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y - 4), v2(7, 1));
-    p1ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, -4), v2(screen.x, 10), color::none());
-    p2ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y + 4), v2(screen.x, 10), color::none());
-    ball = engine::instantiate<rectangle_actor>(engine::screen_size / 2, v2(2, 2), color::white());
+    size_factor = screen.x / 32;
+    p1Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, 3 * size_factor), v2(7, 1) * size_factor);
+    p2Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y - 4 * size_factor), v2(7, 1) * size_factor);
+    p1ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, -4 * size_factor), v2(screen.x, 10), color::none());
+    p2ScoreZone = engine::instantiate<rectangle_actor>(v2(screen.x / 2, screen.y + 4 * size_factor), v2(screen.x, 10), color::none());
+    ball = engine::instantiate<rectangle_actor>(screen / 2, v2(2, 2) * size_factor, color::white());
     reset_ball();
     print_score();
 }
@@ -31,19 +32,19 @@ void pong_scene::fixed_update(float delta_time) {
 
 void pong_scene::handle_input(float deltaTime) {
     if (input::is_key_press(key::P1_L) ^ input::is_key_press(key::P1_R))
-        move_paddle(p1Paddle, (input::is_key_press(key::P1_R) ? 1 : -1) * paddle_speed * deltaTime);
+        move_paddle(p1Paddle, (input::is_key_press(key::P1_R) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
 
     if (input::is_key_press(key::P2_L) ^ input::is_key_press(key::P2_R))
-        move_paddle(p2Paddle, (input::is_key_press(key::P2_R) ? 1 : -1) * paddle_speed * deltaTime);
+        move_paddle(p2Paddle, (input::is_key_press(key::P2_R) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
 }
 
 void pong_scene::move_paddle(std::shared_ptr<rectangle_actor> &paddle, float dx) {
     paddle->move_by(v2::right() * dx);
-    float left = paddle->center().x - paddle->size().x / 2;
-    float right = paddle->center().x + paddle->size().x / 2;
+    float left = paddle->get_center().x - paddle->size().x / 2;
+    float right = paddle->get_center().x + paddle->size().x / 2;
     float screenWidth = engine::screen_size.x;
-    if (left < 0) paddle->move_to(v2(paddle->size().x / 2, paddle->center().y));
-    if (right > screenWidth) paddle->move_to(v2(screenWidth - paddle->size().x / 2, paddle->center().y));
+    if (left < 0) paddle->move_to(v2(paddle->size().x / 2, paddle->get_center().y));
+    if (right > screenWidth) paddle->move_to(v2(screenWidth - paddle->size().x / 2, paddle->get_center().y));
 }
 
 // void pong_scene::move_paddle(std::shared_ptr<rectangle_actor> &paddle, float transform) {
@@ -69,7 +70,7 @@ void pong_scene::reset_ball(bool instant) {
     auto setBall = [&]() {
         float x = ((float) rand() / RAND_MAX) * 2 * original_ball_speed - original_ball_speed;
         float y = ((float) rand() / RAND_MAX) >= 0.5f ? original_ball_speed : -original_ball_speed;
-        ballSpeed = v2(x, y);
+        ballSpeed = v2(x, y) * size_factor;
     };
 
     if (instant) setBall();
@@ -79,8 +80,8 @@ void pong_scene::reset_ball(bool instant) {
 void pong_scene::check_ball_bounce() {
     auto screen = engine::screen_size;
     if (canBounce) {
-        if (ball->center().x + ball->size().x / 2 >= screen.x ||
-            ball->center().x - ball->size().x / 2 <= 0) {
+        if (ball->get_center().x + ball->size().x / 2 >= screen.x ||
+            ball->get_center().x - ball->size().x / 2 <= 0) {
             ballSpeed.x *= -1;
             canBounce = false;
             engine::set_timeout([this]() { canBounce = true; }, 1000);
@@ -92,12 +93,12 @@ void pong_scene::check_collisions() {
     std::vector<std::shared_ptr<rectangle_actor> > paddles = {p1Paddle, p2Paddle};
     for (int i = 0; i < 2; ++i) {
         if (!canCollide[i]) continue;
-        if (paddles[i]->does_overlap(ball->center(), ball->size(), ball->rotation())) {
+        if (paddles[i]->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
             canCollide[i] = false;
             canBounce = true;
-            float offset = (ball->center().x - paddles[i]->center().x) / paddles[i]->size().x;
-            ballSpeed.x = offset * max_bounce_speed;
-            ballSpeed.y = original_ball_speed * ballSpeedMultiplier * (i == 0 ? 1 : -1);
+            float offset = (ball->get_center().x - paddles[i]->get_center().x) / paddles[i]->size().x;
+            ballSpeed.x = offset * max_bounce_speed * size_factor;
+            ballSpeed.y = original_ball_speed * size_factor * ballSpeedMultiplier * (i == 0 ? 1 : -1);
             ballSpeedMultiplier = std::min(ballSpeedMultiplier + 0.1f, 5.0f);
             return;
         }
@@ -107,10 +108,10 @@ void pong_scene::check_collisions() {
 void pong_scene::check_scoring() {
     if (!canScore) return;
     bool scored = false;
-    if (ball->center().y < p1ScoreZone->center().y && p1ScoreZone->does_overlap(ball->center(), ball->size(), ball->rotation())) {
+    if (ball->get_center().y < p1ScoreZone->get_center().y && p1ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
         score.second++;
         scored = true;
-    } else if (ball->center().y > p2ScoreZone->center().y && p2ScoreZone->does_overlap(ball->center(), ball->size(), ball->rotation())) {
+    } else if (ball->get_center().y > p2ScoreZone->get_center().y && p2ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
         score.first++;
         scored = true;
     }
@@ -133,8 +134,7 @@ void pong_scene::check_scoring() {
                 engine::open_scene(std::make_shared<menu_scene>());
             }, 10000);
         } else {
-            std::function abc = [this]() { reset_ball(); };
-            engine::set_timeout(abc, 1000);
+            engine::set_timeout([this]() { reset_ball(); }, 1000);
         }
     }
 }

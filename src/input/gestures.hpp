@@ -9,6 +9,7 @@
 #include <chrono>
 #include <format>
 #include <algorithm>
+#include <iostream>
 
 #include "input.hpp"
 #include "key.hpp"
@@ -36,6 +37,7 @@ class gestures {
     std::unordered_map<std::string, bool> gestures_this_frame;
     std::unordered_map<std::string, gesture> single_gestures_this_frame;
     std::unordered_map<int, float> press_timers;
+    std::unordered_map<int, float> repeater_timers;
 
     static gestures &instance() {
         return *instance_ptr;
@@ -105,7 +107,9 @@ public:
 
                 if (s == state::press) {
                     int id = static_cast<int>(key_val);
-                    press_timers[id] += pred(key_val) ? delta_time : -press_timers[id];
+                    auto val = pred(key_val) ? delta_time : -press_timers[id];
+                    press_timers[id] += val;
+                    repeater_timers[id] += val;
 
                     auto press_key = make_key(key_val, s);
                     if (press_timers[id] > long_press_duration) {
@@ -113,10 +117,10 @@ public:
                         single_gestures_this_frame[press_key] = gesture::_long;
                         press_timers[id] = 0;
                     }
-                    if (press_timers[id] > repeater_press_duration) {
+                    if (repeater_timers[id] > repeater_press_duration) {
                         gestures_this_frame[make_key(key_val, s, gesture::_repeater)] = true;
                         single_gestures_this_frame[press_key] = gesture::_repeater;
-                        press_timers[id] = 0;
+                        repeater_timers[id] = 0;
                     }
                 }
             }
