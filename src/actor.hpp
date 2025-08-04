@@ -12,6 +12,7 @@ protected:
     std::string _name = "actor";
     v2 _center;
     v2 _size;
+    v2 _anchor_offset;
     v2 original_size;
     float _rotation = 0.0f;
 
@@ -23,6 +24,8 @@ public:
 
     v2 get_center() const;
     void set_center(const v2 &new_center);
+    v2 get_anchor_offset() const;
+    void set_anchor_offset(const v2 &new_anchor_offset);
     v2 size() const;
     float rotation() const;
     std::string name() const;

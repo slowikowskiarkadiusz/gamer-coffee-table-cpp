@@ -68,7 +68,7 @@ matrix tetris_board_actor::render() {
     if (current_agent_shadow)
         boardMatrix.write(current_agent_shadow->render(), current_agent_shadow->center, 0);
     if (current_agent) {
-        boardMatrix.write(current_agent->render(), current_agent->center, 0, true);
+        boardMatrix.write(current_agent->render(), current_agent->center, 0);
     }
 
     _matrix.write(boardMatrix, boardOffset);

@@ -51,7 +51,7 @@ public:
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, bool debuuuuug = false) {
+    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero(), bool debuuuuug = false) {
         std::vector<std::vector<std::vector<color> > > result(_matrix.size(),
                                                               std::vector<std::vector<color> >(_matrix[0].size()));
 
@@ -64,17 +64,16 @@ public:
         if (otherWidth == 0 || otherHeight == 0) return *this;
 
         v2 center(otherWidth / 2.0f, otherHeight / 2.0f);
-
         for (int x = 0; x < otherWidth; x++) {
             for (int y = 0; y < otherHeight; y++) {
                 color color = other.pixels()[x][y];
                 if (color.is_none()) continue;
 
-                float dx = x - center.x;
-                float dy = y - center.y;
+                float dx = x - center.x + otherAnchor.x;
+                float dy = y - center.y + otherAnchor.y;
 
-                float rx = std::floor(cosA * dx - sinA * dy + otherCenter.x + 0.5);
-                float ry = std::floor(sinA * dx + cosA * dy + otherCenter.y + 0.5);
+                float rx = std::floor(cosA * dx - sinA * dy + otherCenter.x + 0.5f);
+                float ry = std::floor(sinA * dx + cosA * dy + otherCenter.y + 0.5f);
 
                 if (rx >= 0 && rx < _matrix.size() && ry >= 0 && ry < _matrix[0].size()) {
                     result[rx][ry].push_back(color);
@@ -92,6 +91,7 @@ public:
 
         return *this;
     }
+
 
     matrix &rotate(float degrees) {
         float radians = (degrees * M_PI) / 180.0f;

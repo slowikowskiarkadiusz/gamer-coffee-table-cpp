@@ -12,9 +12,9 @@ tanks_scene::~tanks_scene() = default;
 void tanks_scene::init() {
     engine::instantiate<border_actor>(v2::zero(), engine::screen_size - v2::one(), engine::screen_size, border_size);
 
-    engine::instantiate<tank_actor>();
-
-
+    auto tank = engine::instantiate<tank_actor>();
+    tank->set_center(v2(3.5, 3.5));
+    tank->set_anchor_offset(v2(0, -2));
 }
 
 void tanks_scene::update(float delta_time) {

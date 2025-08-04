@@ -2,7 +2,7 @@
 #include "engine.hpp"
 
 actor::actor(const std::string &name, const v2 &center, const v2 &size)
-    : _name(name), _center(center.copy()), _size(size), original_size(size) {
+    : _name(name), _center(center.copy()), _size(size), original_size(size), _anchor_offset(v2::zero()) {
 }
 
 v2 actor::get_center() const {
@@ -11,6 +11,14 @@ v2 actor::get_center() const {
 
 void actor::set_center(const v2 &new_center) {
     _center = new_center;
+}
+
+v2 actor::get_anchor_offset() const {
+    return _anchor_offset;
+}
+
+void actor::set_anchor_offset(const v2 &new_anchor_offset) {
+    _anchor_offset = new_anchor_offset;
 }
 
 v2 actor::size() const {
