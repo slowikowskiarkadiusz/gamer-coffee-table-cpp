@@ -6,7 +6,16 @@ void border_actor::write_border(v2 from, v2 to, matrix &matrix_) {
     for (int x = start.x; x <= end.x; ++x) {
         for (int y = start.y; y <= end.y; ++y) {
             if (x == start.x || x == end.x || y == start.y || y == end.y)
-                matrix_.set_pixel(x, y, color::white(0.2f));
+                for (int i = 0; i < depth_; ++i) {
+                    if (x == start.x)
+                        matrix_.set_pixel(x + i, y, color::white(0.2f));
+                    if (x == end.x)
+                        matrix_.set_pixel(x - i, y, color::white(0.2f));
+                    if (y == start.y)
+                        matrix_.set_pixel(x, y + i, color::white(0.2f));
+                    if (y == end.y)
+                        matrix_.set_pixel(x, y - i, color::white(0.2f));
+                }
         }
     }
 }
@@ -19,7 +28,7 @@ void border_actor::update(float delta_time) {
 }
 
 matrix border_actor::render() {
-    return matrix_.print_to_console();
+    return matrix_;
 }
 
 void border_actor::fixed_update(float fixed_delta_time) {

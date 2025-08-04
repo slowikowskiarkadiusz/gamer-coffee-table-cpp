@@ -58,5 +58,7 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/tanks/tanks_scene.hpp
         src/actors/border_actor.cpp
         src/actors/border_actor.hpp
+        src/scenes/tanks/tank_actor.cpp
+        src/scenes/tanks/tank_actor.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

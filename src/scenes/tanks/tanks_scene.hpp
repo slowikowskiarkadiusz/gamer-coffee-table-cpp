@@ -2,10 +2,10 @@
 #include "../../scene.hpp"
 
 class tanks_scene : public scene {
-private:
     matrix border_matrix;
     matrix board_matrix;
     static uint size;
+    static uint border_size;
 
 public:
     tanks_scene(): border_matrix(matrix(size, size)), board_matrix(matrix(size, size)) {
