@@ -54,5 +54,9 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/tetris/hold_logic.cpp
         src/scenes/snake/snake_scene.cpp
         src/scenes/snake/snake_scene.h
+        src/scenes/tanks/tanks_scene.cpp
+        src/scenes/tanks/tanks_scene.hpp
+        src/actors/border_actor.cpp
+        src/actors/border_actor.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

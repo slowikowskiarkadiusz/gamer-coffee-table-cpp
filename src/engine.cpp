@@ -3,6 +3,7 @@
 #include "scenes/controls/controls_scene.hpp"
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
+#include "scenes/tanks/tanks_scene.hpp"
 #include "scenes/tetris/tetris_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
@@ -20,7 +21,7 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<tetris_scene>());
+                open_scene(std::make_shared<tanks_scene>());
             }
 
             input.update(delta_time);
@@ -39,9 +40,6 @@ void engine::run() {
 
             screen.clear();
             for (auto &a: current_scene->actors) {
-                if (a->name() == "ball")
-                    auto b = 0;
-
                 screen.write(a->render(), a->get_center(), a->rotation());
             }
 

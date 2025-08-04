@@ -29,16 +29,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="can hold piece">
-      <change afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="made snake scene">
+      <change afterPath="$PROJECT_DIR$/src/actors/border_actor.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actors/border_actor.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/controls/controls_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/controls_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/controls_scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/menu/menu_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/snake/snake_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/snake/snake_scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/snake/snake_scene.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +57,48 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -160,7 +206,7 @@
       <workItem from="1753856053686" duration="37111000" />
       <workItem from="1753976998947" duration="73000" />
       <workItem from="1753977306895" duration="6196000" />
-      <workItem from="1754136620003" duration="14444000" />
+      <workItem from="1754136620003" duration="36907000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -362,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754160928991</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="made snake scene">
+      <option name="closed" value="true" />
+      <created>1754162676368</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1754162676368</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +463,8 @@
     <MESSAGE value="dropping lines works" />
     <MESSAGE value="uhh" />
     <MESSAGE value="can hold piece" />
-    <option name="LAST_COMMIT_MESSAGE" value="can hold piece" />
+    <MESSAGE value="made snake scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="made snake scene" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

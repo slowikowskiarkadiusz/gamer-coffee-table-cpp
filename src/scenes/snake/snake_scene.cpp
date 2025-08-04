@@ -8,3 +8,6 @@ void snake_scene::update(float delta_time) {
 
 void snake_scene::fixed_update(float delta_time) {
 }
+
+snake_scene::~snake_scene() {
+}

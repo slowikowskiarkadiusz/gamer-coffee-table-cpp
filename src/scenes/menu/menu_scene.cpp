@@ -1,6 +1,7 @@
 #include "menu_scene.hpp"
 #include "../pong/pong_scene.hpp"
 #include "../tetris/tetris_scene.hpp"
+#include "../tanks/tanks_scene.hpp"
 #include "../controls/controls_scene.hpp"
 #include "../../input/input.hpp"
 
@@ -9,8 +10,9 @@ menu_scene::menu_scene() = default;
 void menu_scene::init() {
     auto screen = engine::screen_size;
 
-    std::vector<std::string> titles = {"tetris", "pong 1", "pong 2", "music visualizer"};
+    std::vector<std::string> titles = {"tanks", "tetris", "pong 1", "pong 2", "music visualizer"};
     std::vector<std::pair<std::function<std::shared_ptr<scene>()>, std::string> > next_scenes = {
+        {[] { return std::make_shared<tanks_scene>(); }, "tanks_scene"},
         {[] { return std::make_shared<tetris_scene>(); }, "tetris_scene"},
         {[] { return std::make_shared<pong_scene>(); }, "pong_scene"},
         {[] { return std::make_shared<pong_scene>(); }, "pong_scene"},
