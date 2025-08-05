@@ -11,8 +11,19 @@ int main() {
     engineObj.run();
 
     sf::RenderWindow window(sf::VideoMode(engine::screen_size.x * 10, engine::screen_size.y * 10), "gamer-coffee-table-cpp");
+    std::vector<std::vector<sf::CircleShape> > circles;
+    for (int x = 0; x < engine::screen_size.x; x++) {
+        circles.push_back({});
+        for (int y = 0; y < engine::screen_size.y; y++) {
+            circles[x].push_back(sf::CircleShape(5));
+        }
+    }
+
+    auto last_frame = engineObj.screen.pixels();
 
     while (window.isOpen()) {
+        auto frame = engineObj.screen.pixels();
+
         window.clear();
 
         sf::Event event;
@@ -25,12 +36,13 @@ int main() {
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
                 auto matrixPixel = engineObj.screen.pixels()[x][y];
-                sf::CircleShape pixel(5);
-                pixel.setPosition(x * 10, y * 10);
-                pixel.setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
-                window.draw(pixel);
+                circles[x][y].setPosition(x * 10, y * 10);
+                circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
+                window.draw(circles[x][y]);
             }
         }
+
+        last_frame = frame;
 
         window.display();
     }
