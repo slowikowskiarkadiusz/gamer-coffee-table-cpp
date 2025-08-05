@@ -6,6 +6,12 @@ class tanks_scene : public scene {
     matrix board_matrix;
     static uint size;
     static uint border_size;
+    static uint cell_size;
+    static v2 offset;
+    static uint board_size;
+
+    v2 cell_to_pos(v2 cell);
+    std::vector<std::shared_ptr<actor> > generate_half();
 
 public:
     tanks_scene(): border_matrix(matrix(size, size)), board_matrix(matrix(size, size)) {

@@ -31,11 +31,11 @@ void pong_scene::fixed_update(float delta_time) {
 }
 
 void pong_scene::handle_input(float deltaTime) {
-    if (input::is_key_press(key::P1_L) ^ input::is_key_press(key::P1_R))
-        move_paddle(p1Paddle, (input::is_key_press(key::P1_R) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
+    if (input::is_key_press(key::P1_LEFT) ^ input::is_key_press(key::P1_RIGHT))
+        move_paddle(p1Paddle, (input::is_key_press(key::P1_RIGHT) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
 
-    if (input::is_key_press(key::P2_L) ^ input::is_key_press(key::P2_R))
-        move_paddle(p2Paddle, (input::is_key_press(key::P2_R) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
+    if (input::is_key_press(key::P2_LEFT) ^ input::is_key_press(key::P2_RIGHT))
+        move_paddle(p2Paddle, (input::is_key_press(key::P2_RIGHT) ? 1 : -1) * paddle_speed * deltaTime * size_factor);
 }
 
 void pong_scene::move_paddle(std::shared_ptr<rectangle_actor> &paddle, float dx) {

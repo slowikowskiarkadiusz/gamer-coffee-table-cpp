@@ -3,7 +3,13 @@ project(gaming_coffee_table_cpp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
+# SDL2
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+
+include_directories(${SDL2_INCLUDE_DIRS})
+link_directories(${SDL2_LIBRARY_DIRS})
+add_definitions(${SDL2_CFLAGS_OTHER})
 
 add_executable(gaming_coffee_table_cpp
         main.cpp
@@ -60,5 +66,9 @@ add_executable(gaming_coffee_table_cpp
         src/actors/border_actor.hpp
         src/scenes/tanks/tank_actor.cpp
         src/scenes/tanks/tank_actor.hpp
+        src/scenes/tanks/obstacle_actor.cpp
+        src/scenes/tanks/obstacle_actor.hpp
+        src/scenes/tanks/obstacle_type.hpp
 )
-target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)
+
+target_link_libraries(gaming_coffee_table_cpp ${SDL2_LIBRARIES})

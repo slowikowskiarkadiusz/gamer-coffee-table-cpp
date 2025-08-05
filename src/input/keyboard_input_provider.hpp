@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <unordered_set>
 
 #include "input_provider.hpp"
@@ -8,12 +7,12 @@
 
 class keyboard_input_provider : public input_provider {
 private:
-    std::unordered_set<sf::Keyboard::Key> keysDown;
-    std::unordered_set<sf::Keyboard::Key> keysUp;
-    std::unordered_set<sf::Keyboard::Key> keysPress;
+    std::unordered_set<SDL_Keycode> keysDown;
+    std::unordered_set<SDL_Keycode> keysUp;
+    std::unordered_set<SDL_Keycode> keysPress;
 
 public:
-    std::queue<sf::Event> sfEventQueue = std::queue<sf::Event>();
+    std::queue<SDL_Event> sdlEventQueue = std::queue<SDL_Event>();
 
     explicit keyboard_input_provider() {
     }
@@ -21,18 +20,18 @@ public:
     ~keyboard_input_provider() override = default;
 
     void update(float delta_time) override {
-        while (!sfEventQueue.empty()) {
-            auto event = sfEventQueue.front();
-            sfEventQueue.pop();
+        while (!sdlEventQueue.empty()) {
+            auto event = sdlEventQueue.front();
+            sdlEventQueue.pop();
 
-            if (event.type == sf::Event::KeyPressed && !keysPress.contains(event.key.code)) {
-                keysDown.insert(event.key.code);
-                keysPress.insert(event.key.code);
+            if (event.type == SDL_KEYDOWN && !keysPress.contains(event.key.keysym.sym)) {
+                keysDown.insert(event.key.keysym.sym);
+                keysPress.insert(event.key.keysym.sym);
             }
 
-            if (event.type == sf::Event::KeyReleased) {
-                keysUp.insert(event.key.code);
-                keysPress.erase(event.key.code);
+            if (event.type == SDL_KEYUP) {
+                keysUp.insert(event.key.keysym.sym);
+                keysPress.erase(event.key.keysym.sym);
             }
         }
     }
@@ -74,26 +73,26 @@ public:
 
 private:
     bool isKey(std::optional<key> key, key_state key_state) const {
-        std::unordered_set<sf::Keyboard::Key> mappedKey = key.has_value()
-                                                              ? mapKey(key.value())
-                                                              : std::unordered_set<sf::Keyboard::Key>();
+        std::unordered_set<SDL_Keycode> mappedKey = key.has_value()
+                                                        ? mapKey(key.value())
+                                                        : std::unordered_set<SDL_Keycode>();
 
         switch (key_state) {
             case key_state::Down:
                 return key.has_value()
-                           ? std::any_of(keysDown.begin(), keysDown.end(), [mappedKey](sf::Keyboard::Key x) {
+                           ? std::any_of(keysDown.begin(), keysDown.end(), [mappedKey](SDL_Keycode x) {
                                return mappedKey.contains(x);
                            })
                            : !keysDown.empty();
             case key_state::Up:
                 return key.has_value()
-                           ? std::any_of(keysUp.begin(), keysUp.end(), [mappedKey](sf::Keyboard::Key x) {
+                           ? std::any_of(keysUp.begin(), keysUp.end(), [mappedKey](SDL_Keycode x) {
                                return mappedKey.contains(x);
                            })
                            : !keysUp.empty();
             case key_state::Press:
                 return key.has_value()
-                           ? std::any_of(keysPress.begin(), keysPress.end(), [mappedKey](sf::Keyboard::Key x) {
+                           ? std::any_of(keysPress.begin(), keysPress.end(), [mappedKey](SDL_Keycode x) {
                                return mappedKey.contains(x);
                            })
                            : !keysPress.empty();
@@ -102,49 +101,61 @@ private:
         }
     }
 
-    std::unordered_set<sf::Keyboard::Key> mapKey(key key) const {
-        std::unordered_set<sf::Keyboard::Key> a;
-        std::unordered_set<sf::Keyboard::Key> b;
+    std::unordered_set<SDL_Keycode> mapKey(key key) const {
+        std::unordered_set<SDL_Keycode> a;
+        // std::unordered_set<SDL_Keycode> b;
 
         switch (key) {
-            case key::P1_L_L:
-                return {sf::Keyboard::Z};
-            case key::P1_L_BLUE:
-                return {sf::Keyboard::A};
-            case key::P1_L:
-                a = mapKey(key::P1_L_L);
-                b = mapKey(key::P1_L_BLUE);
-                a.insert(b.begin(), b.end());
-                return a;
-            case key::P1_R_R:
-                return {sf::Keyboard::X};
-            case key::P1_R_GREEN:
-                return {sf::Keyboard::D};
-            case key::P1_R:
-                a = mapKey(key::P1_R_R);
-                b = mapKey(key::P1_R_GREEN);
-                a.insert(b.begin(), b.end());
-                return a;
-            case key::P2_L_L:
-                return {sf::Keyboard::N};
-            case key::P2_L_BLUE:
-                return {sf::Keyboard::H};
-            case key::P2_L:
-                a = mapKey(key::P2_L_L);
-                b = mapKey(key::P2_L_BLUE);
-                a.insert(b.begin(), b.end());
-                return a;
-            case key::P2_R_R:
-                return {sf::Keyboard::M};
-            case key::P2_R_GREEN:
-                return {sf::Keyboard::K};
-            case key::P2_R:
-                a = mapKey(key::P2_R_R);
-                b = mapKey(key::P2_R_GREEN);
-                a.insert(b.begin(), b.end());
-                return a;
             case key::START:
-                return {sf::Keyboard::Y};
+                return {SDLK_y};
+            case key::P1_DOWN:
+                return {SDLK_s};
+            case key::P1_UP:
+                return {SDLK_w};
+            case key::P1_LEFT:
+                return {SDLK_a};
+            case key::P1_RIGHT:
+                return {SDLK_d};
+            case key::P1_ANY_DIRECTION:
+                for (const auto k: {key::P1_DOWN, key::P1_UP, key::P1_LEFT, key::P1_RIGHT}) {
+                    auto b = mapKey(k);
+                    a.insert(b.begin(), b.end());
+                }
+                return a;
+            case key::P1_BLUE:
+                return {SDLK_f};
+            case key::P1_GREEN:
+                return {SDLK_g};
+            case key::P1_ANY:
+                for (const auto k: {key::P1_ANY_DIRECTION, key::P1_BLUE, key::P1_GREEN}) {
+                    auto b = mapKey(k);
+                    a.insert(b.begin(), b.end());
+                }
+                return a;
+            case key::P2_DOWN:
+                return {SDLK_DOWN};
+            case key::P2_UP:
+                return {SDLK_UP};
+            case key::P2_LEFT:
+                return {SDLK_LEFT};
+            case key::P2_RIGHT:
+                return {SDLK_RIGHT};
+            case key::P2_ANY_DIRECTION:
+                for (const auto k: {key::P2_DOWN, key::P2_UP, key::P2_LEFT, key::P2_RIGHT}) {
+                    auto b = mapKey(k);
+                    a.insert(b.begin(), b.end());
+                }
+                return a;
+            case key::P2_BLUE:
+                return {SDLK_o};
+            case key::P2_GREEN:
+                return {SDLK_p};
+            case key::P2_ANY:
+                for (const auto k: {key::P2_ANY_DIRECTION, key::P1_BLUE, key::P1_GREEN}) {
+                    auto b = mapKey(k);
+                    a.insert(b.begin(), b.end());
+                }
+                return a;
             default: return {};
         }
     }

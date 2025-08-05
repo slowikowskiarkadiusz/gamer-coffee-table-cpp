@@ -12,10 +12,13 @@ protected:
     std::vector<std::vector<color> > _matrix;
 
 public:
-    matrix(int x, int y, const color &defaultColor = color::none()) {
+    matrix(v2 size, const color &default_color = color::none()): matrix(size.x, size.y, default_color) {
+    }
+
+    matrix(int x, int y, const color &default_color = color::none()) {
         x = std::round(x);
         y = std::round(y);
-        _matrix = std::vector<std::vector<color> >(x, std::vector<color>(y, defaultColor));
+        _matrix = std::vector<std::vector<color> >(x, std::vector<color>(y, default_color));
     }
 
     const std::vector<std::vector<color> > &pixels() const {

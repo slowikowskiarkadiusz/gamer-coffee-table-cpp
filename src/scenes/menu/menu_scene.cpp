@@ -35,10 +35,10 @@ void menu_scene::init() {
 void menu_scene::update(float delta_time) {
     bool changed = false;
 
-    if (input::is_key_down(key::P1_L_L) || input::is_key_down(key::P1_R_R)) {
+    if (input::is_key_down(key::P1_LEFT) || input::is_key_down(key::P1_RIGHT)) {
         _cursor_position++;
         changed = true;
-    } else if (input::is_key_down(key::P1_L_BLUE) || input::is_key_down(key::P1_R_GREEN)) {
+    } else if (input::is_key_down(key::P1_BLUE) || input::is_key_down(key::P1_GREEN)) {
         _cursor_position--;
         changed = true;
     } else if (input::is_key_down(key::START)) {

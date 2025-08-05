@@ -1,18 +1,22 @@
 #pragma once
 
 enum class key {
-    P1_L_L,
-    P1_L_BLUE,
-    P1_L,
-    P1_R_R,
-    P1_R_GREEN,
-    P1_R,
-    P2_L_L,
-    P2_L_BLUE,
-    P2_L,
-    P2_R_R,
-    P2_R_GREEN,
-    P2_R,
+    P1_DOWN,
+    P1_UP,
+    P1_LEFT,
+    P1_RIGHT,
+    P1_ANY_DIRECTION,
+    P1_BLUE,
+    P1_GREEN,
+    P1_ANY,
+    P2_DOWN,
+    P2_UP,
+    P2_LEFT,
+    P2_RIGHT,
+    P2_ANY_DIRECTION,
+    P2_BLUE,
+    P2_GREEN,
+    P2_ANY,
     START
 };
 
