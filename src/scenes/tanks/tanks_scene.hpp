@@ -13,10 +13,10 @@ class tanks_scene : public scene {
     static uint board_size;
 
     v2 cell_to_pos(v2 cell);
-    std::vector<std::shared_ptr<obstacle_actor>> generate_grass(v2 at, std::vector<std::vector<obstacle_type> > &taken_by);
-    std::vector<std::shared_ptr<obstacle_actor>> generate_brick(v2 at, std::vector<std::vector<obstacle_type> > &taken_by);
-    void generate_steel(v2 at, std::vector<std::vector<obstacle_type>> &taken_by);
-    void generate_water(v2 at, std::vector<std::vector<obstacle_type>> &taken_by);
+    void generate_grass(v2 at, std::vector<std::vector<std::pair<std::shared_ptr<obstacle_actor>, std::shared_ptr<obstacle_actor> > > > &taken_by);
+    void generate_brick(v2 at, std::vector<std::vector<std::pair<std::shared_ptr<obstacle_actor>, std::shared_ptr<obstacle_actor> > > > &taken_by);
+    void generate_steel(v2 at, std::vector<std::vector<std::pair<std::shared_ptr<obstacle_actor>, std::shared_ptr<obstacle_actor> > > > &taken_by);
+    void generate_water(v2 at, std::vector<std::vector<std::pair<std::shared_ptr<obstacle_actor>, std::shared_ptr<obstacle_actor> > > > &taken_by);
     obstacle_type randomize_obstacle_type();
     std::vector<std::shared_ptr<actor> > generate_half();
 

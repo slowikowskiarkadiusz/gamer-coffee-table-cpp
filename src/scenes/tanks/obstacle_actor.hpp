@@ -12,6 +12,10 @@ public:
         redraw();
     }
 
+    obstacle_type get_obstacle_type() {
+        return obstacle_type_;
+    }
+
     void redraw() override;
     void update(float delta_time) override;
     matrix render() override;
