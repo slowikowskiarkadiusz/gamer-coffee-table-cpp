@@ -16,35 +16,32 @@ int main() {
         circles.push_back({});
         for (int y = 0; y < engine::screen_size.y; y++) {
             circles[x].push_back(sf::CircleShape(5));
+            circles[x][y].setPosition(x * 10, y * 10);
         }
     }
 
-    auto last_frame = engineObj.screen.pixels();
-
-    while (window.isOpen()) {
-        auto frame = engineObj.screen.pixels();
-
+    engineObj.set_on_frame_finished([&circles, &window](std::vector<std::vector<color> > frame) {
         window.clear();
 
+        for (int y = 0; y < engine::screen_size.y; y++) {
+            for (int x = 0; x < engine::screen_size.x; x++) {
+                auto matrixPixel = frame[x][y];
+                circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
+                window.draw(circles[x][y]);
+            }
+        }
+
+        window.display();
+    });
+
+
+    while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             input_provider->sfEventQueue.push(event);
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
-        for (int y = 0; y < engine::screen_size.y; y++) {
-            for (int x = 0; x < engine::screen_size.x; x++) {
-                auto matrixPixel = engineObj.screen.pixels()[x][y];
-                circles[x][y].setPosition(x * 10, y * 10);
-                circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
-                window.draw(circles[x][y]);
-            }
-        }
-
-        last_frame = frame;
-
-        window.display();
     }
 
     engineObj.stop();

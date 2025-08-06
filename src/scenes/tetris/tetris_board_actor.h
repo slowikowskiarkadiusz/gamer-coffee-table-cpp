@@ -55,7 +55,7 @@ private:
 
     void spawn(std::optional<v2> center = std::nullopt, std::optional<tetris_shape> shape = std::nullopt);
     void move_block_by(const v2 &by);
-    void rotate_block();
+    void rotate_block(int dir);
     void deal_damage(int count);
     void write_border(v2 from, v2 to);
     int calc_drop(int i = 0);

@@ -4,7 +4,6 @@
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
 #include "scenes/tanks/tanks_scene.hpp"
-#include "scenes/tetris/tetris_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
 float engine::delta_time = 0;

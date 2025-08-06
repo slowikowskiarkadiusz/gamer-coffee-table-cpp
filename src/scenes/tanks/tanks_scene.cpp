@@ -1,5 +1,8 @@
 #include "tanks_scene.hpp"
 
+#include <numeric>
+#include <random>
+
 #include "obstacle_actor.hpp"
 #include "tank_actor.hpp"
 #include "../../engine.hpp"
@@ -22,6 +25,7 @@ void tanks_scene::init() {
     tank->set_anchor_offset(v2(0, -2));
     tank->set_center(v2(((board_size - 1) / 2 - 1) * cell_size, (board_size - 1) * cell_size) + offset);
 
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
     generate_half();
 }
 
@@ -39,14 +43,31 @@ std::vector<std::shared_ptr<actor> > tanks_scene::generate_half() {
         v2(board_size / 2 + 3, 0), v2(board_size / 2 - 3, 0)
     };
 
-    auto no_row_corridors = std::rand() % 5;
-    auto no_column_corridors = std::rand() % 5;
+    // (std::find(excluded_cells.begin(), excluded_cells.end(), v2(x, y)) == excluded_cells.end())
+
+    std::vector<std::vector<obstacle_type> > taken_by = std::vector(board_size, std::vector<obstacle_type>(board_size / 2, obstacle_type::none));
 
     std::vector<std::shared_ptr<actor> > return_value;
 
     for (int x = 0; x < board_size - 1; ++x) {
-        for (int y = 1; y < board_size / 2 - 1; ++y) {
-            return_value.push_back(engine::instantiate<obstacle_actor>(cell_to_pos(v2(x, y)), cell_size, obstacle_type::brick));
+        for (int y = 0; y < board_size / 2 - 1; ++y) {
+            auto obstacle = randomize_obstacle_type();
+            switch (obstacle) {
+                case obstacle_type::none:
+                    break;
+                case obstacle_type::grass:
+                    generate_grass(v2(x, y), taken_by);
+                    break;
+                case obstacle_type::brick:
+                    generate_brick(v2(x, y), taken_by);
+                    break;
+                case obstacle_type::steel:
+                    generate_steel(v2(x, y), taken_by);
+                    break;
+                case obstacle_type::water:
+                    generate_water(v2(x, y), taken_by);
+                    break;
+            }
         }
     }
 
@@ -55,4 +76,75 @@ std::vector<std::shared_ptr<actor> > tanks_scene::generate_half() {
 
 v2 tanks_scene::cell_to_pos(v2 cell) {
     return cell * cell_size + offset;
+}
+
+std::vector<std::shared_ptr<obstacle_actor> > tanks_scene::generate_grass(v2 at, std::vector<std::vector<obstacle_type> > &taken_by) {
+    std::vector<std::shared_ptr<obstacle_actor> > return_value;
+    bool do_columns = std::rand() % 2;
+    int is_additional_row = 1;
+    int additional_rows = std::rand() % 4;
+    int continue_for = std::rand() % int(do_columns ? taken_by[0].size() - 1 - at.y : taken_by.size() - 2 - at.x);
+
+    float start = do_columns ? at.y : at.x;
+
+    for (int ii = do_columns ? at.x : at.y; ii < additional_rows + (do_columns ? at.x : at.y) && ii < (do_columns ? taken_by[0].size() - 1 : taken_by.size() - 1); ++ii) {
+        for (int i = start; i < continue_for && i < (do_columns ? taken_by[0].size() - 1 : taken_by.size() - 1); ++i) {
+            auto x = do_columns ? ii : i;
+            auto y = do_columns ? i : ii;
+            if (taken_by[x][y] == obstacle_type::none) {
+                taken_by[x][y] = obstacle_type::brick;
+                return_value.push_back(engine::instantiate<obstacle_actor>(cell_to_pos(v2(x, y)), cell_size, obstacle_type::brick));
+                if (y < taken_by[0].size() - 2)
+                    return_value.push_back(engine::instantiate<obstacle_actor>(cell_to_pos(v2(board_size - x - 2, board_size - 2 - y)), cell_size, obstacle_type::brick));
+            }
+        }
+
+        if (!is_additional_row)
+            break;
+    }
+
+    return return_value;
+}
+
+std::vector<std::shared_ptr<obstacle_actor> > tanks_scene::generate_brick(v2 at, std::vector<std::vector<obstacle_type> > &taken_by) {
+    std::vector<std::shared_ptr<obstacle_actor> > return_value;
+    bool do_columns = std::rand() % 2;
+    int additional_rows = std::rand() % 4;
+    int continue_for = std::rand() % int(do_columns ? taken_by[0].size() - 1 - at.y : taken_by.size() - 2 - at.x);
+
+    float start = do_columns ? at.y : at.x;
+
+    for (int ii = do_columns ? at.x : at.y; ii < additional_rows + (do_columns ? at.x : at.y) && ii < (do_columns ? taken_by[0].size() - 1 : taken_by.size() - 1); ++ii) {
+        for (int i = start; i < continue_for && i < (do_columns ? taken_by[0].size() - 1 : taken_by.size() - 1); ++i) {
+            auto x = do_columns ? ii : i;
+            auto y = do_columns ? i : ii;
+            if (taken_by[x][y] == obstacle_type::none) {
+                taken_by[x][y] = obstacle_type::brick;
+                return_value.push_back(engine::instantiate<obstacle_actor>(cell_to_pos(v2(x, y)), cell_size, obstacle_type::brick));
+                if (y < taken_by[0].size() - 2)
+                    return_value.push_back(engine::instantiate<obstacle_actor>(cell_to_pos(v2(board_size - x - 2, board_size - 2 - y)), cell_size, obstacle_type::brick));
+            }
+        }
+    }
+
+    return return_value;
+}
+
+void tanks_scene::generate_steel(v2 at, std::vector<std::vector<obstacle_type> > &taken_by) {
+}
+
+void tanks_scene::generate_water(v2 at, std::vector<std::vector<obstacle_type> > &taken_by) {
+}
+
+obstacle_type tanks_scene::randomize_obstacle_type() {
+    std::vector<int> weights = {3, 2, 4, 2, 1};
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::discrete_distribution<> dist(weights.begin(), weights.end());
+
+    obstacle_type chosen = static_cast<obstacle_type>(dist(gen));
+
+    // std::cout << int(chosen) << std::endl;
+
+    return chosen;
 }

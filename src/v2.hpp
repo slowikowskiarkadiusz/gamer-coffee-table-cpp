@@ -167,4 +167,8 @@ public:
     std::string to_string() {
         return std::format(("v2({0}, {1})"), x, y);
     }
+
+    bool operator ==(v2 other) const {
+        return this->x == other.x && this->y == other.y;
+    }
 };

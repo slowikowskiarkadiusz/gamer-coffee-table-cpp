@@ -35,7 +35,7 @@ void tetris_board_actor::update(float deltaTime) {
             auto center = this->current_agent->center;
             this->spawn(center, held_shape);
             switched_pieces = true;
-        } else if (gestures::is(is_p1 ? std::vector{key::P1_LEFT, key::P1_RIGHT} : std::vector{key::P2_LEFT, key::P2_RIGHT}, state::press, gesture::_single))
+        } else if (gestures::is(is_p1 ? std::vector{key::P1_DOWN} : std::vector{key::P2_DOWN}, state::press, gesture::_single))
             dropping_delay_value = faster_dropping_delay;
         else {
             dropping_delay_value = dropping_delay;
@@ -46,11 +46,14 @@ void tetris_board_actor::update(float deltaTime) {
                 move_block_by(v2::right());
         }
 
-        if (gestures::is(is_p1 ? std::vector{key::P1_GREEN} : std::vector{key::P2_GREEN}, state::down, gesture::_single))
+        if (gestures::is(is_p1 ? std::vector{key::P1_UP} : std::vector{key::P2_UP}, state::down, gesture::_single))
             drop();
 
         if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::down, gesture::_single))
-            rotate_block();
+            rotate_block(1);
+
+        if (gestures::is(is_p1 ? std::vector{key::P1_GREEN} : std::vector{key::P2_GREEN}, state::down, gesture::_single))
+            rotate_block(-1);
 
         fall(deltaTime);
     }
@@ -103,11 +106,11 @@ void tetris_board_actor::move_block_by(const v2 &by) {
     }
 }
 
-void tetris_board_actor::rotate_block() {
+void tetris_board_actor::rotate_block(int dir) {
     if (!current_agent || !current_agent_shadow) return;
-    auto kicks = current_agent->get_kicks(current_agent->get_block_rotation() + 90);
+    auto kicks = current_agent->get_kicks(current_agent->get_block_rotation() + 90 * dir);
     v2 pre = current_agent->center;
-    current_agent->rotate_block(-90);
+    current_agent->rotate_block(90 * dir);
     v2 post = current_agent->center;
 
     bool didKick = false;
@@ -126,7 +129,7 @@ void tetris_board_actor::rotate_block() {
         current_agent->rotate_block(90);
         current_agent->center = pre;
     } else {
-        current_agent_shadow->rotate_block(-90);
+        current_agent_shadow->rotate_block(90 * dir);
         current_agent_shadow->center = v2(current_agent->center.x, current_agent->center.y + calc_drop());
     }
 }
