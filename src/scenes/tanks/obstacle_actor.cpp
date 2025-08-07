@@ -12,6 +12,8 @@ void obstacle_actor::redraw() {
     auto dark_water = color(77.0 / 255.0, 109.0 / 255.0, 243.0 / 255.0);
 
     switch (obstacle_type_) {
+        case obstacle_type::none:
+            break;
         case obstacle_type::grass:
             for (int y = 0; y < matrix_.height(); ++y) {
                 auto is_y_odd = y % 2 == 1;
