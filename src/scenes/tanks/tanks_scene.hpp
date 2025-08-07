@@ -1,11 +1,14 @@
 #pragma once
 #include "obstacle_actor.hpp"
 #include "obstacle_type.hpp"
+#include "tank_actor.hpp"
 #include "../../scene.hpp"
 
 class tanks_scene : public scene {
     matrix border_matrix;
     matrix board_matrix;
+    tank_actor tank1;
+    tank_actor tank2;
     static uint size;
     static uint border_size;
     static uint cell_size;

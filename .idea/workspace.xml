@@ -29,9 +29,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="modified weights">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="rotating fine?">
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" afterDir="false" />
     </list>
@@ -838,7 +836,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754551380883</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="rotating fine?">
+      <option name="closed" value="true" />
+      <created>1754558243805</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1754558243805</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -861,7 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="renamed engine to src" />
     <MESSAGE value="oof" />
     <MESSAGE value="before making gestures" />
     <MESSAGE value="wip gestures" />
@@ -886,7 +891,8 @@
     <MESSAGE value="generating tanks map wip" />
     <MESSAGE value="hmm generates some map" />
     <MESSAGE value="modified weights" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified weights" />
+    <MESSAGE value="rotating fine?" />
+    <option name="LAST_COMMIT_MESSAGE" value="rotating fine?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -895,12 +901,6 @@
           <url>file://$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp</url>
           <line>72</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <condition expression="other.width() &lt; 10" language="C++" />
-          <url>file://$PROJECT_DIR$/src/matrix.hpp</url>
-          <line>60</line>
-          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

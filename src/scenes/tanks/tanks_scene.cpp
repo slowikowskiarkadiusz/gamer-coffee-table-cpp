@@ -27,10 +27,6 @@ void tanks_scene::init() {
 
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     generate_map();
-
-    engine::set_interval([tank1]() {
-        tank1->rotate(90);
-    }, 1000);
 }
 
 void tanks_scene::update(float delta_time) {
