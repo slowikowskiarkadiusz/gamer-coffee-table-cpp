@@ -22,7 +22,7 @@ const float repeater_press_duration = 150;
 
 enum class state { down, up, press };
 
-enum class gesture { _single = 1, _double = 2, _triple = 3, _long = 4, _repeater = 5 };
+enum class gesture { once = 1, twice = 2, trice = 3, prolonging = 4, repeating = 5 };
 
 class gestures {
     static gestures *instance_ptr;
@@ -86,7 +86,7 @@ public:
                 if (pred(key_val)) {
                     heap->insert(now);
 
-                    for (int g = static_cast<int>(gesture::_triple); g >= static_cast<int>(gesture::_single); --g) {
+                    for (int g = static_cast<int>(gesture::trice); g >= static_cast<int>(gesture::once); --g) {
                         auto vals = heap->values();
                         if (vals.size() < g) continue;
 
@@ -113,13 +113,13 @@ public:
 
                     auto press_key = make_key(key_val, s);
                     if (press_timers[id] > long_press_duration) {
-                        gestures_this_frame[make_key(key_val, s, gesture::_long)] = true;
-                        single_gestures_this_frame[press_key] = gesture::_long;
+                        gestures_this_frame[make_key(key_val, s, gesture::prolonging)] = true;
+                        single_gestures_this_frame[press_key] = gesture::prolonging;
                         press_timers[id] = 0;
                     }
                     if (repeater_timers[id] > repeater_press_duration) {
-                        gestures_this_frame[make_key(key_val, s, gesture::_repeater)] = true;
-                        single_gestures_this_frame[press_key] = gesture::_repeater;
+                        gestures_this_frame[make_key(key_val, s, gesture::repeating)] = true;
+                        single_gestures_this_frame[press_key] = gesture::repeating;
                         repeater_timers[id] = 0;
                     }
                 }

@@ -7,8 +7,8 @@
 class tanks_scene : public scene {
     matrix border_matrix;
     matrix board_matrix;
-    tank_actor tank1;
-    tank_actor tank2;
+    std::shared_ptr<tank_actor> tank1;
+    std::shared_ptr<tank_actor> tank2;
     static uint size;
     static uint border_size;
     static uint cell_size;

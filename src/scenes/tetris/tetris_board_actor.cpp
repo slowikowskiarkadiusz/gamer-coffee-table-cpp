@@ -30,29 +30,29 @@ void tetris_board_actor::update(float deltaTime) {
     garbage_bar_logic.update(deltaTime);
 
     if (current_agent) {
-        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::press, gesture::_long) && !switched_pieces) {
+        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::press, gesture::prolonging) && !switched_pieces) {
             auto held_shape = hold_logic.use(current_agent->shape);
             auto center = this->current_agent->center;
             this->spawn(center, held_shape);
             switched_pieces = true;
-        } else if (gestures::is(is_p1 ? std::vector{key::P1_DOWN} : std::vector{key::P2_DOWN}, state::press, gesture::_single))
+        } else if (gestures::is(is_p1 ? std::vector{key::P1_DOWN} : std::vector{key::P2_DOWN}, state::press, gesture::once))
             dropping_delay_value = faster_dropping_delay;
         else {
             dropping_delay_value = dropping_delay;
-            if (gestures::is(is_p1 ? std::vector{key::P1_LEFT} : std::vector{key::P2_LEFT}, state::down, gesture::_single) || gestures::is(is_p1 ? std::vector{key::P1_LEFT} : std::vector{key::P2_LEFT}, state::press, gesture::_repeater))
+            if (gestures::is(is_p1 ? std::vector{key::P1_LEFT} : std::vector{key::P2_LEFT}, state::down, gesture::once) || gestures::is(is_p1 ? std::vector{key::P1_LEFT} : std::vector{key::P2_LEFT}, state::press, gesture::repeating))
                 move_block_by(v2::left());
 
-            if (gestures::is(is_p1 ? std::vector{key::P1_RIGHT} : std::vector{key::P2_RIGHT}, state::down, gesture::_single) || gestures::is(is_p1 ? std::vector{key::P1_RIGHT} : std::vector{key::P2_RIGHT}, state::press, gesture::_repeater))
+            if (gestures::is(is_p1 ? std::vector{key::P1_RIGHT} : std::vector{key::P2_RIGHT}, state::down, gesture::once) || gestures::is(is_p1 ? std::vector{key::P1_RIGHT} : std::vector{key::P2_RIGHT}, state::press, gesture::repeating))
                 move_block_by(v2::right());
         }
 
-        if (gestures::is(is_p1 ? std::vector{key::P1_UP} : std::vector{key::P2_UP}, state::down, gesture::_single))
+        if (gestures::is(is_p1 ? std::vector{key::P1_UP} : std::vector{key::P2_UP}, state::down, gesture::once))
             drop();
 
-        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::down, gesture::_single))
+        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::down, gesture::once))
             rotate_block(1);
 
-        if (gestures::is(is_p1 ? std::vector{key::P1_GREEN} : std::vector{key::P2_GREEN}, state::down, gesture::_single))
+        if (gestures::is(is_p1 ? std::vector{key::P1_GREEN} : std::vector{key::P2_GREEN}, state::down, gesture::once))
             rotate_block(-1);
 
         fall(deltaTime);

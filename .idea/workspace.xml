@@ -29,9 +29,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="rotating fine?">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="rotating">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -844,7 +849,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754558243805</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="rotating">
+      <option name="closed" value="true" />
+      <created>1754559242340</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1754559242340</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -867,7 +880,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="oof" />
     <MESSAGE value="before making gestures" />
     <MESSAGE value="wip gestures" />
     <MESSAGE value="gestures working" />
@@ -892,7 +904,8 @@
     <MESSAGE value="hmm generates some map" />
     <MESSAGE value="modified weights" />
     <MESSAGE value="rotating fine?" />
-    <option name="LAST_COMMIT_MESSAGE" value="rotating fine?" />
+    <MESSAGE value="rotating" />
+    <option name="LAST_COMMIT_MESSAGE" value="rotating" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

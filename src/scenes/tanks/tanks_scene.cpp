@@ -20,7 +20,7 @@ void tanks_scene::init() {
     engine::instantiate<border_actor>(v2::zero(), engine::screen_size - v2::one(), engine::screen_size, border_size);
     board_size = (size - board_size * 2) / cell_size;
 
-    auto tank1 = engine::instantiate<tank_actor>();
+    tank1 = engine::instantiate<tank_actor>();
     tank1->rotate(180);
     tank1->set_anchor_offset(v2(0, -2));
     tank1->set_center(cell_to_pos(v2(0, 0)));
@@ -30,6 +30,14 @@ void tanks_scene::init() {
 }
 
 void tanks_scene::update(float delta_time) {
+        std::cout << delta_time << std::endl;
+    if (gestures::is(key::P1_UP, state::down, gesture::once)) {
+        tank1->level_up();
+    }
+    if (gestures::is(key::P1_DOWN, state::down, gesture::once)) {
+        std::cout << "down" << std::endl;
+        tank1->level_down();
+    }
 }
 
 void tanks_scene::fixed_update(float delta_time) {
