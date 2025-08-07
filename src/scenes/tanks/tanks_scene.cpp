@@ -124,7 +124,7 @@ void tanks_scene::generate_obstacle(v2 at, obstacle_type type, int min_extra_row
 }
 
 obstacle_type tanks_scene::randomize_obstacle_type() {
-    std::vector<float> weights = {0.2, 0.1, 0.9, 0.2, 0.1};
+    std::vector<float> weights = {3, 0.07, 0.7, 0.3, 0.1};
     std::random_device rd;
     std::mt19937 gen(rd());
     std::discrete_distribution<> dist(weights.begin(), weights.end());
