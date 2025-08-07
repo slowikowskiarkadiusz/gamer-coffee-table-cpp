@@ -54,32 +54,61 @@ public:
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero(), bool debuuuuug = false) {
+    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero()) {
         std::vector<std::vector<std::vector<color> > > result(_matrix.size(),
                                                               std::vector<std::vector<color> >(_matrix[0].size()));
-
-        float radians = (otherRotation * M_PI) / 180.0f;
-        float cosA = std::cos(radians);
-        float sinA = std::sin(radians);
 
         int otherWidth = other._matrix.size();
         int otherHeight = otherWidth > 0 ? other._matrix[0].size() : 0;
         if (otherWidth == 0 || otherHeight == 0) return *this;
 
         v2 center(otherWidth / 2.0f, otherHeight / 2.0f);
+
         for (int x = 0; x < otherWidth; x++) {
             for (int y = 0; y < otherHeight; y++) {
-                color color = other.pixels()[x][y];
-                if (color.is_none()) continue;
+                color c = other.pixels()[x][y];
+                if (c.is_none()) continue;
 
-                float dx = x - center.x + otherAnchor.x;
-                float dy = y - center.y + otherAnchor.y;
+                int dx = x - static_cast<int>(center.x - otherAnchor.x);
+                int dy = y - static_cast<int>(center.y - otherAnchor.y);
 
-                float rx = std::floor(cosA * dx - sinA * dy + otherCenter.x + 0.5f);
-                float ry = std::floor(sinA * dx + cosA * dy + otherCenter.y + 0.5f);
+                int rx = 0, ry = 0;
 
-                if (rx >= 0 && rx < _matrix.size() && ry >= 0 && ry < _matrix[0].size()) {
-                    result[rx][ry].push_back(color);
+                int angle = static_cast<int>(otherRotation) % 360;
+                if (angle < 0) angle += 360;
+
+                v2 offset = v2::one();
+
+                switch (angle) {
+                    case 0:
+                        rx = dx;
+                        ry = dy;
+                        break;
+                    case 90:
+                        rx = -dy;
+                        ry = dx;
+                        offset = v2(0, 1);
+                        break;
+                    case 180:
+                        rx = -dx;
+                        ry = -dy;
+                        offset = v2::zero();
+                        break;
+                    case 270:
+                        rx = dy;
+                        ry = -dx;
+                        offset = v2(1, 0);
+                        break;
+                    default:
+                        continue;
+                }
+
+                int finalX = static_cast<int>(std::floor(rx + otherCenter.x + offset.x * 0.5f));
+                int finalY = static_cast<int>(std::floor(ry + otherCenter.y + offset.y * 0.5f));
+
+                if (finalX >= 0 && finalX < static_cast<int>(_matrix.size()) &&
+                    finalY >= 0 && finalY < static_cast<int>(_matrix[0].size())) {
+                    result[finalX][finalY].push_back(c);
                 }
             }
         }
@@ -94,7 +123,6 @@ public:
 
         return *this;
     }
-
 
     matrix &rotate(float degrees) {
         float radians = (degrees * M_PI) / 180.0f;

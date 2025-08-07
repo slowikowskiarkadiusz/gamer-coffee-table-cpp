@@ -18,19 +18,19 @@ tanks_scene::~tanks_scene() = default;
 
 void tanks_scene::init() {
     engine::instantiate<border_actor>(v2::zero(), engine::screen_size - v2::one(), engine::screen_size, border_size);
-
     board_size = (size - board_size * 2) / cell_size;
 
-    auto tank = engine::instantiate<tank_actor>();
-    tank->set_anchor_offset(v2(0, -2));
-    tank->set_center(v2(((board_size - 1) / 2 - 1) * cell_size, (board_size - 1) * cell_size) + offset);
+    auto tank1 = engine::instantiate<tank_actor>();
+    tank1->rotate(180);
+    tank1->set_anchor_offset(v2(0, -2));
+    tank1->set_center(cell_to_pos(v2(0, 0)));
 
     std::srand(static_cast<unsigned>(std::time(nullptr)));
-    generate_half();
+    generate_map();
 
-    // engine::set_timeout([]() {
-    // engine::open_scene(std::make_shared<tanks_scene>());
-    // }, 1000);
+    engine::set_interval([tank1]() {
+        tank1->rotate(90);
+    }, 1000);
 }
 
 void tanks_scene::update(float delta_time) {
@@ -39,19 +39,10 @@ void tanks_scene::update(float delta_time) {
 void tanks_scene::fixed_update(float delta_time) {
 }
 
-std::vector<std::shared_ptr<actor> > tanks_scene::generate_half() {
-    const std::vector<v2> excluded_cells = {
-        v2(board_size / 2, 0),
-        v2(board_size / 2 - 1, 0), v2(board_size / 2 + 1, 0),
-        v2(board_size / 2 + 2, 0), v2(board_size / 2 - 2, 0),
-        v2(board_size / 2 + 3, 0), v2(board_size / 2 - 3, 0)
-    };
-
+void tanks_scene::generate_map() {
     // (std::find(excluded_cells.begin(), excluded_cells.end(), v2(x, y)) == excluded_cells.end())
 
     std::vector<std::vector<std::shared_ptr<obstacle_actor> > > taken_by = std::vector(board_size, std::vector<std::shared_ptr<obstacle_actor> >(board_size, nullptr));
-
-    std::vector<std::shared_ptr<actor> > return_value;
 
     for (int x = 0; x < board_size - 1; ++x) {
         for (int y = 0; y < board_size / 2 - 1; ++y) {
@@ -75,7 +66,23 @@ std::vector<std::shared_ptr<actor> > tanks_scene::generate_half() {
         }
     }
 
-    return return_value;
+    const std::vector<v2> excluded_cells = {
+        v2(0, 0), v2(1, 0), v2(1, 1), v2(0, 1),
+        v2(board_size / 2, 0),
+        v2(board_size / 2 - 1, 0), v2(board_size / 2 + 1, 0),
+        v2(board_size / 2 + 2, 0), v2(board_size / 2 - 2, 0),
+        v2(board_size / 2, 1),
+        v2(board_size / 2 - 1, 1), v2(board_size / 2 + 1, 1),
+        v2(board_size / 2 + 2, 1), v2(board_size / 2 - 2, 1),
+        // v2(board_size / 2 + 3, 0), v2(board_size / 2 - 3, 0)
+    };
+
+    for (auto pos: excluded_cells) {
+        if (taken_by[pos.x][pos.y] != nullptr)
+            taken_by[pos.x][pos.y]->kill();
+        if (taken_by[board_size - 2 - pos.x][board_size - 2 - pos.y] != nullptr)
+            taken_by[board_size - 2 - pos.x][board_size - 2 - pos.y]->kill();
+    }
 }
 
 v2 tanks_scene::cell_to_pos(v2 cell) {
@@ -83,8 +90,6 @@ v2 tanks_scene::cell_to_pos(v2 cell) {
 }
 
 void tanks_scene::generate_obstacle(v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, std::vector<std::vector<std::shared_ptr<obstacle_actor> > > &taken_by) {
-    if (at.x > 2 && at.y > 2 && type == obstacle_type::steel)
-        auto a = 0;
     bool do_columns = std::rand() % 2;
     bool is_additional_row = max_extra_rows > 0 ? 1 : 0;
     int additional_rows = std::min(max_extra_rows, std::rand() % 4 + min_extra_rows);
