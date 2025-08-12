@@ -30,7 +30,7 @@ void tetris_board_actor::update(float deltaTime) {
     garbage_bar_logic.update(deltaTime);
 
     if (current_agent) {
-        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::press, gesture::prolonging) && !switched_pieces) {
+        if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::press, gesture::prolonged) && !switched_pieces) {
             auto held_shape = hold_logic.use(current_agent->shape);
             auto center = this->current_agent->center;
             this->spawn(center, held_shape);

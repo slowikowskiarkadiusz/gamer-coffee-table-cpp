@@ -16,9 +16,6 @@ class tanks_scene : public scene {
     static uint board_size;
 
     v2 cell_to_pos(v2 cell);
-    void generate_obstacle(v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, std::vector<std::vector<std::shared_ptr<obstacle_actor>>> &taken_by);
-    obstacle_type randomize_obstacle_type();
-    void generate_map();
 
 public:
     tanks_scene(): border_matrix(matrix(size, size)), board_matrix(matrix(size, size)) {
