@@ -56,7 +56,8 @@ void tank_actor::move() {
 
     set_rotation(rotation_to);
     if (by != v2::zero()) {
-        if (!obstacle->does_collide((by + this->_center - size() / 2 + v2::one() * 0.5), (by + this->_center + size() / 2))) {
+        auto passable = {obstacle_type::none, obstacle_type::grass};
+        if (std::ranges::find(passable, obstacle->does_collide((by + this->_center - size() / 2 + v2::one() * 0.5), (by + this->_center + size() / 2))) != passable.end()) {
             this->_center = this->_center + by;
         }
     }

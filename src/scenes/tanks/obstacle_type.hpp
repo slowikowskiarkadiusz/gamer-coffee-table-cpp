@@ -6,4 +6,5 @@ enum class obstacle_type {
     brick = 2,
     steel = 3,
     water = 4,
+    edge = 5,
 };

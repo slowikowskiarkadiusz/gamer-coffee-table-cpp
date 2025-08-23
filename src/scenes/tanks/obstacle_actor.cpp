@@ -2,6 +2,28 @@
 #include "../../engine.hpp"
 #include <random>
 
+std::vector<std::vector<obstacle_type> > &scale(std::vector<std::vector<obstacle_type> > &vector, const float factor) {
+    int old_width = vector.size();
+    int old_height = vector[0].size();
+    int new_width = std::round(old_width * factor);
+    int new_height = std::round(old_height * factor);
+
+    std::vector<std::vector<obstacle_type> > scaled(std::vector(new_width, std::vector(new_height, obstacle_type::none)));
+
+    for (int x = 0; x < new_width; x++) {
+        for (int y = 0; y < new_height; y++) {
+            int srcX = std::floor(x / factor);
+            int srcY = std::floor(y / factor);
+            if (srcX < old_width && srcY < old_height) {
+                scaled[x][y] = vector[srcX][srcY];
+            }
+        }
+    }
+
+    vector = scaled;
+    return vector;
+}
+
 void obstacle_actor::redraw() {
 }
 
@@ -62,16 +84,18 @@ matrix obstacle_actor::draw_one(v2 size, obstacle_type obstacle_type_) {
                 }
             }
             break;
+        case obstacle_type::edge:
+            break;
     }
 
     return matrix_;
 }
 
 
-void obstacle_actor::generate_map(int board_size, int border_size) {
+void obstacle_actor::generate_map(int board_size) {
     // (std::find(excluded_cells.begin(), excluded_cells.end(), v2(x, y)) == excluded_cells.end())
 
-    taken_by = std::vector(board_size, std::vector<obstacle_type>(board_size, obstacle_type::none));
+    std::vector<std::vector<obstacle_type> > taken_by = std::vector(board_size, std::vector(board_size, obstacle_type::none));
 
     for (int x = 0; x < board_size; ++x) {
         for (int y = 0; y < board_size / 2; ++y) {
@@ -127,17 +151,51 @@ void obstacle_actor::generate_map(int board_size, int border_size) {
             else
                 is_taken[x][y] = !matrix_.pixels()[x - border_size][y - border_size].is_none();
         }
+
+    scale(taken_by, engine::screen_size.x / taken_by.size());
+
+    this->taken_by = std::vector(engine::screen_size.x, std::vector(engine::screen_size.y, obstacle_type::none));
+
+    for (int x = 0; x < taken_by.size(); x++)
+        for (int y = 0; y < taken_by[0].size(); y++) {
+            if (x < border_size || y < border_size || x > taken_by.size() - border_size || y > taken_by[0].size() - border_size)
+                this->taken_by[x][y] = obstacle_type::edge;
+            else
+                this->taken_by[x][y] = taken_by[x - border_size][y - border_size];
+        }
+
+    auto matrix_copy = matrix_;
+    matrix_ = matrix(matrix_.width(), matrix_.height());
+    matrix_.write_at_origin(matrix_copy, v2::one() * 2);
 }
 
-bool obstacle_actor::does_collide(v2 other_from, v2 other_to) {
+obstacle_type obstacle_actor::does_collide(v2 other_from, v2 other_to) {
     for (int x = other_from.x; x < other_to.x; ++x) {
         for (int y = other_from.y; y < other_to.y; ++y) {
-            if (is_taken[x][y])
-                return true;
+            if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size())
+                return obstacle_type::edge;
+            if (taken_by[x][y] != obstacle_type::none) {
+                // std::cout << x << " " << y << std::endl;
+                return taken_by[x][y];
+            }
         }
     }
 
-    return false;
+    return obstacle_type::none;
+}
+
+void obstacle_actor::remove_at(v2 other_from, v2 other_to, std::vector<obstacle_type> impacted_types) {
+    for (int x = other_from.x; x <= other_to.x; x++)
+        for (int y = other_from.y; y <= other_to.y; y++) {
+            if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size() || taken_by[x][y] == obstacle_type::edge)
+                continue;
+
+            if (taken_by[x][y] != obstacle_type::none) {
+                taken_by[x][y] = obstacle_type::none;
+                is_taken[x][y] = false;
+                matrix_.set_pixel(x, y, color::none());
+            }
+        }
 }
 
 v2 obstacle_actor::cell_to_pos(v2 cell) {
@@ -192,6 +250,51 @@ obstacle_type obstacle_actor::randomize_obstacle_type() {
     return chosen;
 }
 
+void obstacle_actor::print_taken_by_to_console() {
+    std::string result = "\n";
+    for (size_t y = 0; y < taken_by[0].size(); y++) {
+        result += "|";
+        for (size_t x = 0; x < taken_by.size(); x++) {
+            auto symbol = "";
+
+            switch (taken_by[x][y]) {
+                case obstacle_type::none:
+                    symbol = "-";
+                    break;
+                case obstacle_type::grass:
+                    symbol = "G";
+                    break;
+                case obstacle_type::brick:
+                    symbol = "B";
+                    break;
+                case obstacle_type::steel:
+                    symbol = "S";
+                    break;
+                case obstacle_type::water:
+                    symbol = "W";
+                    break;
+                case obstacle_type::edge:
+                    symbol = "E";
+                    break;
+            }
+            result += symbol;
+        }
+        result += "|\n";
+    }
+    std::cout << result;
+}
+
+void obstacle_actor::print_is_taken_to_console() {
+    std::string result = "\n";
+    for (size_t y = 0; y < is_taken[0].size(); y++) {
+        result += "|";
+        for (size_t x = 0; x < is_taken.size(); x++) {
+            result += is_taken[x][y] ? "o" : "-";
+        }
+        result += "|\n";
+    }
+    std::cout << result;
+}
 
 void obstacle_actor::update(float delta_time) {
 }

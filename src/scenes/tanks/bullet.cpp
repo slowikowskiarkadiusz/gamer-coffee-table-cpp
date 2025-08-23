@@ -20,8 +20,31 @@ void bullet::update(float delta_time) {
     delta_time = delta_time / 1000;
     move_by(direction * speed * delta_time);
 
-    if (obstacle->does_collide(_center - size() / 2, _center + size() / 2))
-        kill();
+    auto collides_with = obstacle->does_collide(_center.round() - size() / 2, _center.round() + size() / 2);
+
+    switch (collides_with) {
+        case obstacle_type::none:
+            break;
+        case obstacle_type::grass:
+            break;
+        case obstacle_type::brick:
+            impact();
+            break;
+        case obstacle_type::steel:
+            impact();
+            break;
+        case obstacle_type::water:
+            break;
+        case obstacle_type::edge:
+            impact();
+            break;
+    }
+}
+
+void bullet::impact() {
+    obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, {obstacle_type::brick, obstacle_type::grass});
+
+    kill();
 }
 
 matrix bullet::render() {

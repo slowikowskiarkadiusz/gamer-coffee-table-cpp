@@ -14,6 +14,7 @@ public:
     ~bullet() override;
     void redraw() override;
     void update(float delta_time) override;
+    void impact();
     matrix render() override;
     void fixed_update(float fixed_delta_time) override;
 };
