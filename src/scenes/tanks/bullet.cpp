@@ -1,13 +1,9 @@
-//
-// Created by Arkadiusz on 12/08/2025.
-//
-
 #include "bullet.hpp"
 #include "obstacle_actor.hpp"
 #include "../../engine.hpp"
 
-bullet::bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle)
-    : actor("bullet", center, engine::screen_size / 32), matrix_(engine::screen_size / 32, color::white()), direction(direction), obstacle(obstacle) {
+bullet::bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level)
+    : actor("bullet", center, engine::screen_size / 32), matrix_(engine::screen_size / 32, color::white()), direction(direction), obstacle(obstacle), level(level) {
 }
 
 bullet::~bullet() {
@@ -26,25 +22,30 @@ void bullet::update(float delta_time) {
         case obstacle_type::none:
             break;
         case obstacle_type::grass:
+            if (level == 1)
+                impact();
             break;
         case obstacle_type::brick:
             impact();
+            kill();
             break;
         case obstacle_type::steel:
             impact();
+            kill();
             break;
         case obstacle_type::water:
+            if (level == 2)
+                impact();
             break;
         case obstacle_type::edge:
             impact();
+            kill();
             break;
     }
 }
 
 void bullet::impact() {
-    obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, {obstacle_type::brick, obstacle_type::grass});
-
-    kill();
+    obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, {obstacle_type::brick, obstacle_type::grass}, level);
 }
 
 matrix bullet::render() {

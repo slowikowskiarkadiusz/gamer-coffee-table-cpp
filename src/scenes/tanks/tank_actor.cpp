@@ -81,7 +81,7 @@ void tank_actor::shoot(float delta_time) {
 
         auto origin = _center + offset * 2;
 
-        engine::instantiate<bullet>(origin, offset, obstacle);
+        engine::instantiate<bullet>(origin, offset, obstacle, level);
     }
 }
 

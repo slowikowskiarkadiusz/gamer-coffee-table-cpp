@@ -29,14 +29,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="before removing taken_by">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="moving and shooting properly!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_type.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_type.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +188,7 @@
       <workItem from="1754927276336" duration="1250000" />
       <workItem from="1755026026747" duration="7683000" />
       <workItem from="1755934107765" duration="4826000" />
-      <workItem from="1755939609233" duration="12064000" />
+      <workItem from="1755939609233" duration="14305000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -499,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755943201471</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="moving and shooting properly!">
+      <option name="closed" value="true" />
+      <created>1755952133909</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1755952133909</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +533,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pong scene" />
     <MESSAGE value="changing timeouts" />
     <MESSAGE value="contorls scene" />
     <MESSAGE value="pong has bugs" />
@@ -547,7 +557,8 @@
     <MESSAGE value="before merging" />
     <MESSAGE value="tank moves" />
     <MESSAGE value="before removing taken_by" />
-    <option name="LAST_COMMIT_MESSAGE" value="before removing taken_by" />
+    <MESSAGE value="moving and shooting properly!" />
+    <option name="LAST_COMMIT_MESSAGE" value="moving and shooting properly!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

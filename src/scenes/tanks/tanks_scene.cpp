@@ -16,8 +16,8 @@ void tanks_scene::init() {
     engine::instantiate<border_actor>(v2::zero(), engine::screen_size - v2::one(), engine::screen_size, border_size);
     board_size = (size - border_size * 2) / cell_size;
 
-    auto obstacle = engine::instantiate<obstacle_actor>(engine::screen_size / 2, 4, border_size);
-    obstacle->generate_map(board_size + 1);
+    auto obstacle = engine::instantiate<obstacle_actor>(engine::screen_size / 2, 4, border_size, board_size + 1);
+    obstacle->set_render_importance(1);
 
     tank1 = engine::instantiate<tank_actor>(true, obstacle);
     tank1->rotate(180);

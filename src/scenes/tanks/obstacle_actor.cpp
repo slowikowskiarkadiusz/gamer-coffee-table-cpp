@@ -24,6 +24,14 @@ std::vector<std::vector<obstacle_type> > &scale(std::vector<std::vector<obstacle
     return vector;
 }
 
+obstacle_actor::obstacle_actor(const v2 &center, const uint cell_size, int border_size, int board_size)
+    : actor("obstacle", center, v2::one() * cell_size), matrix_(v2::one() * cell_size), border_size(border_size) {
+    this->cell_size = cell_size;
+    redraw();
+
+    generate_map(board_size);
+}
+
 void obstacle_actor::redraw() {
 }
 
@@ -102,6 +110,7 @@ void obstacle_actor::generate_map(int board_size) {
             auto obstacle = randomize_obstacle_type();
             switch (obstacle) {
                 case obstacle_type::none:
+                case obstacle_type::edge:
                     break;
                 case obstacle_type::grass:
                     generate_obstacle(board_size, v2(x, y), obstacle_type::grass, 1, 999, 1, 999, {obstacle_type::brick}, taken_by);
@@ -184,16 +193,18 @@ obstacle_type obstacle_actor::does_collide(v2 other_from, v2 other_to) {
     return obstacle_type::none;
 }
 
-void obstacle_actor::remove_at(v2 other_from, v2 other_to, std::vector<obstacle_type> impacted_types) {
+void obstacle_actor::remove_at(v2 other_from, v2 other_to, std::vector<obstacle_type> impacted_types, int level) {
     for (int x = other_from.x; x <= other_to.x; x++)
         for (int y = other_from.y; y <= other_to.y; y++) {
             if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size() || taken_by[x][y] == obstacle_type::edge)
                 continue;
 
             if (taken_by[x][y] != obstacle_type::none) {
-                taken_by[x][y] = obstacle_type::none;
-                is_taken[x][y] = false;
-                matrix_.set_pixel(x, y, color::none());
+                if (taken_by[x][y] == obstacle_type::brick || (taken_by[x][y] == obstacle_type::grass && level >= 1) || (((taken_by[x][y] == obstacle_type::steel || taken_by[x][y] == obstacle_type::water) && level >= 2))) {
+                    taken_by[x][y] = obstacle_type::none;
+                    is_taken[x][y] = false;
+                    matrix_.set_pixel(x, y, color::none());
+                }
             }
         }
 }

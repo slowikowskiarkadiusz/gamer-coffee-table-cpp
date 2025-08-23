@@ -85,6 +85,14 @@ void actor::kill() {
     engine::unregister_actor(shared_from_this());
 }
 
+void actor::set_render_importance(int order) {
+    render_importance = order;
+}
+
+int actor::get_render_importance() {
+    return render_importance;
+}
+
 void actor::set_size(const v2 &new_size) {
     _size = v2(std::abs(new_size.x), std::abs(new_size.y));
 }

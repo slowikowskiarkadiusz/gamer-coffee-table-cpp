@@ -7,9 +7,10 @@ class bullet : public actor {
     v2 direction;
     std::shared_ptr<obstacle_actor> obstacle;
     const float speed = 20;
+    int level;
 
 public:
-    bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle);
+    bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level);
 
     ~bullet() override;
     void redraw() override;

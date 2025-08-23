@@ -5,7 +5,7 @@
 class tank_actor : public actor {
     matrix matrix_;
     std::function<bool(v2 new_from, v2 new_to)> can_move_to;
-    int level = 1;
+    int level = 0;
     bool is_p1;
     std::shared_ptr<obstacle_actor> obstacle;
     float shoot_timer;

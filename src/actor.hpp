@@ -15,6 +15,7 @@ protected:
     v2 _anchor_offset;
     v2 original_size;
     float _rotation = 0.0f;
+    int render_importance = 0;
 
 protected:
     actor(const std::string &name, const v2 &center, const v2 &size);
@@ -37,6 +38,8 @@ public:
     actor *move_to(const v2 &to);
     actor *move_by(const v2 &by);
     void kill();
+    void set_render_importance(int order);
+    int get_render_importance();
 
     virtual void redraw() = 0;
     virtual void update(float delta_time) = 0;
