@@ -27,7 +27,7 @@ public:
     v2 get_anchor_offset() const;
     void set_anchor_offset(const v2 &new_anchor_offset);
     v2 size() const;
-    float rotation() const;
+    float get_rotation() const;
     std::string name() const;
     void rename(const std::string &new_name);
     void resize(const v2 &new_size);

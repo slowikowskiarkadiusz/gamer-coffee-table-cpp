@@ -24,7 +24,7 @@ public:
     }
 
     bool does_rectangle_overlap(const rectangle_actor &other) {
-        return does_overlap(other.get_center(), other.size(), other.rotation());
+        return does_overlap(other.get_center(), other.size(), other.get_rotation());
     }
 
     bool does_overlap(const v2 &other_center, const v2 &other_size, float other_rotation) {

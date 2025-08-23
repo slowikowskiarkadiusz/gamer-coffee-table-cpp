@@ -93,7 +93,7 @@ void pong_scene::check_collisions() {
     std::vector<std::shared_ptr<rectangle_actor> > paddles = {p1Paddle, p2Paddle};
     for (int i = 0; i < 2; ++i) {
         if (!canCollide[i]) continue;
-        if (paddles[i]->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
+        if (paddles[i]->does_overlap(ball->get_center(), ball->size(), ball->get_rotation())) {
             canCollide[i] = false;
             canBounce = true;
             float offset = (ball->get_center().x - paddles[i]->get_center().x) / paddles[i]->size().x;
@@ -108,10 +108,10 @@ void pong_scene::check_collisions() {
 void pong_scene::check_scoring() {
     if (!canScore) return;
     bool scored = false;
-    if (ball->get_center().y < p1ScoreZone->get_center().y && p1ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
+    if (ball->get_center().y < p1ScoreZone->get_center().y && p1ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->get_rotation())) {
         score.second++;
         scored = true;
-    } else if (ball->get_center().y > p2ScoreZone->get_center().y && p2ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->rotation())) {
+    } else if (ball->get_center().y > p2ScoreZone->get_center().y && p2ScoreZone->does_overlap(ball->get_center(), ball->size(), ball->get_rotation())) {
         score.first++;
         scored = true;
     }

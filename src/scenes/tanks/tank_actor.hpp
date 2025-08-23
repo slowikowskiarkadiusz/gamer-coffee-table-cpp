@@ -8,11 +8,14 @@ class tank_actor : public actor {
     int level = 1;
     bool is_p1;
     std::shared_ptr<obstacle_actor> obstacle;
+    float shoot_timer;
 
 public:
     tank_actor(bool is_p1, std::shared_ptr<obstacle_actor> obstacle);
 
     void redraw() override;
+    void move();
+    void shoot(float delta_time);
     void update(float delta_time) override;
     matrix render() override;
     void fixed_update(float fixed_delta_time) override;

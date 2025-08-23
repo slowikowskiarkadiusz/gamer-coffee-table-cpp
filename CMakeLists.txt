@@ -63,5 +63,7 @@ add_executable(gaming_coffee_table_cpp
         src/scenes/tanks/obstacle_actor.cpp
         src/scenes/tanks/obstacle_actor.hpp
         src/scenes/tanks/obstacle_type.hpp
+        src/scenes/tanks/bullet.cpp
+        src/scenes/tanks/bullet.hpp
 )
 target_link_libraries(gaming_coffee_table_cpp sfml-graphics sfml-window sfml-system)

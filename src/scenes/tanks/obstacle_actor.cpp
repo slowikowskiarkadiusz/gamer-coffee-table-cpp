@@ -71,7 +71,7 @@ matrix obstacle_actor::draw_one(v2 size, obstacle_type obstacle_type_) {
 void obstacle_actor::generate_map(int board_size, int border_size) {
     // (std::find(excluded_cells.begin(), excluded_cells.end(), v2(x, y)) == excluded_cells.end())
 
-    std::vector<std::vector<obstacle_type> > taken_by = std::vector(board_size, std::vector<obstacle_type>(board_size, obstacle_type::none));
+    taken_by = std::vector(board_size, std::vector<obstacle_type>(board_size, obstacle_type::none));
 
     for (int x = 0; x < board_size; ++x) {
         for (int y = 0; y < board_size / 2; ++y) {

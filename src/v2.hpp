@@ -164,7 +164,7 @@ public:
         return {rx, ry};
     }
 
-    std::string to_string() {
+    std::string to_string() const {
         return std::format(("v2({0}, {1})"), x, y);
     }
 

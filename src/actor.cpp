@@ -25,7 +25,7 @@ v2 actor::size() const {
     return _size;
 }
 
-float actor::rotation() const {
+float actor::get_rotation() const {
     return _rotation;
 }
 

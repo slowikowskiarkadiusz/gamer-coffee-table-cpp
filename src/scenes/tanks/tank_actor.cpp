@@ -3,8 +3,11 @@
 //
 
 #include "tank_actor.hpp"
-
+#include "bullet.hpp"
+#include "../../engine.hpp"
 #include "../../input/gestures.hpp"
+
+constexpr float shoot_cooldown = 150;
 
 tank_actor::tank_actor(bool is_p1, std::shared_ptr<obstacle_actor> obstacle): actor("tank", v2::zero(), v2::one() * 4), matrix_(4, 4) {
     tank_actor::redraw();
@@ -30,7 +33,7 @@ void tank_actor::redraw() {
     }
 }
 
-void tank_actor::update(float delta_time) {
+void tank_actor::move() {
     v2 by = v2::zero();
     int rotation_to = _rotation;
     if (gestures::is(is_p1 ? key::P1_UP : key::P2_UP, state::down, gesture::once)
@@ -57,6 +60,34 @@ void tank_actor::update(float delta_time) {
             this->_center = this->_center + by;
         }
     }
+}
+
+void tank_actor::shoot(float delta_time) {
+    if (shoot_timer > 0)
+        shoot_timer -= delta_time;
+    if (shoot_timer <= 0 && gestures::is(is_p1 ? key::P1_BLUE : key::P2_BLUE, state::down, gesture::once)) {
+        shoot_timer = shoot_cooldown;
+        v2 offset(0, 0);
+        if (get_rotation() == (is_p1 ? 180 : 0) + 0) {
+            offset.y = -1 * (is_p1 ? -1 : 1);
+        } else if (get_rotation() == ((is_p1 ? 180 : 0) + 180) % 360) {
+            offset.y = 1 * (is_p1 ? -1 : 1);
+        } else if (get_rotation() == ((is_p1 ? 180 : 0) + 270) % 360) {
+            offset.x = -1 * (is_p1 ? -1 : 1);
+        } else if (get_rotation() == (is_p1 ? 180 : 0) + 90) {
+            offset.x = 1 * (is_p1 ? -1 : 1);
+        }
+
+        auto origin = _center + offset * 2;
+
+        engine::instantiate<bullet>(origin, offset, obstacle);
+    }
+}
+
+void tank_actor::update(float delta_time) {
+    move();
+
+    shoot(delta_time);
 }
 
 matrix tank_actor::render() {

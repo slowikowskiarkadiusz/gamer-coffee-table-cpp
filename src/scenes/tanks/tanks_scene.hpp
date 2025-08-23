@@ -1,6 +1,4 @@
 #pragma once
-#include "obstacle_actor.hpp"
-#include "obstacle_type.hpp"
 #include "tank_actor.hpp"
 #include "../../scene.hpp"
 

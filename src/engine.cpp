@@ -39,7 +39,7 @@ void engine::run() {
 
             screen.clear();
             for (auto &a: current_scene->actors) {
-                screen.write(a->render(), a->get_center(), a->rotation(), a->get_anchor_offset());
+                screen.write(a->render(), a->get_center(), a->get_rotation(), a->get_anchor_offset());
             }
 
             if (on_frame_finished) {

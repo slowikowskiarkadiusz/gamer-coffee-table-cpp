@@ -6,6 +6,7 @@ class obstacle_actor : public actor {
     matrix matrix_;
     uint cell_size;
     std::vector<std::vector<bool> > is_taken;
+    std::vector<std::vector<obstacle_type> > taken_by;
 
 public:
     obstacle_actor(const v2 &center, const uint cell_size)
