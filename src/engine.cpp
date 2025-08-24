@@ -39,7 +39,7 @@ void engine::run() {
 
             screen.clear();
             std::sort(current_scene->actors.begin(), current_scene->actors.end(), [](std::shared_ptr<actor> first, std::shared_ptr<actor> second) {
-                return first->get_render_importance() - second->get_render_importance();
+                return second->get_render_importance() > first->get_render_importance();
             });
             for (auto &a: current_scene->actors) {
                 screen.write(a->render(), a->get_center(), a->get_rotation(), a->get_anchor_offset());

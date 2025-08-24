@@ -29,6 +29,8 @@ obstacle_actor::obstacle_actor(const v2 &center, const uint cell_size, int borde
     this->cell_size = cell_size;
     redraw();
 
+    render_importance = 2;
+
     generate_map(board_size);
 }
 
@@ -251,7 +253,7 @@ void obstacle_actor::generate_obstacle(int board_size, v2 at, obstacle_type type
 
 obstacle_type obstacle_actor::randomize_obstacle_type() {
     // std::vector<float> weights = {3, 0.07, 0.7, 0.3, 0.1};
-    std::vector<float> weights = {0, 0.07, 5, 0.3, 0.1};
+    std::vector<float> weights = {0.1, 0.07, 5, 0.3, 0.1};
     std::random_device rd;
     std::mt19937 gen(rd());
     std::discrete_distribution<> dist(weights.begin(), weights.end());

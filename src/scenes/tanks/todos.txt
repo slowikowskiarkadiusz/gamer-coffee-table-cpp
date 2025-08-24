@@ -1,0 +1,4 @@
+- one bullet at a time
+- more dense grass
+- speed boost
+- boosts are random

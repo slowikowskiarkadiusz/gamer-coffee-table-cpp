@@ -1,18 +1,24 @@
-#include "bullet.hpp"
+#include "bullet_actor.hpp"
+
+#include <utility>
 #include "obstacle_actor.hpp"
 #include "../../engine.hpp"
 
-bullet::bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level)
-    : actor("bullet", center, engine::screen_size / 32), matrix_(engine::screen_size / 32, color::white()), direction(direction), obstacle(obstacle), level(level) {
+bullet_actor::bullet_actor(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level)
+    : actor("bullet", center, engine::screen_size / 32),
+      matrix_(engine::screen_size / 32, color::white()),
+      direction(direction),
+      obstacle(std::move(obstacle)),
+      level(level) {
 }
 
-bullet::~bullet() {
+bullet_actor::~bullet_actor() {
 }
 
-void bullet::redraw() {
+void bullet_actor::redraw() {
 }
 
-void bullet::update(float delta_time) {
+void bullet_actor::update(float delta_time) {
     delta_time = delta_time / 1000;
     move_by(direction * speed * delta_time);
 
@@ -44,13 +50,13 @@ void bullet::update(float delta_time) {
     }
 }
 
-void bullet::impact() {
+void bullet_actor::impact() {
     obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, {obstacle_type::brick, obstacle_type::grass}, level);
 }
 
-matrix bullet::render() {
+matrix bullet_actor::render() {
     return matrix_;
 }
 
-void bullet::fixed_update(float fixed_delta_time) {
+void bullet_actor::fixed_update(float fixed_delta_time) {
 }

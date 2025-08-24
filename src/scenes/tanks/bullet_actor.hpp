@@ -2,7 +2,7 @@
 #include "obstacle_actor.hpp"
 #include "../../actor.hpp"
 
-class bullet : public actor {
+class bullet_actor : public actor {
     matrix matrix_;
     v2 direction;
     std::shared_ptr<obstacle_actor> obstacle;
@@ -10,9 +10,9 @@ class bullet : public actor {
     int level;
 
 public:
-    bullet(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level);
+    bullet_actor(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level);
 
-    ~bullet() override;
+    ~bullet_actor() override;
     void redraw() override;
     void update(float delta_time) override;
     void impact();

@@ -7,6 +7,12 @@
 #include "v2.hpp"
 #include "color.hpp"
 
+enum class color_blending {
+    no_blending,
+    light_alike,
+    weighted_by_opacity,
+};
+
 class matrix {
 protected:
     std::vector<std::vector<color> > _matrix;
@@ -54,7 +60,7 @@ public:
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero()) {
+    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero(), bool blend_colors = true) {
         std::vector<std::vector<std::vector<color> > > result(_matrix.size(),
                                                               std::vector<std::vector<color> >(_matrix[0].size()));
 
@@ -115,9 +121,14 @@ public:
 
         for (size_t x = 0; x < result.size(); x++) {
             for (size_t y = 0; y < result[0].size(); y++) {
-                std::vector<color> combined = {_matrix[x][y]};
-                combined.insert(combined.end(), result[x][y].begin(), result[x][y].end());
-                _matrix[x][y] = color::blend_colors(combined);
+                if (blend_colors) {
+                    std::vector<color> combined = {_matrix[x][y]};
+                    combined.insert(combined.end(), result[x][y].begin(), result[x][y].end());
+                    _matrix[x][y] = color::blend_colors(combined);
+                } else {
+                    for (color color_: result[x][y])
+                        _matrix[x][y] = color_;
+                }
             }
         }
 

@@ -87,6 +87,7 @@ public:
 
     static void unregister_actor(std::shared_ptr<actor> a) {
         std::erase(instance().current_scene->actors, a);
+        a.reset();
     }
 
     static void open_scene(std::shared_ptr<scene> scene_ptr) {
