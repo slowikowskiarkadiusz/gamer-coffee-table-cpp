@@ -27,31 +27,25 @@ void bullet_actor::update(float delta_time) {
     switch (collides_with) {
         case obstacle_type::none:
             break;
-        case obstacle_type::grass:
-            if (level == 1)
-                impact();
-            break;
         case obstacle_type::brick:
-            impact();
-            kill();
-            break;
+        case obstacle_type::edge:
         case obstacle_type::steel:
             impact();
             kill();
+            break;
+        case obstacle_type::grass:
+            if (level == 1)
+                impact();
             break;
         case obstacle_type::water:
             if (level == 2)
                 impact();
             break;
-        case obstacle_type::edge:
-            impact();
-            kill();
-            break;
     }
 }
 
 void bullet_actor::impact() {
-    obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, {obstacle_type::brick, obstacle_type::grass}, level);
+    obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, level);
 }
 
 matrix bullet_actor::render() {

@@ -29,18 +29,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="impact work">
-      <change afterPath="$PROJECT_DIR$/src/scenes/tanks/todos.txt" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="tank waits for their bullet to die">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,11 +194,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="gaming_coffee_table_cpp" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gaming_coffee_table_cpp" TARGET_NAME="gaming_coffee_table_cpp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="gaming_coffee_table_cpp" RUN_TARGET_NAME="gaming_coffee_table_cpp">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -235,7 +223,9 @@
       <workItem from="1754927276336" duration="1250000" />
       <workItem from="1755026026747" duration="7683000" />
       <workItem from="1755934107765" duration="4826000" />
-      <workItem from="1755939609233" duration="25138000" />
+      <workItem from="1755939609233" duration="27226000" />
+      <workItem from="1758527026447" duration="1131000" />
+      <workItem from="1759226071365" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -565,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755954332383</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="tank waits for their bullet to die">
+      <option name="closed" value="true" />
+      <created>1756062797436</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1756062797436</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +586,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="contorls scene" />
     <MESSAGE value="pong has bugs" />
     <MESSAGE value="tetris wip" />
     <MESSAGE value="moved the logic. prolly dont work" />
@@ -613,7 +610,8 @@
     <MESSAGE value="before removing taken_by" />
     <MESSAGE value="moving and shooting properly!" />
     <MESSAGE value="impact work" />
-    <option name="LAST_COMMIT_MESSAGE" value="impact work" />
+    <MESSAGE value="tank waits for their bullet to die" />
+    <option name="LAST_COMMIT_MESSAGE" value="tank waits for their bullet to die" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

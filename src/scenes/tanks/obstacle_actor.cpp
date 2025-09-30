@@ -195,7 +195,7 @@ obstacle_type obstacle_actor::does_collide(v2 other_from, v2 other_to) {
     return obstacle_type::none;
 }
 
-void obstacle_actor::remove_at(v2 other_from, v2 other_to, std::vector<obstacle_type> impacted_types, int level) {
+void obstacle_actor::remove_at(v2 other_from, v2 other_to, int level) {
     for (int x = other_from.x; x <= other_to.x; x++)
         for (int y = other_from.y; y <= other_to.y; y++) {
             if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size() || taken_by[x][y] == obstacle_type::edge)
