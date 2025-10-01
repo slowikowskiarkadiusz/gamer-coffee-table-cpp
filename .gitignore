@@ -1,1 +1,6 @@
 build
+Makefile
+CMakeCache.txt
+sdkconfig
+build_desktop
+build_esp32
