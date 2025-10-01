@@ -428,7 +428,12 @@ matrix letter(char c, const color &col, bool reverse) {
         case ' ': m = matrix(1, 5);
             break;
         default:
-            throw std::runtime_error("unrecognized letter: " + std::string(1, c));
+            // #ifdef prod
+            // ESP_LOGE("MAX_HEAP", "Heap is empty");
+            abort();
+            // #else
+            // throw std::runtime_error("unrecognized letter: " + std::string(1, c));
+            // #endif
     }
 
     return m;

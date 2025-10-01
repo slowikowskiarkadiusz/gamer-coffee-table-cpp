@@ -165,7 +165,7 @@ public:
     }
 
     std::string to_string() const {
-        return std::format(("v2({0}, {1})"), x, y);
+        return "v2(" + std::to_string(x) + "," + std::to_string(y) + ")";
     }
 
     bool operator ==(v2 other) const {

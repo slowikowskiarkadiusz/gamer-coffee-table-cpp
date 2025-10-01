@@ -7,7 +7,7 @@
 #include "../../input/key.hpp"
 
 struct button_icon_actor_opts {
-    key key;
+    key key_;
 };
 
 class button_icon_actor : public actor {
@@ -77,7 +77,7 @@ class button_icon_actor : public actor {
 
 public:
     explicit button_icon_actor(const v2 &center, int size = 5, button_icon_actor_opts opts = {key::P1_ANY_DIRECTION})
-        : actor("button-icon", center, v2::one() * size), mat(make_matrix(size, opts.key)) {
+        : actor("button-icon", center, v2::one() * size), mat(make_matrix(size, opts.key_)) {
     }
 
     matrix render() override { return mat; }

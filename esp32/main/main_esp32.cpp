@@ -2,10 +2,13 @@
 
 #include <Arduino.h>
 #include <ESP32-HUB75-MatrixPanel-I2S-DMA.h>
+#include "../../src/engine.hpp"
+#include "../../src/input/table_input_provider.hpp"
 
 #define PANEL_RES_X 64   // rozdzielczość jednego panelu
 #define PANEL_RES_Y 64
 #define PANEL_CHAIN 2    // liczba paneli w łańcuchu
+#define prod=true
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
 
@@ -40,7 +43,7 @@ void setup() {
     engine engineObj(input_provider);
     engineObj.run();
 
-    engineObj.set_on_frame_finished([&circles, &window](std::vector<std::vector<color> > frame) {
+    engineObj.set_on_frame_finished([](std::vector<std::vector<color> > frame) {
         dma_display->fillScreen(dma_display->color565(0, 0, 0));
 
         for (int y = 0; y < engine::screen_size.y; y++) {
@@ -65,7 +68,7 @@ int main() {
     engine engineObj(input_provider);
     engineObj.run();
 
-    engineObj.set_on_frame_finished([&circles, &window](std::vector<std::vector<color> > frame) {
+    engineObj.set_on_frame_finished([](std::vector<std::vector<color> > frame) {
         dma_display->fillScreen(dma_display->color565(0, 0, 0));
 
         for (int y = 0; y < engine::screen_size.y; y++) {

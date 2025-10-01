@@ -23,7 +23,7 @@ void engine::run() {
                 open_scene(std::make_shared<tanks_scene>());
             }
 
-            input.update(delta_time);
+            input_.update(delta_time);
             gesture_handler.update(delta_time);
 
             check_go_back_to_menu(delta_time);
@@ -49,7 +49,7 @@ void engine::run() {
                 on_frame_finished(screen.pixels());
             }
 
-            input.late_update(delta_time);
+            input_.late_update(delta_time);
             gesture_handler.late_update(delta_time);
 
             std::this_thread::sleep_for(std::chrono::milliseconds(33));
@@ -75,7 +75,7 @@ void engine::run() {
 }
 
 void engine::check_go_back_to_menu(float dt) {
-    if (input.is_key_press(key::START)) {
+    if (input_.is_key_press(key::START)) {
         goBackToMenuTimer += dt;
     }
 

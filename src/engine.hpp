@@ -9,6 +9,8 @@
 #include <atomic>
 #include <future>
 #include <algorithm>
+#include <functional>
+#include <format>
 
 #include "v2.hpp"
 #include "matrix.hpp"
@@ -49,7 +51,7 @@ class engine {
 
     std::function<void(const std::vector<std::vector<color> > &)> on_frame_finished;
 
-    input input;
+    input input_;
     gestures gesture_handler;
 
     static engine &instance() {
@@ -64,7 +66,7 @@ public:
     static float delta_time;
     static float fixed_delta_time;
 
-    explicit engine(std::shared_ptr<input_provider> input_provider): input(std::move(input_provider)) {
+    explicit engine(std::shared_ptr<input_provider> input_provider): input_(std::move(input_provider)) {
         lastTimestamp = lastFixedTimestamp = now_ms();
         instance_ptr = this;
     }

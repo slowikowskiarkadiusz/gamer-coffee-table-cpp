@@ -34,8 +34,8 @@ private:
     int block_index = 0;
     std::unique_ptr<tetris_block> current_agent = nullptr;
     std::unique_ptr<tetris_block> current_agent_shadow = nullptr;
-    garbage_bar_logic garbage_bar_logic;
-    hold_logic hold_logic;
+    garbage_bar_logic garbage_bar_logic_;
+    hold_logic hold_logic_;
     bool can_drop_again = true;
     matrix static_board_matrix;
     matrix borders_matrix;

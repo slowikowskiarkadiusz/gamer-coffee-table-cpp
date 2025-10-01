@@ -2,6 +2,7 @@
 #include "bullet_actor.hpp"
 #include "obstacle_actor.hpp"
 #include "../../actor.hpp"
+#include <functional>
 
 class tank_actor : public actor {
     matrix matrix_;

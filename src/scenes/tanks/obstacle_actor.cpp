@@ -65,7 +65,7 @@ matrix obstacle_actor::draw_one(v2 size, obstacle_type obstacle_type_) {
             for (int y = 0; y < matrix_.height(); ++y) {
                 auto is_odd = y % 2 == 1;
                 for (int x = 0; x < matrix_.width(); ++x) {
-                    if (is_odd && x == matrix_.width() - 1 || !is_odd && x == 0)
+                    if ((is_odd && x == matrix_.width() - 1) || (!is_odd && x == 0))
                         matrix_.set_pixel(x, y, third_brick);
                     else
                         matrix_.set_pixel(x, y, is_odd ? light_brick : dark_brick);

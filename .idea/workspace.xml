@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
-    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="9" type="long" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="5" type="long" />
     <option name="/Default/Environment/UserInterface/HierarchyView/ViewStyle/@EntryValue" value="SuperTypes" type="string" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
@@ -27,17 +27,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/esp32/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="builds dependencies">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/components/Adafruit-GFX-Library/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/components/Adafruit-GFX-Library/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/components/hub75/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/components/hub75/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_desktop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/main_desktop.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/color.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/max_heap.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/max_heap.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/v2.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,13 +60,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/desktop/main_desktop.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/esp32/main/main_esp32.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/esp32/main/main_esp32.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/engine.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/engine.hpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/engine.hpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/input/input_provider.hpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/input/table_input_provider.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/input/table_input_provider.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -115,6 +122,19 @@
       <recent name="$PROJECT_DIR$/engine" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main_esp32.cpp" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gaming_coffee_table_cpp" TARGET_NAME="main_esp32.cpp" CONFIG_NAME="main_esp32.cpp">
+      <option name="sourceFile" value="esp32/main/main_esp32.cpp" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="" />
@@ -141,7 +161,7 @@
       <workItem from="1755939609233" duration="27226000" />
       <workItem from="1758527026447" duration="1131000" />
       <workItem from="1759226071365" duration="12670000" />
-      <workItem from="1759316662985" duration="1000" />
+      <workItem from="1759316662985" duration="4531000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -495,7 +515,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759306586620</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="builds dependencies">
+      <option name="closed" value="true" />
+      <created>1759316727341</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1759316727341</updated>
+    </task>
+    <task id="LOCAL-00046" summary="builds dependencies">
+      <option name="closed" value="true" />
+      <created>1759316760889</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1759316760889</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +554,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="tetris wip" />
     <MESSAGE value="moved the logic. prolly dont work" />
     <MESSAGE value="tetris too quick" />
     <MESSAGE value="fixed tetris a bit. lacks input" />
@@ -543,7 +578,8 @@
     <MESSAGE value="impact work" />
     <MESSAGE value="tank waits for their bullet to die" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="builds dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="builds dependencies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

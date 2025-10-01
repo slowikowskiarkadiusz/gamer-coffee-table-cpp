@@ -64,7 +64,7 @@ public:
     }
 
     std::string to_string() const {
-        return std::format("color({0}, {1}, {2}, {3})", r, g, b, a);
+        return "color(" + std::to_string(r) + ", " + std::to_string(g) + ", " + std::to_string(b) + ", " + std::to_string(a) + ")";
     }
 
 private:

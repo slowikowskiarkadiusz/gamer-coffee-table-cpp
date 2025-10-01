@@ -10,28 +10,28 @@ tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
     : actor("tetris-board", center, v2(1 + board_width + 1 + 1 + 1, 1 + board_height + 1 + hold_logic::default_size.y + 1)),
       center(center), seed(seed), is_p1(is_p1),
       on_deal_damage(on_deal_damage), on_death(on_death),
-      garbage_bar_logic(v2(board_width + 2, size().y - 1 - board_height / 2), v2(1, board_height), {color::white(0.1f)}),
-      hold_logic(v2::zero()),
+      garbage_bar_logic_(v2(board_width + 2, size().y - 1 - board_height / 2), v2(1, board_height), {color::white(0.1f)}),
+      hold_logic_(v2::zero()),
       static_board_matrix(board_width, board_height),
       borders_matrix(size().x, size().y) {
     is_taken.resize(board_width, std::vector<bool>(board_height, false));
     write_border(v2(0, size().y - 1), v2(board_width + 1, size().y - 1 - board_height - 1));
-    write_border(v2(board_width + 1, size().y - 1), v2(board_width + 1 + garbage_bar_logic.size.x + 1, size().y - 1 - board_height - 1));
+    write_border(v2(board_width + 1, size().y - 1), v2(board_width + 1 + garbage_bar_logic_.size.x + 1, size().y - 1 - board_height - 1));
 
-    hold_logic.center = v2(hold_logic.get_size().x / 2 + 1, size().y - 1 - board_height - 1 - hold_logic.get_size().y / 2);
-    write_border(v2(0, size().y - 1 - board_height - 1 - hold_logic.get_size().y - 1),
-                 v2(1 + hold_logic.get_size().x, size().y - 1 - board_height - 1));
+    hold_logic_.center = v2(hold_logic_.get_size().x / 2 + 1, size().y - 1 - board_height - 1 - hold_logic_.get_size().y / 2);
+    write_border(v2(0, size().y - 1 - board_height - 1 - hold_logic_.get_size().y - 1),
+                 v2(1 + hold_logic_.get_size().x, size().y - 1 - board_height - 1));
 
     spawn();
 }
 
 void tetris_board_actor::update(float deltaTime) {
     if (!do_play) return;
-    garbage_bar_logic.update(deltaTime);
+    garbage_bar_logic_.update(deltaTime);
 
     if (current_agent) {
         if (gestures::is(is_p1 ? std::vector{key::P1_BLUE} : std::vector{key::P2_BLUE}, state::press, gesture::prolonged) && !switched_pieces) {
-            auto held_shape = hold_logic.use(current_agent->shape);
+            auto held_shape = hold_logic_.use(current_agent->shape);
             auto center = this->current_agent->center;
             this->spawn(center, held_shape);
             switched_pieces = true;
@@ -64,8 +64,8 @@ matrix tetris_board_actor::render() {
     v2 boardOffset(1 + board_width / 2, size().y - 1 - board_height + board_height / 2);
 
     _matrix.write_at_origin(borders_matrix, v2::zero());
-    _matrix.write(garbage_bar_logic.render(), garbage_bar_logic.center, 0);
-    _matrix.write(hold_logic.render(), hold_logic.center, 0);
+    _matrix.write(garbage_bar_logic_.render(), garbage_bar_logic_.center, 0);
+    _matrix.write(hold_logic_.render(), hold_logic_.center, 0);
 
     matrix boardMatrix(board_width + 1, board_height);
     if (current_agent_shadow)
@@ -135,12 +135,12 @@ void tetris_board_actor::rotate_block(int dir) {
 }
 
 void tetris_board_actor::deal_damage(int count) {
-    int left = garbage_bar_logic.decrease_and_get_left(count);
+    int left = garbage_bar_logic_.decrease_and_get_left(count);
     if (left > 0) on_deal_damage(left, is_p1);
 }
 
 void tetris_board_actor::take_damage(int count) {
-    garbage_bar_logic.add_lines(count);
+    garbage_bar_logic_.add_lines(count);
 }
 
 void tetris_board_actor::write_border(v2 from, v2 to) {
@@ -289,7 +289,7 @@ int tetris_board_actor::clear_lines() {
 
 int tetris_board_actor::pop_garbage_lines() {
     int hole = std::rand() % board_width;
-    while (garbage_bar_logic.pop()) {
+    while (garbage_bar_logic_.pop()) {
         for (int y = 0; y < board_height - 1; ++y) {
             for (int x = 0; x < board_width; ++x) {
                 is_taken[x][y] = is_taken[x][y + 1];

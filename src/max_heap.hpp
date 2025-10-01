@@ -24,7 +24,7 @@ public:
     }
 
     int peek() const {
-        if (heap.empty()) throw std::runtime_error("Heap is empty");
+        if (heap.empty()) return 0;
         return heap[0];
     }
 
