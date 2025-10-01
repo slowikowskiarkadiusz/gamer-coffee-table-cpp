@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esp32/components/Adafruit-GFX-Library" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esp32/components/Adafruit_BusIO" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esp32/components/arduino-esp32" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/esp32/components/hub75" vcs="Git" />
   </component>
 </project>

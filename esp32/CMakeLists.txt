@@ -1,4 +1,3 @@
 cmake_minimum_required(VERSION 3.16)
-
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(gaming_coffee_table_cpp)
+project(gaming_coffee_table_cpp_esp32)
