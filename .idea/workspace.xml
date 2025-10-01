@@ -27,24 +27,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="builds dependencies">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="flashed, not working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/color.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/color.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/max_heap.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/max_heap.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/v2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/v2.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +149,7 @@
       <workItem from="1755939609233" duration="27226000" />
       <workItem from="1758527026447" duration="1131000" />
       <workItem from="1759226071365" duration="12670000" />
-      <workItem from="1759316662985" duration="4531000" />
+      <workItem from="1759316662985" duration="13799000" />
     </task>
     <task id="LOCAL-00001" summary="v2">
       <option name="closed" value="true" />
@@ -531,7 +519,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759316760889</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="flashed, not working">
+      <option name="closed" value="true" />
+      <created>1759322242198</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1759322242198</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="moved the logic. prolly dont work" />
     <MESSAGE value="tetris too quick" />
     <MESSAGE value="fixed tetris a bit. lacks input" />
     <MESSAGE value="coroutines not working" />
@@ -579,7 +574,8 @@
     <MESSAGE value="tank waits for their bullet to die" />
     <MESSAGE value="wip" />
     <MESSAGE value="builds dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="builds dependencies" />
+    <MESSAGE value="flashed, not working" />
+    <option name="LAST_COMMIT_MESSAGE" value="flashed, not working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

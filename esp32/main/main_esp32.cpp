@@ -5,12 +5,38 @@
 #include "../../src/engine.hpp"
 #include "../../src/input/table_input_provider.hpp"
 
-#define PANEL_RES_X 64   // rozdzielczość jednego panelu
-#define PANEL_RES_Y 64
-#define PANEL_CHAIN 2    // liczba paneli w łańcuchu
-#define prod=true
+#define PANEL_RES_X 64
+#define PANEL_RES_Y 32
+#define PANEL_CHAIN 2
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
+
+std::shared_ptr<table_input_provider> input_provider = std::make_shared<table_input_provider>();
+engine engineObj(input_provider);
+
+void print_to_console(std::vector<std::vector<color> > frame) {
+    std::string result = "\n";
+    for (size_t y = 0; y < frame[0].size(); y++) {
+        result += "|";
+        for (size_t x = 0; x < frame.size(); x++) {
+            result += frame[x][y].is_none() ? "  " : "O ";
+        }
+        result += "|\n";
+    }
+    std::cout << result;
+}
+
+void draw(int x, int y, color color_) {
+    uint16_t c = dma_display->color565(color_.r * 255, color_.g * 255, color_.b * 255);
+
+    if (y < 32) {
+        // górny panel
+        dma_display->drawPixel(x, y, c);
+    } else {
+        // dolny panel – przesunięty w prawo o 64
+        dma_display->drawPixel(x + 64, y - 32, c);
+    }
+}
 
 void setup() {
     HUB75_I2S_CFG mxconfig(
@@ -36,61 +62,22 @@ void setup() {
 
     dma_display = new MatrixPanel_I2S_DMA(mxconfig);
     dma_display->begin();
-    dma_display->setBrightness8(50);
+    dma_display->setBrightness8(80);
 
-    std::shared_ptr<table_input_provider> input_provider = std::make_shared<table_input_provider>();
-
-    engine engineObj(input_provider);
     engineObj.run();
 
-    engineObj.set_on_frame_finished([](std::vector<std::vector<color> > frame) {
-        dma_display->fillScreen(dma_display->color565(0, 0, 0));
+    engine::set_on_frame_finished([](std::vector<std::vector<color> > frame) {
+        ESP_LOGI("APP", "set_on_frame_finished");
+        // dma_display->fillScreen(dma_display->color565(0, 0, 0));
 
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                auto matrixPixel = frame[x][y];
-                // circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
-                // window.draw(circles[x][y]);
-
-                dma_display->drawPixel(x, y, dma_display->color565(matrixPixel.r, matrixPixel.g, matrixPixel.b));
+                draw(x, y, frame[x][y]);
             }
         }
     });
 }
 
 void loop() {
-}
-
-
-int main() {
-    std::shared_ptr<table_input_provider> input_provider = std::make_shared<table_input_provider>();
-
-    engine engineObj(input_provider);
-    engineObj.run();
-
-    engineObj.set_on_frame_finished([](std::vector<std::vector<color> > frame) {
-        dma_display->fillScreen(dma_display->color565(0, 0, 0));
-
-        for (int y = 0; y < engine::screen_size.y; y++) {
-            for (int x = 0; x < engine::screen_size.x; x++) {
-                auto matrixPixel = frame[x][y];
-                // circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
-                // window.draw(circles[x][y]);
-
-                dma_display->drawPixel(x, y, dma_display->color565(matrixPixel.r, matrixPixel.g, matrixPixel.b));
-            }
-        }
-    });
-
-    // while (window.isOpen()) {
-    // sf::Event event;
-    // while (window.pollEvent(event)) {
-    // input_provider->sfEventQueue.push(event);
-    // if (event.type == sf::Event::Closed)
-    // window.close();
-    // }
-    // }
-
-    // engineObj.stop();
-    // return 0;
+    vTaskDelay(pdMS_TO_TICKS(1));
 }

@@ -3,6 +3,7 @@
 #include "scenes/controls/controls_scene.hpp"
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
+#include "scenes/tetris/tetris_scene.hpp"
 #include "scenes/tanks/tanks_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
@@ -20,7 +21,7 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<tanks_scene>());
+                open_scene(std::make_shared<pong_scene>());
             }
 
             input_.update(delta_time);

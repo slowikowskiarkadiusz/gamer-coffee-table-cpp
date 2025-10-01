@@ -140,6 +140,28 @@ public:
         return obj;
     }
 
+    ~engine() {
+        bool was_running = running.exchange(false, std::memory_order_relaxed);
+
+        // domknij update_thread
+        if (update_thread.joinable()) {
+            if (std::this_thread::get_id() == update_thread.get_id()) {
+                update_thread.detach(); // nigdy nie joinuj samego siebie
+            } else {
+                update_thread.join();
+            }
+        }
+
+        // domknij fixed_update_thread
+        if (fixed_update_thread.joinable()) {
+            if (std::this_thread::get_id() == fixed_update_thread.get_id()) {
+                fixed_update_thread.detach();
+            } else {
+                fixed_update_thread.join();
+            }
+        }
+    }
+
 private:
     void check_go_back_to_menu(float dt);
 
