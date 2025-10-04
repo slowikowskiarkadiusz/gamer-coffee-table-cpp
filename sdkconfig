@@ -531,7 +531,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # ESP32 HUB75 Configuration
 #
-CONFIG_ESP32_HUB75_USE_GFX=y
+# CONFIG_ESP32_HUB75_USE_GFX is not set
 # end of ESP32 HUB75 Configuration
 
 #
