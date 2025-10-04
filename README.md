@@ -1,9 +1,12 @@
 Desktop:
+
 ```
-clear && cmake -S . -B . -G "Unix Makefiles" && make desktop_run && ./build/gaming_coffee_table_cpp
+cd desktop
+clear && cmake -S . -B . -G "Unix Makefiles" -DBUILD_DESKTOP=ON -DBUILD_ESP32=OFF && make && ./gaming_coffee_table_cpp_desktop
 ```
 
 ESP32:
+
 ```
 cd esp32
 source ~/esp/esp-idf/export.sh

@@ -7,10 +7,8 @@
 #include "../../src/input/input_provider.hpp"
 
 class table_input_provider : public input_provider {
-private:
-    table_input_provider();
-
 public:
+    table_input_provider();
     void update(float delta_time) override;
     void lateUpdate(float delta_time) override;
     bool is_key_down(key key) const override;
