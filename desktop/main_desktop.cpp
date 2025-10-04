@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include "./src/engine.hpp"
-#include "src/input/keyboard_input_provider.hpp"
+#include "engine.hpp"
+#include "../src/input/keyboard_input_provider.hpp"
 
 
 int main() {

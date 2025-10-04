@@ -3,3 +3,8 @@ Makefile
 CMakeCache.txt
 build_desktop
 build_esp32
+cmake-build-debug
+cmake-build-desktop
+cmake-build-esp32
+CMakeFiles
+cmake_install.cmake
