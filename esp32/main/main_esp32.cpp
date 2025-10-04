@@ -4,6 +4,7 @@
 #include "../../src/engine.hpp"
 #include "./table_input_provider.hpp"
 #include "esp_log.h"
+#include "driver/gpio.h"
 
 #define PANEL_RES_X 64
 #define PANEL_RES_Y 32
