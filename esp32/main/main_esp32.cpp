@@ -3,7 +3,6 @@
 #include "../components/hub75/src/ESP32-HUB75-MatrixPanel-I2S-DMA.h"
 #include "../../src/engine.hpp"
 #include "../../src/input/table_input_provider.hpp"
-#include
 
 #define PANEL_RES_X 64
 #define PANEL_RES_Y 32
