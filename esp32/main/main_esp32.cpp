@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Arduino.h>
-#include <ESP32-HUB75-MatrixPanel-I2S-DMA.h>
+#include "../components/hub75/src/ESP32-HUB75-MatrixPanel-I2S-DMA.h"
 #include "../../src/engine.hpp"
 #include "../../src/input/table_input_provider.hpp"
+#include
 
 #define PANEL_RES_X 64
 #define PANEL_RES_Y 32
@@ -30,15 +30,13 @@ void draw(int x, int y, color color_) {
     uint16_t c = dma_display->color565(color_.r * 255, color_.g * 255, color_.b * 255);
 
     if (y < 32) {
-        // górny panel
-        dma_display->drawPixel(x, y, c);
+        // dma_display->drawPixel(x, y, c);
     } else {
-        // dolny panel – przesunięty w prawo o 64
-        dma_display->drawPixel(x + 64, y - 32, c);
+        // dma_display->drawPixel(x + 64, y - 32, c);
     }
 }
 
-void setup() {
+extern "C" void app_main(void) {
     HUB75_I2S_CFG mxconfig(
         PANEL_RES_X,
         PANEL_RES_Y,
@@ -60,24 +58,47 @@ void setup() {
     mxconfig.gpio.lat = 15;
     mxconfig.gpio.oe = 16;
 
-    dma_display = new MatrixPanel_I2S_DMA(mxconfig);
-    dma_display->begin();
-    dma_display->setBrightness8(80);
+    // dma_display = new MatrixPanel_I2S_DMA(mxconfig);
+    // dma_display->begin();
+    // dma_display->setBrightness8(80);
 
-    engineObj.run();
+    // // engineObj.run();
 
     engine::set_on_frame_finished([](std::vector<std::vector<color> > frame) {
         ESP_LOGI("APP", "set_on_frame_finished");
-        // dma_display->fillScreen(dma_display->color565(0, 0, 0));
+        // // dma_display->fillScreen(dma_display->color565(0, 0, 0));
 
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                draw(x, y, frame[x][y]);
+                // // draw(x, y, frame[x][y]);
             }
         }
     });
-}
 
-void loop() {
-    vTaskDelay(pdMS_TO_TICKS(1));
+    gpio_config_t io_conf = {};
+    io_conf.intr_type = GPIO_INTR_DISABLE; // brak przerwań
+    io_conf.mode = GPIO_MODE_INPUT; // tryb wejścia
+    io_conf.pin_bit_mask = (1ULL << GPIO_NUM_18); // wybór GPIO1
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE; // np. włącz pull-up
+    gpio_config(&io_conf);
+    auto lastState = 0;
+
+    while (true) {
+        int level = gpio_get_level(GPIO_NUM_18);
+        for (int y = 0; y < 64; y++) {
+            for (int x = 0; x < 64; x++) {
+                if (lastState != level && level == 0) {
+                    ESP_LOGI("APP", "level 0!");
+                }
+                if (level == 1) {
+                }
+                lastState = level;
+                // if (level == 1)
+                // ESP_LOGI("APP", "level 1!");
+                // draw(x, y, level == 0 ? color::blue() : color::red());
+            }
+        }
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
 }

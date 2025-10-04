@@ -7,6 +7,8 @@
 #include "input_provider.hpp"
 
 class table_input_provider : public input_provider {
+private:
+    table_input_provider();
 public:
     void update(float delta_time) override;
     void lateUpdate(float delta_time) override;

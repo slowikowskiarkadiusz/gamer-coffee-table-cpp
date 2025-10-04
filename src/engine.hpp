@@ -9,8 +9,6 @@
 #include <atomic>
 #include <future>
 #include <algorithm>
-#include <functional>
-#include <format>
 
 #include "v2.hpp"
 #include "matrix.hpp"
@@ -141,9 +139,6 @@ public:
     }
 
     ~engine() {
-        bool was_running = running.exchange(false, std::memory_order_relaxed);
-
-        // domknij update_thread
         if (update_thread.joinable()) {
             if (std::this_thread::get_id() == update_thread.get_id()) {
                 update_thread.detach(); // nigdy nie joinuj samego siebie
@@ -152,7 +147,6 @@ public:
             }
         }
 
-        // domknij fixed_update_thread
         if (fixed_update_thread.joinable()) {
             if (std::this_thread::get_id() == fixed_update_thread.get_id()) {
                 fixed_update_thread.detach();
