@@ -2,7 +2,9 @@ build
 Makefile
 CMakeCache.txt
 build_desktop
+build-desktop
 build_esp32
+build-esp32
 cmake-build-debug
 cmake-build-desktop
 cmake-build-esp32

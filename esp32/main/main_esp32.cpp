@@ -62,9 +62,6 @@ extern "C" void app_main(void) {
     engineObj.run();
 
     engine::set_on_frame_finished([](std::vector<std::vector<color> > frame) {
-        ESP_LOGI("APP", "set_on_frame_finished");
-        // // dma_display->fillScreen(dma_display->color565(0, 0, 0));
-
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
                 draw(x, y, frame[x][y]);

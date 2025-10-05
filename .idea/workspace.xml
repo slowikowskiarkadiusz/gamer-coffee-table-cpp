@@ -175,18 +175,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="IDE WORKS!">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="WIP">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/table_input_provider.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/table_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input_provider.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,15 +316,7 @@
       <workItem from="1759570452619" duration="470000" />
       <workItem from="1759570929006" duration="124000" />
       <workItem from="1759571102187" duration="273000" />
-      <workItem from="1759571746776" duration="12052000" />
-    </task>
-    <task id="LOCAL-00009" summary="renamed engine to src">
-      <option name="closed" value="true" />
-      <created>1753700357573</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1753700357573</updated>
+      <workItem from="1759571746776" duration="12795000" />
     </task>
     <task id="LOCAL-00010" summary="oof">
       <option name="closed" value="true" />
@@ -716,7 +702,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759573080094</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="WIP">
+      <option name="closed" value="true" />
+      <created>1759687769482</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1759687769482</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +760,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="border in progress" />
     <MESSAGE value="made border actor. making tank actor" />
     <MESSAGE value="made a tank" />
     <MESSAGE value="ugh" />
@@ -791,7 +784,8 @@
     <MESSAGE value="updatupdat" />
     <MESSAGE value="builds but ide not fully work" />
     <MESSAGE value="IDE WORKS!" />
-    <option name="LAST_COMMIT_MESSAGE" value="IDE WORKS!" />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

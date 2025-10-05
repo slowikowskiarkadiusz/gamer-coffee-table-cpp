@@ -96,7 +96,6 @@ private:
 
     bool isKey(std::optional<key> k, key_state ks) const {
         if (!k.has_value()) {
-            // „any” bez konkretnego klawisza
             switch (ks) {
                 case key_state::Down: return !keysDown.empty();
                 case key_state::Up: return !keysUp.empty();
@@ -119,62 +118,109 @@ private:
         return false;
     }
 
-    std::unordered_set<gpio_num_t> map_key(key key) const {
-        std::unordered_set<gpio_num_t> a;
-        std::unordered_set<gpio_num_t> b;
+    template<size_t Max>
+    struct cached_span_t {
+        std::array<gpio_num_t, Max> buf{};
+        size_t len = 0;
+        bool inited = false;
+    };
 
-        switch (key) {
-            case key::START:
-                return {GPIO_NUM_17};
-            case key::P1_DOWN:
-                return {GPIO_NUM_18};
-            case key::P1_UP:
-                return {GPIO_NUM_19};
-            case key::P1_LEFT:
-                return {GPIO_NUM_20};
-            case key::P1_RIGHT:
-                return {GPIO_NUM_21};
-            case key::P1_ANY_DIRECTION:
-                for (const auto k: {key::P1_DOWN, key::P1_UP, key::P1_LEFT, key::P1_RIGHT}) {
-                    auto b = map_key(k);
-                    a.insert(b.begin(), b.end());
+    template<size_t Max>
+    static inline std::span<const gpio_num_t>
+    ensure_init(cached_span_t<Max> &c, std::initializer_list<key> parts) {
+        if (!c.inited) {
+            c.len = 0;
+            for (key k: parts) {
+                auto s = map_key(k);
+                for (auto p: s) {
+                    bool exists = false;
+                    for (size_t i = 0; i < c.len; ++i)
+                        if (c.buf[i] == p) {
+                            exists = true;
+                            break;
+                        }
+                    if (!exists) c.buf[c.len++] = p;
                 }
-                return a;
-            case key::P1_BLUE:
-                return {GPIO_NUM_35};
-            case key::P1_GREEN:
-                return {GPIO_NUM_36};
-            case key::P1_ANY:
-                for (const auto k: {key::P1_ANY_DIRECTION, key::P1_BLUE, key::P1_GREEN}) {
-                    auto b = map_key(k);
-                    a.insert(b.begin(), b.end());
-                }
-                return a;
-            case key::P2_DOWN:
-                return {GPIO_NUM_37};
-            case key::P2_UP:
-                return {GPIO_NUM_38};
-            case key::P2_LEFT:
-                return {GPIO_NUM_39};
-            case key::P2_RIGHT:
-                return {GPIO_NUM_40};
-            case key::P2_ANY_DIRECTION:
-                for (const auto k: {key::P2_DOWN, key::P2_UP, key::P2_LEFT, key::P2_RIGHT}) {
-                    auto b = map_key(k);
-                    a.insert(b.begin(), b.end());
-                }
-                return a;
-            case key::P2_BLUE:
-                return {GPIO_NUM_41};
-            case key::P2_GREEN:
-                return {GPIO_NUM_42};
-            case key::P2_ANY:
-                for (const auto k: {key::P2_ANY_DIRECTION, key::P1_BLUE, key::P1_GREEN}) {
-                    auto b = map_key(k);
-                    a.insert(b.begin(), b.end());
-                }
-                return a;
-            default: return {};
+            }
+            c.inited = true;
+        }
+        return {c.buf.data(), c.len};
+    }
+
+    static inline std::span<const gpio_num_t> map_key(key k) {
+        switch (k) {
+            case key::START: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_17};
+                return A;
+            }
+            case key::P1_DOWN: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_18};
+                return A;
+            }
+            case key::P1_UP: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_19};
+                return A;
+            }
+            case key::P1_LEFT: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_20};
+                return A;
+            }
+            case key::P1_RIGHT: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_21};
+                return A;
+            }
+            case key::P1_ANY_DIRECTION: {
+                static cached_span_t<4> C;
+                return ensure_init(C, {key::P1_DOWN, key::P1_UP, key::P1_LEFT, key::P1_RIGHT});
+            }
+            case key::P1_BLUE: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_35};
+                return A;
+            }
+            case key::P1_GREEN: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_36};
+                return A;
+            }
+            case key::P1_ANY: {
+                static cached_span_t<6> C;
+                return ensure_init(C, {key::P1_ANY_DIRECTION, key::P1_BLUE, key::P1_GREEN});
+            }
+
+            case key::P2_DOWN: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_37};
+                return A;
+            }
+            case key::P2_UP: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_38};
+                return A;
+            }
+            case key::P2_LEFT: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_39};
+                return A;
+            }
+            case key::P2_RIGHT: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
+                return A;
+            }
+            case key::P2_ANY_DIRECTION: {
+                static cached_span_t<4> C;
+                return ensure_init(C, {key::P2_DOWN, key::P2_UP, key::P2_LEFT, key::P2_RIGHT});
+            }
+            case key::P2_BLUE: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_41};
+                return A;
+            }
+            case key::P2_GREEN: {
+                static constexpr gpio_num_t A[]{GPIO_NUM_42};
+                return A;
+            }
+            case key::P2_ANY: {
+                static cached_span_t<6> C;
+                return ensure_init(C, {key::P2_ANY_DIRECTION, key::P2_BLUE, key::P2_GREEN});
+            }
+
+            default:
+                return {};
         }
     }
 };
