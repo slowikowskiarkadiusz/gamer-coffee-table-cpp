@@ -160,8 +160,8 @@
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Desktop" ENABLED="true" GENERATION_DIR="desktop/build-desktop" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DBUILD_DESKTOP=ON -DBUILD_ESP32=OFF" BUILD_OPTIONS="-j6" />
-      <configuration PROFILE_NAME="ESP32" ENABLED="true" GENERATION_DIR="esp32/build-esp32" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DBUILD_DESKTOP=OFF -DBUILD_ESP32=ON -DIDF_TARGET=esp32s3 -DCMAKE_TOOLCHAIN_FILE=/Users/ark/esp/esp-idf/tools/cmake/toolchain-esp32s3.cmake -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY -DPYTHON=/Users/ark/.espressif/python_env/idf5.3_py3.9_env/bin/python -DCMAKE_EXPORT_COMPILE_COMMANDS=ON" BUILD_OPTIONS="-j6">
+      <configuration PROFILE_NAME="Desktop" ENABLED="true" GENERATION_DIR="desktop/cmake-build-desktop" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DBUILD_DESKTOP=ON -DBUILD_ESP32=OFF" BUILD_OPTIONS="-j6" />
+      <configuration PROFILE_NAME="ESP32" ENABLED="true" GENERATION_DIR="esp32/cmake-build-esp32" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DBUILD_DESKTOP=OFF -DBUILD_ESP32=ON -DIDF_TARGET=esp32s3 -DCMAKE_TOOLCHAIN_FILE=/Users/ark/esp/esp-idf/tools/cmake/toolchain-esp32s3.cmake -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY -DPYTHON=/Users/ark/.espressif/python_env/idf5.3_py3.9_env/bin/python -DCMAKE_EXPORT_COMPILE_COMMANDS=ON" BUILD_OPTIONS="-j6">
         <ADDITIONAL_GENERATION_ENVIRONMENT>
           <envs>
             <env name="GIT_EXECUTABLE" value="/usr/local/bin/git" />
@@ -175,11 +175,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="update ide not work">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="IDE WORKS!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/compile_commands.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/components/hub75/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/components/hub75/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdkconfig" beforeDir="false" afterPath="$PROJECT_DIR$/sdkconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/table_input_provider.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/table_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,12 +202,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/desktop/main_desktop.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/esp32/main/main_esp32.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/esp32/main/table_input_provider.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/esp32/main/table_input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/engine.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/engine.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/input/input_provider.hpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/input/input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/input/keyboard_input_provider.hpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/input/keyboard_input_provider.hpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
@@ -314,15 +322,7 @@
       <workItem from="1759570452619" duration="470000" />
       <workItem from="1759570929006" duration="124000" />
       <workItem from="1759571102187" duration="273000" />
-      <workItem from="1759571746776" duration="1249000" />
-    </task>
-    <task id="LOCAL-00008" summary="renders!!!">
-      <option name="closed" value="true" />
-      <created>1753700251586</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1753700251586</updated>
+      <workItem from="1759571746776" duration="12052000" />
     </task>
     <task id="LOCAL-00009" summary="renamed engine to src">
       <option name="closed" value="true" />
@@ -708,7 +708,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759567341093</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="IDE WORKS!">
+      <option name="closed" value="true" />
+      <created>1759573080094</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1759573080094</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +766,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="made snake scene" />
     <MESSAGE value="border in progress" />
     <MESSAGE value="made border actor. making tank actor" />
     <MESSAGE value="made a tank" />
@@ -783,7 +790,8 @@
     <MESSAGE value="updat" />
     <MESSAGE value="updatupdat" />
     <MESSAGE value="builds but ide not fully work" />
-    <option name="LAST_COMMIT_MESSAGE" value="builds but ide not fully work" />
+    <MESSAGE value="IDE WORKS!" />
+    <option name="LAST_COMMIT_MESSAGE" value="IDE WORKS!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

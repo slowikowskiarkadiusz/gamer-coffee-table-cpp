@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <unordered_set>
 
 #include "input_provider.hpp"
@@ -37,7 +36,7 @@ public:
         }
     }
 
-    void lateUpdate(float delta_time) override {
+    void late_update(float delta_time) override {
         this->keysDown.clear();
         this->keysUp.clear();
     }

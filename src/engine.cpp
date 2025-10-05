@@ -27,7 +27,7 @@ void engine::run() {
             input_.update(delta_time);
             gesture_handler.update(delta_time);
 
-            check_go_back_to_menu(delta_time);
+            // check_go_back_to_menu(delta_time);
 
             current_scene->update(delta_time);
 

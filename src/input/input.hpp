@@ -24,7 +24,7 @@ public:
     }
 
     void late_update(float deltaTime) {
-        inputProvider->lateUpdate(deltaTime);
+        inputProvider->late_update(deltaTime);
     }
 
     static bool is_key_down(key key) {

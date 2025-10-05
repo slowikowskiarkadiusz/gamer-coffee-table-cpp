@@ -9,8 +9,7 @@ file(GLOB_RECURSE SRC_FILES
 idf_component_register(
         SRCS
         "main_esp32.cpp"
-        "table_input_provider.cpp"
-        "table_input_provider.hpp"
+        "esp32_input_provider.hpp"
         ${SRC_FILES}
         INCLUDE_DIRS
         "../../src"

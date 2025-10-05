@@ -10,8 +10,8 @@ ESP32:
 ```
 cd esp32
 source ~/esp/esp-idf/export.sh
-idf.py -B build_esp32
+idf.py -B build-esp32
 
 ls /dev/tty.*
-idf.py -B build_esp32 -p /dev/tty.usbmodem11101 flash monitor
+idf.py -B build-esp32 -p /dev/tty.usbmodem11101 flash monitor
 ```

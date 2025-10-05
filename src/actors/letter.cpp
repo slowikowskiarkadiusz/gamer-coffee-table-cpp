@@ -429,7 +429,7 @@ matrix letter(char c, const color &col, bool reverse) {
             break;
         default:
             // #ifdef prod
-            // ESP_LOGE("MAX_HEAP", "Heap is empty");
+            std::cout << "Heap is empty" << std::endl;
             abort();
             // #else
             // throw std::runtime_error("unrecognized letter: " + std::string(1, c));
