@@ -20,12 +20,12 @@ int main() {
         }
     }
 
-    engineObj.set_on_frame_finished([&circles, &window](std::vector<std::vector<color> > frame) {
+    engineObj.set_on_frame_finished([&circles, &window](grid2d<color> frame) {
         window.clear();
 
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                auto matrixPixel = frame[x][y];
+                auto matrixPixel = frame.at(x, y);
                 circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
                 window.draw(circles[x][y]);
             }

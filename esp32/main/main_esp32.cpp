@@ -12,12 +12,12 @@ MatrixPanel_I2S_DMA *dma_display = nullptr;
 std::shared_ptr<esp32_input_provider> input_provider = std::make_shared<esp32_input_provider>();
 engine engineObj(input_provider);
 
-void print_to_console(std::vector<std::vector<color> > frame) {
+void print_to_console(grid2d<color> frame) {
     std::string result = "\n";
-    for (size_t y = 0; y < frame[0].size(); y++) {
+    for (size_t y = 0; y < frame.height(); y++) {
         result += "|";
-        for (size_t x = 0; x < frame.size(); x++) {
-            result += frame[x][y].is_none() ? "  " : "O ";
+        for (size_t x = 0; x < frame.width(); x++) {
+            result += frame.at(x, y).is_none() ? "  " : "O ";
         }
         result += "|\n";
     }
@@ -61,10 +61,10 @@ extern "C" void app_main(void) {
 
     engineObj.run();
 
-    engine::set_on_frame_finished([](std::vector<std::vector<color> > frame) {
+    engine::set_on_frame_finished([](grid2d<color> frame) {
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                draw(x, y, frame[x][y]);
+                draw(x, y, frame.at(x, y));
             }
         }
     });

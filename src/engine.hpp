@@ -17,6 +17,7 @@
 #include "now_ms.hpp"
 #include "input/gestures.hpp"
 #include "input/input.hpp"
+#include "grid2d.hpp"
 
 struct asyncable {
     std::function<void()> function;
@@ -47,7 +48,7 @@ class engine {
     std::thread fixed_update_thread;
     std::atomic<bool> running = false;
 
-    std::function<void(const std::vector<std::vector<color> > &)> on_frame_finished;
+    std::function<void(const grid2d<color> &)> on_frame_finished;
 
     input input_;
     gestures gesture_handler;
@@ -69,7 +70,7 @@ public:
         instance_ptr = this;
     }
 
-    static void set_on_frame_finished(const std::function<void(const std::vector<std::vector<color> > &)> &callback) {
+    static void set_on_frame_finished(const std::function<void(const grid2d<color> &)> &callback) {
         instance().on_frame_finished = callback;
     }
 

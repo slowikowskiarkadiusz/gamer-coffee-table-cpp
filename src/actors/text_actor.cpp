@@ -29,7 +29,7 @@ void text_actor::update(float delta_time) {
         }
 
         int max = static_cast<int>(_bottom_right.x - _top_left.x);
-        if (offset_index > static_cast<int>(_outbound->pixels().size()) - max) {
+        if (offset_index > static_cast<int>(_outbound->pixels().width()) - max) {
             _animation_runtime = 0;
             return;
         }

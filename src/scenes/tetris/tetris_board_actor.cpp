@@ -278,7 +278,7 @@ int tetris_board_actor::clear_lines() {
             for (int y = line; y > 0; --y) {
                 for (int x = 0; x < board_width; ++x) {
                     is_taken[x][y] = is_taken[x][y - 1];
-                    static_board_matrix.set_pixel(x, y, static_board_matrix.pixels()[x][y - 1]);
+                    static_board_matrix.set_pixel(x, y, static_board_matrix.pixels().at(x, y - 1));
                 }
             }
         }
@@ -293,7 +293,7 @@ int tetris_board_actor::pop_garbage_lines() {
         for (int y = 0; y < board_height - 1; ++y) {
             for (int x = 0; x < board_width; ++x) {
                 is_taken[x][y] = is_taken[x][y + 1];
-                static_board_matrix.set_pixel(x, y, static_board_matrix.pixels()[x][y + 1]);
+                static_board_matrix.set_pixel(x, y, static_board_matrix.pixels().at(x, y + 1));
             }
         }
 

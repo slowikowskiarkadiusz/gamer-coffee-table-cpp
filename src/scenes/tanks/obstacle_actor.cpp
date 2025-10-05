@@ -160,7 +160,7 @@ void obstacle_actor::generate_map(int board_size) {
             if (x < border_size || x > (matrix_.width() - border_size) || y < border_size || y > (matrix_.height() - border_size))
                 is_taken[x][y] = true;
             else
-                is_taken[x][y] = !matrix_.pixels()[x - border_size][y - border_size].is_none();
+                is_taken[x][y] = !matrix_.pixels().at(x - border_size, y - border_size).is_none();
         }
 
     scale(taken_by, engine::screen_size.x / taken_by.size());
