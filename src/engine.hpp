@@ -83,6 +83,9 @@ public:
 
     static void register_actor(std::shared_ptr<actor> a) {
         instance().current_scene->actors.push_back(a);
+        std::sort(instance_ptr->current_scene->actors.begin(), instance_ptr->current_scene->actors.end(), [](std::shared_ptr<actor> first, std::shared_ptr<actor> second) {
+            return second->get_render_importance() > first->get_render_importance();
+        });
     }
 
     static void unregister_actor(std::shared_ptr<actor> a) {

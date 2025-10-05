@@ -28,9 +28,9 @@ void draw(int x, int y, color color_) {
     uint16_t c = dma_display->color565(color_.r * 255, color_.g * 255, color_.b * 255);
 
     if (y < 32) {
-        // dma_display->drawPixel(x, y, c);
+        dma_display->drawPixel(x, y, c);
     } else {
-        // dma_display->drawPixel(x + 64, y - 32, c);
+        dma_display->drawPixel(x + 64, y - 32, c);
     }
 }
 

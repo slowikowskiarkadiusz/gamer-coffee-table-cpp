@@ -5,15 +5,24 @@
 #include "scenes/pong/pong_scene.hpp"
 #include "scenes/tetris/tetris_scene.hpp"
 #include "scenes/tanks/tanks_scene.hpp"
+#include "esp_pthread.h"
 
 engine *engine::instance_ptr = nullptr;
 float engine::delta_time = 0;
 float engine::fixed_delta_time = 0;
 v2 engine::screen_size = v2(64, 64);
 
+static inline void set_pthread_cfg(size_t stack, int prio, int core /* 0/1 lub tskNO_AFFINITY */) {
+    esp_pthread_cfg_t cfg = esp_pthread_get_default_config();
+    cfg.stack_size = stack;
+    cfg.prio = prio;
+    cfg.pin_to_core = core;
+}
+
 void engine::run() {
     running = true;
 
+    set_pthread_cfg(/*stack*/ 8192, /*prio*/ 5, /*core*/ 0);
     update_thread = std::thread([&]() {
         while (running) {
             long new_time = now_ms();
@@ -39,9 +48,6 @@ void engine::run() {
             run_asyncable(delta_time);
 
             screen.clear();
-            std::sort(current_scene->actors.begin(), current_scene->actors.end(), [](std::shared_ptr<actor> first, std::shared_ptr<actor> second) {
-                return second->get_render_importance() > first->get_render_importance();
-            });
             for (auto &a: current_scene->actors) {
                 screen.write(a->render(), a->get_center(), a->get_rotation(), a->get_anchor_offset());
             }
@@ -57,6 +63,7 @@ void engine::run() {
         }
     });
 
+    set_pthread_cfg(/*stack*/ 6144, /*prio*/ 4, /*core*/ 1);
     fixed_update_thread = std::thread([&]() {
         while (running) {
             long new_time = now_ms();

@@ -175,12 +175,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="WIP">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="keys work">
+      <change afterPath="$PROJECT_DIR$/sdkconfig.default" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +240,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+    "last_opened_file_path": "/Users/ark/Desktop/gaming_coffee_table_cpp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -250,6 +252,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/desktop" />
       <recent name="$PROJECT_DIR$/esp32/main" />
       <recent name="$PROJECT_DIR$/src/input" />
@@ -316,15 +319,7 @@
       <workItem from="1759570452619" duration="470000" />
       <workItem from="1759570929006" duration="124000" />
       <workItem from="1759571102187" duration="273000" />
-      <workItem from="1759571746776" duration="12795000" />
-    </task>
-    <task id="LOCAL-00010" summary="oof">
-      <option name="closed" value="true" />
-      <created>1753721992044</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1753721992044</updated>
+      <workItem from="1759571746776" duration="16861000" />
     </task>
     <task id="LOCAL-00011" summary="before making gestures">
       <option name="closed" value="true" />
@@ -710,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759687769482</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="keys work">
+      <option name="closed" value="true" />
+      <created>1759688469672</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1759688469672</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +763,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="made border actor. making tank actor" />
     <MESSAGE value="made a tank" />
     <MESSAGE value="ugh" />
     <MESSAGE value="generating tanks map wip" />
@@ -785,7 +787,8 @@
     <MESSAGE value="builds but ide not fully work" />
     <MESSAGE value="IDE WORKS!" />
     <MESSAGE value="WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+    <MESSAGE value="keys work" />
+    <option name="LAST_COMMIT_MESSAGE" value="keys work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
