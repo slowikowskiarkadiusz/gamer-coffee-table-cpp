@@ -81,11 +81,14 @@ public:
         if (fixed_update_thread.joinable()) fixed_update_thread.join();
     }
 
-    static void register_actor(std::shared_ptr<actor> a) {
-        instance().current_scene->actors.push_back(a);
+    static void sort_actors() {
         std::sort(instance_ptr->current_scene->actors.begin(), instance_ptr->current_scene->actors.end(), [](std::shared_ptr<actor> first, std::shared_ptr<actor> second) {
             return second->get_render_importance() > first->get_render_importance();
         });
+    }
+
+    static void register_actor(std::shared_ptr<actor> a) {
+        instance().current_scene->actors.push_back(a);
     }
 
     static void unregister_actor(std::shared_ptr<actor> a) {

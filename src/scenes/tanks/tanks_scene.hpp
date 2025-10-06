@@ -23,4 +23,5 @@ public:
     void init() override;
     void update(float delta_time) override;
     void fixed_update(float delta_time) override;
+    void on_tank_killed(tank_actor* killed_tank);
 };

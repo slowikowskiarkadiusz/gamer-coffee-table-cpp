@@ -117,16 +117,16 @@ void obstacle_actor::generate_map(int board_size) {
                 case obstacle_type::edge:
                     break;
                 case obstacle_type::grass:
-                    // generate_obstacle(board_size, v2(x, y), obstacle_type::grass, 1, 999, 1, 999, {obstacle_type::brick}, taken_by);
+                    generate_obstacle(board_size, v2(x, y), obstacle_type::grass, 1, 999, 1, 999, {obstacle_type::brick}, taken_by);
                     break;
                 case obstacle_type::brick:
-                    // generate_obstacle(board_size, v2(x, y), obstacle_type::brick, 1, 999, 1, 999, {}, taken_by);
+                    generate_obstacle(board_size, v2(x, y), obstacle_type::brick, 1, 999, 1, 999, {}, taken_by);
                     break;
                 case obstacle_type::steel:
-                    // generate_obstacle(board_size, v2(x, y), obstacle_type::steel, 0, 3, 0, 3, {obstacle_type::brick, obstacle_type::grass}, taken_by);
+                    generate_obstacle(board_size, v2(x, y), obstacle_type::steel, 0, 3, 0, 3, {obstacle_type::brick, obstacle_type::grass}, taken_by);
                     break;
                 case obstacle_type::water:
-                    // generate_obstacle(board_size, v2(x, y), obstacle_type::water, 1, 3, 1, 3, {obstacle_type::brick, obstacle_type::grass, obstacle_type::steel}, taken_by);
+                    generate_obstacle(board_size, v2(x, y), obstacle_type::water, 1, 3, 1, 3, {obstacle_type::brick, obstacle_type::grass, obstacle_type::steel}, taken_by);
                     break;
             }
         }
@@ -330,6 +330,8 @@ void obstacle_actor::print_is_taken_to_console() {
 void obstacle_actor::update(float delta_time) {
     if (tanks_at.width() == 0 || tanks_at.height() == 0)
         return;
+
+    tanks_at = grid2d<std::shared_ptr<tank_actor> >(tanks_at.width(), tanks_at.height());
 
     auto actors = engine::get_current_scene()->actors;
     for (int i = 0; i < actors.size(); ++i) {

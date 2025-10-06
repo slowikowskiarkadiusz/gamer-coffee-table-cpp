@@ -138,6 +138,11 @@ void tank_actor::level_down() {
 
 void tank_actor::take_damage() {
     health--;
+
+    if (health <= 0) {
+        on_tank_killed(this);
+        kill();
+    }
 }
 
 void tank_actor::set_can_move_to(std::function<bool(v2 new_from, v2 new_to)> func) {

@@ -87,6 +87,7 @@ void actor::kill() {
 
 void actor::set_render_importance(int order) {
     render_importance = order;
+    engine::sort_actors();
 }
 
 int actor::get_render_importance() {

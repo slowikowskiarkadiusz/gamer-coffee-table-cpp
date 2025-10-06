@@ -169,19 +169,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="runs quickly on both">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="hitting tank with bullet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grid2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid2d.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +211,13 @@
       <recent name="$PROJECT_DIR$/desktop" />
       <recent name="$PROJECT_DIR$/engine" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -250,15 +253,7 @@
       <workItem from="1759571102187" duration="273000" />
       <workItem from="1759571746776" duration="17474000" />
       <workItem from="1759693301559" duration="255000" />
-      <workItem from="1759693678561" duration="21388000" />
-    </task>
-    <task id="LOCAL-00016" summary="contorls scene">
-      <option name="closed" value="true" />
-      <created>1753880369083</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1753880369083</updated>
+      <workItem from="1759693678561" duration="28312000" />
     </task>
     <task id="LOCAL-00017" summary="pong has bugs">
       <option name="closed" value="true" />
@@ -644,7 +639,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759743787554</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="hitting tank with bullet">
+      <option name="closed" value="true" />
+      <created>1759764123531</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1759764123531</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +697,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="rotating fine?" />
     <MESSAGE value="rotating" />
     <MESSAGE value="before merging" />
     <MESSAGE value="tank moves" />
@@ -719,7 +721,8 @@
     <MESSAGE value="works quicker" />
     <MESSAGE value="runs both on esp32 and desktop" />
     <MESSAGE value="runs quickly on both" />
-    <option name="LAST_COMMIT_MESSAGE" value="runs quickly on both" />
+    <MESSAGE value="hitting tank with bullet" />
+    <option name="LAST_COMMIT_MESSAGE" value="hitting tank with bullet" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

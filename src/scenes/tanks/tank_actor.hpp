@@ -21,6 +21,8 @@ class tank_actor : public actor {
     bool get_is_blinking();
 
 public:
+    std::function<void(tank_actor *killed_tank)> on_tank_killed;
+
     tank_actor(bool is_p1, std::shared_ptr<obstacle_actor> obstacle);
 
     void redraw() override;
