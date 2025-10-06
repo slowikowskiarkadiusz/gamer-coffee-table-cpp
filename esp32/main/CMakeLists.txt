@@ -17,6 +17,7 @@ idf_component_register(
         hub75
         log
         pthread
+        esp_timer
 )
 
 target_compile_options(${COMPONENT_LIB} PRIVATE -std=gnu++20 -Wno-error=reorder -Wno-error=changes-meaning)

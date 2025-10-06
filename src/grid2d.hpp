@@ -7,6 +7,10 @@
 
 template<typename T>
 class grid2d {
+private:
+    int w_ = 0, h_ = 0;
+    std::vector<T> data_;
+
 public:
     grid2d() = default;
 
@@ -36,9 +40,6 @@ public:
     void fill(const T &v) { std::fill(data_.begin(), data_.end(), v); }
 
 private:
-    int w_ = 0, h_ = 0;
-    std::vector<T> data_;
-
     bool in_bounds(int x, int y) const {
         return (unsigned) x < (unsigned) w_ && (unsigned) y < (unsigned) h_;
     }

@@ -175,17 +175,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="before changing vectors to array">
-      <change afterPath="$PROJECT_DIR$/src/grid2d.hpp" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="matrix reworked :))">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/main_desktop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/main_desktop.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid2d.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,15 +321,7 @@
       <workItem from="1759571102187" duration="273000" />
       <workItem from="1759571746776" duration="17474000" />
       <workItem from="1759693301559" duration="255000" />
-      <workItem from="1759693678561" duration="1858000" />
-    </task>
-    <task id="LOCAL-00012" summary="wip gestures">
-      <option name="closed" value="true" />
-      <created>1753802877692</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1753802877692</updated>
+      <workItem from="1759693678561" duration="5359000" />
     </task>
     <task id="LOCAL-00013" summary="gestures working">
       <option name="closed" value="true" />
@@ -719,7 +707,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759692662121</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="matrix reworked :))">
+      <option name="closed" value="true" />
+      <created>1759696778153</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1759696778154</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,7 +765,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="ugh" />
     <MESSAGE value="generating tanks map wip" />
     <MESSAGE value="hmm generates some map" />
     <MESSAGE value="modified weights" />
@@ -794,7 +789,8 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="keys work" />
     <MESSAGE value="before changing vectors to array" />
-    <option name="LAST_COMMIT_MESSAGE" value="before changing vectors to array" />
+    <MESSAGE value="matrix reworked :))" />
+    <option name="LAST_COMMIT_MESSAGE" value="matrix reworked :))" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

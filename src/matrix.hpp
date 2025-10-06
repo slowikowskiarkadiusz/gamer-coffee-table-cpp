@@ -61,73 +61,69 @@ public:
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f, const v2 &otherAnchor = v2::zero(), bool blend_colors = true) {
-        grid2d<std::vector<color> > result(_matrix.width(), _matrix.height());
+    matrix &write(const matrix &other,
+                  const v2 &otherCenter,
+                  float otherRotation = 0.0f,
+                  const v2 &otherAnchor = v2::zero(),
+                  bool blend_colors = true) {
+        const int ow = int(other._matrix.width());
+        const int oh = int(other._matrix.height());
+        if (ow <= 0 || oh <= 0) return *this;
 
-        int otherWidth = other._matrix.width();
-        int otherHeight = otherWidth > 0 ? other._matrix.height() : 0;
-        if (otherWidth == 0 || otherHeight == 0) return *this;
+        const int dw = int(_matrix.width());
+        const int dh = int(_matrix.height());
 
-        v2 center(otherWidth / 2.0f, otherHeight / 2.0f);
+        const int angle = ((int(otherRotation) % 360) + 360) % 360;
+        const int dst_cx = int(std::floor(otherCenter.x));
+        const int dst_cy = int(std::floor(otherCenter.y));
 
-        for (int x = 0; x < otherWidth; x++) {
-            for (int y = 0; y < otherHeight; y++) {
-                color c = other.pixels().at(x, y);
-                if (c.is_none()) continue;
+        const int cx = ow / 2 - int(otherAnchor.x);
+        const int cy = oh / 2 - int(otherAnchor.y);
 
-                int dx = x - static_cast<int>(center.x - otherAnchor.x);
-                int dy = y - static_cast<int>(center.y - otherAnchor.y);
-
-                int rx = 0, ry = 0;
-
-                int angle = static_cast<int>(otherRotation) % 360;
-                if (angle < 0) angle += 360;
-
-                v2 offset = v2::one();
-
-                switch (angle) {
-                    case 0:
-                        rx = dx;
-                        ry = dy;
-                        break;
-                    case 90:
-                        rx = -dy;
-                        ry = dx;
-                        offset = v2(0, 1);
-                        break;
-                    case 180:
-                        rx = -dx;
-                        ry = -dy;
-                        offset = v2::zero();
-                        break;
-                    case 270:
-                        rx = dy;
-                        ry = -dx;
-                        offset = v2(1, 0);
-                        break;
-                    default:
-                        continue;
-                }
-
-                int finalX = static_cast<int>(std::floor(rx + otherCenter.x + offset.x * 0.5f));
-                int finalY = static_cast<int>(std::floor(ry + otherCenter.y + offset.y * 0.5f));
-
-                if (finalX >= 0 && finalX < static_cast<int>(_matrix.width()) &&
-                    finalY >= 0 && finalY < static_cast<int>(_matrix.height())) {
-                    result.at(finalX, finalY).push_back(c);
-                }
+        auto map_xy = [&](int x, int y, int &ox, int &oy) {
+            const int dx = x - cx;
+            const int dy = y - cy;
+            switch (angle) {
+                case 0: ox = dx;
+                    oy = dy;
+                    return;
+                case 90: ox = -dy;
+                    oy = dx;
+                    return;
+                case 180: ox = -dx;
+                    oy = -dy;
+                    return;
+                case 270: ox = dy;
+                    oy = -dx;
+                    return;
+                default: ox = dx;
+                    oy = dy;
+                    return;
             }
-        }
+        };
 
-        for (size_t x = 0; x < result.width(); x++) {
-            for (size_t y = 0; y < result.height(); y++) {
-                if (blend_colors) {
-                    std::vector<color> combined = {_matrix.at(x, y)};
-                    combined.insert(combined.end(), result.at(x, y).begin(), result.at(x, y).end());
-                    _matrix.at(x, y) = color::blend_colors(combined);
-                } else {
-                    for (color color_: result.at(x, y))
-                        _matrix.at(x, y) = color_;
+        for (int sx = 0; sx < ow; ++sx) {
+            for (int sy = 0; sy < oh; ++sy) {
+                const color src = other._matrix(sx, sy);
+                if (src.is_none()) continue;
+
+                int ox, oy;
+                map_xy(sx, sy, ox, oy);
+
+                const int dx = dst_cx + ox;
+                const int dy = dst_cy + oy;
+
+                if ((unsigned) dx < (unsigned) dw && (unsigned) dy < (unsigned) dh) {
+                    if (!blend_colors) {
+                        _matrix(dx, dy) = src;
+                    } else {
+                        color &dst = _matrix(dx, dy);
+                        if (dst.is_none()) {
+                            dst = src;
+                        } else {
+                            dst = src;
+                        }
+                    }
                 }
             }
         }
