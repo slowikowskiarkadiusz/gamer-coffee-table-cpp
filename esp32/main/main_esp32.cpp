@@ -9,9 +9,6 @@
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
 
-std::shared_ptr<esp32_input_provider> input_provider = std::make_shared<esp32_input_provider>();
-engine engineObj(input_provider);
-
 void print_to_console(grid2d<color> frame) {
     std::string result = "\n";
     for (size_t y = 0; y < frame.height(); y++) {
@@ -35,6 +32,9 @@ void draw(int x, int y, color color_) {
 }
 
 extern "C" void app_main(void) {
+    std::shared_ptr<esp32_input_provider> input_provider = std::make_shared<esp32_input_provider>();
+    engine engineObj(input_provider);
+
     HUB75_I2S_CFG mxconfig(
         PANEL_RES_X,
         PANEL_RES_Y,
