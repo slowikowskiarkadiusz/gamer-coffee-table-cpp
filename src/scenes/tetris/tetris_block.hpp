@@ -53,6 +53,9 @@ public:
     }
 
     std::vector<v2> get_kicks(int to) const {
+        if (to < 0)
+            to = 360 - to;
+
         std::string kickKey = std::to_string(to % 360) + "->" + std::to_string(block_rotation);
 
         if (shape == tetris_shape::O)

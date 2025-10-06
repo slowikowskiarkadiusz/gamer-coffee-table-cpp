@@ -3,6 +3,7 @@
 #include "scenes/controls/controls_scene.hpp"
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
+#include "scenes/tanks/tanks_scene.hpp"
 #include "scenes/tetris/tetris_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
@@ -20,13 +21,13 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<tetris_scene>());
+                open_scene(std::make_shared<pong_scene>());
             }
 
             input_.update(delta_time);
             gesture_handler.update(delta_time);
 
-            // check_go_back_to_menu(delta_time);
+            check_go_back_to_menu(delta_time);
 
             current_scene->update(delta_time);
 

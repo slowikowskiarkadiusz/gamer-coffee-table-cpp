@@ -60,9 +60,9 @@ public:
     }
 
     static std::string make_key(key k, state s, std::optional<gesture> g = std::nullopt) {
-        std::string res = static_cast<int>(k) + "_" + static_cast<int>(s);
+        std::string res = std::to_string(static_cast<int>(k)) + "_" + std::to_string(static_cast<int>(s));
         if (g.has_value()) {
-            res += "_" + static_cast<int>(g.value());
+            res += "_" + std::to_string(static_cast<int>(g.value()));
         }
         return res;
     }
