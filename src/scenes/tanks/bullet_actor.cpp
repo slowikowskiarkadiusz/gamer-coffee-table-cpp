@@ -2,14 +2,20 @@
 
 #include <utility>
 #include "obstacle_actor.hpp"
+#include "tank_actor.hpp"
 #include "../../engine.hpp"
 
-bullet_actor::bullet_actor(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level)
+bullet_actor::bullet_actor(const v2 &center,
+                           const v2 &direction,
+                           std::shared_ptr<obstacle_actor> obstacle,
+                           int level,
+                           tank_actor *creator)
     : actor("bullet", center, engine::screen_size / 32),
       matrix_(engine::screen_size / 32, color::white()),
       direction(direction),
       obstacle(std::move(obstacle)),
-      level(level) {
+      level(level),
+      creator(creator) {
 }
 
 bullet_actor::~bullet_actor() {
@@ -23,9 +29,15 @@ void bullet_actor::update(float delta_time) {
     move_by(direction * speed * delta_time);
 
     auto collides_with = obstacle->does_collide(_center.round() - size() / 2, _center.round() + size() / 2);
+    std::shared_ptr<tank_actor> tank = obstacle->does_collide_with_tank(_center.round() - size() / 2, _center.round() + size() / 2);
 
     switch (collides_with) {
         case obstacle_type::none:
+            if (tank != nullptr && tank != creator->shared_from_this()) {
+                tank->take_damage();
+                impact();
+                kill();
+            }
             break;
         case obstacle_type::brick:
         case obstacle_type::edge:

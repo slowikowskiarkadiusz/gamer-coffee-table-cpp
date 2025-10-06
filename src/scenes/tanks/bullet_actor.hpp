@@ -8,9 +8,10 @@ class bullet_actor : public actor {
     std::shared_ptr<obstacle_actor> obstacle;
     const float speed = 20;
     int level;
+    tank_actor * creator;
 
 public:
-    bullet_actor(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level);
+    bullet_actor(const v2 &center, const v2 &direction, std::shared_ptr<obstacle_actor> obstacle, int level, tank_actor* creator);
 
     ~bullet_actor() override;
     void redraw() override;

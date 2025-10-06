@@ -2,11 +2,14 @@
 #include "obstacle_type.hpp"
 #include "../../actor.hpp"
 
+class tank_actor;
+
 class obstacle_actor : public actor {
     matrix matrix_;
     uint cell_size;
-    std::vector<std::vector<bool> > is_taken;
-    std::vector<std::vector<obstacle_type> > taken_by;
+    grid2d<bool> is_taken;
+    grid2d<obstacle_type> taken_by;
+    grid2d<std::shared_ptr<tank_actor> > tanks_at;
     int border_size;
 
 public:
@@ -16,9 +19,10 @@ public:
     matrix draw_one(v2 size, obstacle_type obstacle_type_);
     void generate_map(int board_size);
     obstacle_type does_collide(v2 other_from, v2 other_to);
+    std::shared_ptr<tank_actor> does_collide_with_tank(v2 other_from, v2 other_to);
     void remove_at(v2 other_from, v2 other_to, int level);
     v2 cell_to_pos(v2 cell);
-    void generate_obstacle(int board_size, v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, std::vector<std::vector<obstacle_type> > &taken_by);
+    void generate_obstacle(int board_size, v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, grid2d<obstacle_type> &taken_by);
     obstacle_type randomize_obstacle_type();
     void print_taken_by_to_console();
     void print_is_taken_to_console();

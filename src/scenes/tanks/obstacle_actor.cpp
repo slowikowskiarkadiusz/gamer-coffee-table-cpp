@@ -2,20 +2,22 @@
 #include "../../engine.hpp"
 #include <random>
 
-std::vector<std::vector<obstacle_type> > &scale(std::vector<std::vector<obstacle_type> > &vector, const float factor) {
-    int old_width = vector.size();
-    int old_height = vector[0].size();
+#include "tank_actor.hpp"
+
+grid2d<obstacle_type> &scale(grid2d<obstacle_type> &vector, const float factor) {
+    int old_width = vector.width();
+    int old_height = vector.height();
     int new_width = std::round(old_width * factor);
     int new_height = std::round(old_height * factor);
 
-    std::vector<std::vector<obstacle_type> > scaled(std::vector(new_width, std::vector(new_height, obstacle_type::none)));
+    grid2d<obstacle_type> scaled(new_width, new_height, obstacle_type::none);
 
     for (int x = 0; x < new_width; x++) {
         for (int y = 0; y < new_height; y++) {
             int srcX = std::floor(x / factor);
             int srcY = std::floor(y / factor);
             if (srcX < old_width && srcY < old_height) {
-                scaled[x][y] = vector[srcX][srcY];
+                scaled.at(x, y) = vector.at(srcX, srcY);
             }
         }
     }
@@ -105,7 +107,7 @@ matrix obstacle_actor::draw_one(v2 size, obstacle_type obstacle_type_) {
 void obstacle_actor::generate_map(int board_size) {
     // (std::find(excluded_cells.begin(), excluded_cells.end(), v2(x, y)) == excluded_cells.end())
 
-    std::vector<std::vector<obstacle_type> > taken_by = std::vector(board_size, std::vector(board_size, obstacle_type::none));
+    grid2d<obstacle_type> taken_by(board_size, board_size, obstacle_type::none);
 
     for (int x = 0; x < board_size; ++x) {
         for (int y = 0; y < board_size / 2; ++y) {
@@ -115,16 +117,16 @@ void obstacle_actor::generate_map(int board_size) {
                 case obstacle_type::edge:
                     break;
                 case obstacle_type::grass:
-                    generate_obstacle(board_size, v2(x, y), obstacle_type::grass, 1, 999, 1, 999, {obstacle_type::brick}, taken_by);
+                    // generate_obstacle(board_size, v2(x, y), obstacle_type::grass, 1, 999, 1, 999, {obstacle_type::brick}, taken_by);
                     break;
                 case obstacle_type::brick:
-                    generate_obstacle(board_size, v2(x, y), obstacle_type::brick, 1, 999, 1, 999, {}, taken_by);
+                    // generate_obstacle(board_size, v2(x, y), obstacle_type::brick, 1, 999, 1, 999, {}, taken_by);
                     break;
                 case obstacle_type::steel:
-                    generate_obstacle(board_size, v2(x, y), obstacle_type::steel, 0, 3, 0, 3, {obstacle_type::brick, obstacle_type::grass}, taken_by);
+                    // generate_obstacle(board_size, v2(x, y), obstacle_type::steel, 0, 3, 0, 3, {obstacle_type::brick, obstacle_type::grass}, taken_by);
                     break;
                 case obstacle_type::water:
-                    generate_obstacle(board_size, v2(x, y), obstacle_type::water, 1, 3, 1, 3, {obstacle_type::brick, obstacle_type::grass, obstacle_type::steel}, taken_by);
+                    // generate_obstacle(board_size, v2(x, y), obstacle_type::water, 1, 3, 1, 3, {obstacle_type::brick, obstacle_type::grass, obstacle_type::steel}, taken_by);
                     break;
             }
         }
@@ -142,37 +144,38 @@ void obstacle_actor::generate_map(int board_size) {
     };
 
     for (auto pos: excluded_cells) {
-        taken_by[pos.x][pos.y] = obstacle_type::none;
-        taken_by[board_size - 2 - pos.x][board_size - 2 - pos.y] = obstacle_type::none;
+        taken_by.at(pos.x, pos.y) = obstacle_type::none;
+        taken_by.at(board_size - 2 - pos.x, board_size - 2 - pos.y) = obstacle_type::none;
     }
 
-    matrix_ = matrix(taken_by.size() * cell_size, taken_by[0].size() * cell_size);
-    for (int x = 0; x < taken_by.size(); ++x) {
-        for (int y = 0; y < taken_by[0].size(); ++y) {
-            matrix_.write(draw_one(v2::one() * 4, taken_by[x][y]), cell_to_pos(v2(x, y)), 0, v2::zero());
+    matrix_ = matrix(taken_by.width() * cell_size, taken_by.height() * cell_size);
+    for (int x = 0; x < taken_by.width(); ++x) {
+        for (int y = 0; y < taken_by.height(); ++y) {
+            matrix_.write(draw_one(v2::one() * 4, taken_by.at(x, y)), cell_to_pos(v2(x, y)), 0, v2::zero());
         }
     }
 
-    is_taken = std::vector(matrix_.width(), std::vector(matrix_.height(), false));
+    is_taken = grid2d(matrix_.width(), matrix_.height(), false);
 
     for (int x = 0; x < matrix_.width(); ++x)
         for (int y = 0; y < matrix_.height(); ++y) {
             if (x < border_size || x > (matrix_.width() - border_size) || y < border_size || y > (matrix_.height() - border_size))
-                is_taken[x][y] = true;
+                is_taken.at(x, y) = true;
             else
-                is_taken[x][y] = !matrix_.pixels().at(x - border_size, y - border_size).is_none();
+                is_taken.at(x, y) = !matrix_.pixels().at(x - border_size, y - border_size).is_none();
         }
 
-    scale(taken_by, engine::screen_size.x / taken_by.size());
+    scale(taken_by, engine::screen_size.x / taken_by.width());
 
-    this->taken_by = std::vector(engine::screen_size.x, std::vector(engine::screen_size.y, obstacle_type::none));
+    this->taken_by = grid2d(engine::screen_size.x, engine::screen_size.y, obstacle_type::none);
+    this->tanks_at = grid2d<std::shared_ptr<tank_actor> >(engine::screen_size.x, engine::screen_size.y, nullptr);
 
-    for (int x = 0; x < taken_by.size(); x++)
-        for (int y = 0; y < taken_by[0].size(); y++) {
-            if (x < border_size || y < border_size || x > taken_by.size() - border_size || y > taken_by[0].size() - border_size)
-                this->taken_by[x][y] = obstacle_type::edge;
+    for (int x = 0; x < taken_by.width(); x++)
+        for (int y = 0; y < taken_by.height(); y++) {
+            if (x < border_size || y < border_size || x > taken_by.width() - border_size || y > taken_by.height() - border_size)
+                this->taken_by.at(x, y) = obstacle_type::edge;
             else
-                this->taken_by[x][y] = taken_by[x - border_size][y - border_size];
+                this->taken_by.at(x, y) = taken_by.at(x - border_size, y - border_size);
         }
 
     auto matrix_copy = matrix_;
@@ -183,11 +186,11 @@ void obstacle_actor::generate_map(int board_size) {
 obstacle_type obstacle_actor::does_collide(v2 other_from, v2 other_to) {
     for (int x = other_from.x; x < other_to.x; ++x) {
         for (int y = other_from.y; y < other_to.y; ++y) {
-            if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size())
+            if (x < 0 || y < 0 || x >= taken_by.width() || y >= taken_by.height())
                 return obstacle_type::edge;
-            if (taken_by[x][y] != obstacle_type::none) {
+            if (taken_by.at(x, y) != obstacle_type::none) {
                 // std::cout << x << " " << y << std::endl;
-                return taken_by[x][y];
+                return taken_by.at(x, y);
             }
         }
     }
@@ -195,16 +198,31 @@ obstacle_type obstacle_actor::does_collide(v2 other_from, v2 other_to) {
     return obstacle_type::none;
 }
 
+std::shared_ptr<tank_actor> obstacle_actor::does_collide_with_tank(v2 other_from, v2 other_to) {
+    for (int x = other_from.x; x < other_to.x; ++x) {
+        for (int y = other_from.y; y < other_to.y; ++y) {
+            if (x < 0 || y < 0 || x >= tanks_at.width() || y >= tanks_at.height())
+                return nullptr;
+            if (tanks_at.at(x, y) != nullptr) {
+                // std::cout << x << " " << y << std::endl;
+                return tanks_at.at(x, y);
+            }
+        }
+    }
+
+    return nullptr;
+}
+
 void obstacle_actor::remove_at(v2 other_from, v2 other_to, int level) {
     for (int x = other_from.x; x <= other_to.x; x++)
         for (int y = other_from.y; y <= other_to.y; y++) {
-            if (x < 0 || y < 0 || x >= taken_by.size() || y >= taken_by[0].size() || taken_by[x][y] == obstacle_type::edge)
+            if (x < 0 || y < 0 || x >= taken_by.width() || y >= taken_by.height() || taken_by.at(x, y) == obstacle_type::edge)
                 continue;
 
-            if (taken_by[x][y] != obstacle_type::none) {
-                if (taken_by[x][y] == obstacle_type::brick || (taken_by[x][y] == obstacle_type::grass && level >= 1) || (((taken_by[x][y] == obstacle_type::steel || taken_by[x][y] == obstacle_type::water) && level >= 2))) {
-                    taken_by[x][y] = obstacle_type::none;
-                    is_taken[x][y] = false;
+            if (taken_by.at(x, y) != obstacle_type::none) {
+                if (taken_by.at(x, y) == obstacle_type::brick || (taken_by.at(x, y) == obstacle_type::grass && level >= 1) || (((taken_by.at(x, y) == obstacle_type::steel || taken_by.at(x, y) == obstacle_type::water) && level >= 2))) {
+                    taken_by.at(x, y) = obstacle_type::none;
+                    is_taken.at(x, y) = false;
                     matrix_.set_pixel(x, y, color::none());
                 }
             }
@@ -215,33 +233,33 @@ v2 obstacle_actor::cell_to_pos(v2 cell) {
     return (cell + v2::one() / 2) * cell_size;
 }
 
-void obstacle_actor::generate_obstacle(int board_size, v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, std::vector<std::vector<obstacle_type> > &taken_by) {
+void obstacle_actor::generate_obstacle(int board_size, v2 at, obstacle_type type, int min_extra_rows, int max_extra_rows, int min_continue_for, int max_continue_for, std::vector<obstacle_type> override_types, grid2d<obstacle_type> &taken_by) {
     bool do_columns = std::rand() % 2;
     bool is_additional_row = max_extra_rows > 0 ? 1 : 0;
     int additional_rows = std::min(max_extra_rows, std::rand() % 4 + min_extra_rows);
-    int continue_for = std::min(max_continue_for, std::rand() % int(do_columns ? (taken_by[0].size() / 2) - 1 - at.y : taken_by.size() - 2 - at.x) + min_continue_for);
+    int continue_for = std::min(max_continue_for, std::rand() % int(do_columns ? (taken_by.height() / 2) - 1 - at.y : taken_by.width() - 2 - at.x) + min_continue_for);
 
     for (int ii = 0; ii < additional_rows; ++ii) {
         for (int i = 0; i < continue_for; ++i) {
             auto x = (do_columns ? ii : i) + at.x;
             auto y = (do_columns ? i : ii) + at.y;
 
-            if (x >= taken_by.size() - 1 || y >= taken_by[0].size() - 1)
+            if (x >= taken_by.width() - 1 || y >= taken_by.height() - 1)
                 continue;
 
-            if (taken_by[x][y] != obstacle_type::none && std::ranges::find(override_types, taken_by[x][y]) != override_types.end()) {
-                taken_by[x][y] = obstacle_type::none;
-                if (taken_by[board_size - 2 - x][board_size - 2 - y] != obstacle_type::none) {
-                    taken_by[board_size - 2 - x][board_size - 2 - y] = obstacle_type::none;
+            if (taken_by.at(x, y) != obstacle_type::none && std::ranges::find(override_types, taken_by.at(x, y)) != override_types.end()) {
+                taken_by.at(x, y) = obstacle_type::none;
+                if (taken_by.at(board_size - 2 - x, board_size - 2 - y) != obstacle_type::none) {
+                    taken_by.at(board_size - 2 - x, board_size - 2 - y) = obstacle_type::none;
                 }
             }
-            if (taken_by[x][y] == obstacle_type::none) {
-                taken_by[x][y] = type;
-                if (y < (taken_by[0].size() / 2) - 1) {
-                    if (taken_by[board_size - 2 - x][board_size - 2 - y] != obstacle_type::none) {
-                        taken_by[board_size - 2 - x][board_size - 2 - y] = obstacle_type::none;
+            if (taken_by.at(x, y) == obstacle_type::none) {
+                taken_by.at(x, y) = type;
+                if (y < (taken_by.height() / 2) - 1) {
+                    if (taken_by.at(board_size - 2 - x, board_size - 2 - y) != obstacle_type::none) {
+                        taken_by.at(board_size - 2 - x, board_size - 2 - y) = obstacle_type::none;
                     }
-                    taken_by[board_size - 2 - x][board_size - 2 - y] = type;
+                    taken_by.at(board_size - 2 - x, board_size - 2 - y) = type;
                 }
             }
         }
@@ -265,12 +283,12 @@ obstacle_type obstacle_actor::randomize_obstacle_type() {
 
 void obstacle_actor::print_taken_by_to_console() {
     std::string result = "\n";
-    for (size_t y = 0; y < taken_by[0].size(); y++) {
+    for (size_t y = 0; y < taken_by.height(); y++) {
         result += "|";
-        for (size_t x = 0; x < taken_by.size(); x++) {
+        for (size_t x = 0; x < taken_by.width(); x++) {
             auto symbol = "";
 
-            switch (taken_by[x][y]) {
+            switch (taken_by.at(x, y)) {
                 case obstacle_type::none:
                     symbol = "-";
                     break;
@@ -299,10 +317,10 @@ void obstacle_actor::print_taken_by_to_console() {
 
 void obstacle_actor::print_is_taken_to_console() {
     std::string result = "\n";
-    for (size_t y = 0; y < is_taken[0].size(); y++) {
+    for (size_t y = 0; y < is_taken.height(); y++) {
         result += "|";
-        for (size_t x = 0; x < is_taken.size(); x++) {
-            result += is_taken[x][y] ? "o" : "-";
+        for (size_t x = 0; x < is_taken.width(); x++) {
+            result += is_taken.at(x, y) ? "o" : "-";
         }
         result += "|\n";
     }
@@ -310,6 +328,22 @@ void obstacle_actor::print_is_taken_to_console() {
 }
 
 void obstacle_actor::update(float delta_time) {
+    if (tanks_at.width() == 0 || tanks_at.height() == 0)
+        return;
+
+    auto actors = engine::get_current_scene()->actors;
+    for (int i = 0; i < actors.size(); ++i) {
+        std::shared_ptr<tank_actor> current_actor = std::dynamic_pointer_cast<tank_actor>(actors[i]);
+        if (current_actor != nullptr) {
+            for (int x = -current_actor->size().x / 2; x < current_actor->size().x / 2; ++x) {
+                for (int y = -current_actor->size().y / 2; y < current_actor->size().y / 2; ++y) {
+                    int x_ = static_cast<int>(current_actor->get_center().x + x);
+                    int y_ = static_cast<int>(current_actor->get_center().y + y);
+                    tanks_at.at(x_, y_) = current_actor;
+                }
+            }
+        }
+    }
 }
 
 matrix obstacle_actor::render() {

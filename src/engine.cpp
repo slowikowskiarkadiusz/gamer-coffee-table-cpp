@@ -21,7 +21,7 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<pong_scene>());
+                open_scene(std::make_shared<tanks_scene>());
             }
 
             input_.update(delta_time);

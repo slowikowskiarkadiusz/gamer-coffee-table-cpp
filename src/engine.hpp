@@ -159,6 +159,10 @@ public:
         }
     }
 
+    static std::shared_ptr<scene> get_current_scene() {
+        return instance_ptr->current_scene;
+    }
+
 private:
     void check_go_back_to_menu(float dt);
 

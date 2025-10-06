@@ -24,6 +24,11 @@ void tanks_scene::init() {
     tank1->set_anchor_offset(v2(0, -2));
     tank1->set_center(cell_to_pos(v2(0, 0)));
 
+    tank2 = engine::instantiate<tank_actor>(false, obstacle);
+    tank2->rotate(180);
+    tank2->set_anchor_offset(v2(0, -2));
+    tank2->set_center(cell_to_pos(v2(0, 4)));
+
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
 

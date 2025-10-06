@@ -9,15 +9,9 @@
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
-  <component name="CMakeProjectFlavorService">
-    <option name="flavorId" value="CMakePlainProjectFlavor" />
-  </component>
-  <component name="CMakeReloadState">
-    <option name="reloaded" value="true" />
-  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="gaming_coffee_table_cpp" targetName="bootloader" />
@@ -175,13 +169,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="runs both on esp32 and desktop">
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="runs quickly on both">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input/gestures.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/input/gestures.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grid2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid2d.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tanks_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,39 +192,6 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:ESP32" />
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/desktop/main_desktop.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/esp32/main/main_esp32.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/engine.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/engine.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/grid2d.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/input/input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/input/keyboard_input_provider.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/matrix.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/matrix.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/matrix.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/ark/Desktop/gaming_coffee_table_cpp/src/matrix.hpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/matrix.hpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProjectApplicationVersion">
-    <option name="ide" value="CLion" />
-    <option name="majorVersion" value="2025" />
-    <option name="minorVersion" value="1.4" />
-    <option name="productBranch" value="Classic" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="30RzgSTe2wudbg0VkX1ZPHToZey" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -233,31 +200,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "CMake Application.gaming_coffee_table_cpp.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ark/Desktop/gaming_coffee_table_cpp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -273,27 +215,6 @@
       <recent name="$PROJECT_DIR$/desktop" />
       <recent name="$PROJECT_DIR$/engine" />
     </key>
-  </component>
-  <component name="RunManager" selected="CMake Application.ESP32">
-    <configuration name="Desktop" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gaming_coffee_table_cpp" TARGET_NAME="gaming_coffee_table_cpp_desktop" CONFIG_NAME="Desktop" RUN_TARGET_PROJECT_NAME="gaming_coffee_table_cpp" RUN_TARGET_NAME="gaming_coffee_table_cpp_desktop">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ESP32" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gaming_coffee_table_cpp" TARGET_NAME="gaming_coffee_table_cpp.elf" CONFIG_NAME="ESP32" RUN_TARGET_PROJECT_NAME="gaming_coffee_table_cpp" RUN_TARGET_NAME="gaming_coffee_table_cpp.elf">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="CMake Application.ESP32" />
-      <item itemvalue="CMake Application.Desktop" />
-    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -329,15 +250,7 @@
       <workItem from="1759571102187" duration="273000" />
       <workItem from="1759571746776" duration="17474000" />
       <workItem from="1759693301559" duration="255000" />
-      <workItem from="1759693678561" duration="10279000" />
-    </task>
-    <task id="LOCAL-00015" summary="changing timeouts">
-      <option name="closed" value="true" />
-      <created>1753867592592</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1753867592593</updated>
+      <workItem from="1759693678561" duration="21388000" />
     </task>
     <task id="LOCAL-00016" summary="contorls scene">
       <option name="closed" value="true" />
@@ -723,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759740512748</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="runs quickly on both">
+      <option name="closed" value="true" />
+      <created>1759743787554</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1759743787554</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -773,7 +694,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="modified weights" />
     <MESSAGE value="rotating fine?" />
     <MESSAGE value="rotating" />
     <MESSAGE value="before merging" />
@@ -798,18 +718,8 @@
     <MESSAGE value="matrix reworked :))" />
     <MESSAGE value="works quicker" />
     <MESSAGE value="runs both on esp32 and desktop" />
-    <option name="LAST_COMMIT_MESSAGE" value="runs both on esp32 and desktop" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp</url>
-          <line>72</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="runs quickly on both" />
+    <option name="LAST_COMMIT_MESSAGE" value="runs quickly on both" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
