@@ -24,7 +24,7 @@ public:
 
     void update(float delta_time) override;
     void fixed_update(float delta_time) override;
-    matrix render() override;
+    matrix *render() override;
     void reset_blinking();
 
     static v2 calc_size(float size_y);

@@ -7,10 +7,12 @@
 class rectangle_actor : public actor {
     matrix _matrix;
     color _color;
+    bool is_initialized = false;
 
 public:
     rectangle_actor(const v2 &center, const v2 &size, const color &col = color::white())
-        : actor("rectangle", center, size), _color(col), _matrix(make_rectangle(size, col)) {
+        : actor("rectangle", center, size), _matrix(make_rectangle(size, col)), _color(col) {
+        is_initialized = true;
     }
 
     void update(float a) override {
@@ -19,8 +21,8 @@ public:
     void fixed_update(float a) override {
     }
 
-    matrix render() override {
-        return _matrix;
+    matrix *render() override {
+        return &_matrix;
     }
 
     bool does_rectangle_overlap(const rectangle_actor &other) {
@@ -73,9 +75,13 @@ protected:
 
 private:
     matrix make_rectangle(const v2 &size, const color &c) {
-        if (c.is_none())
-            return matrix(std::abs(size.x), std::abs(size.y));
-        return matrix(std::abs(size.x), std::abs(size.y), c);
+        if (!is_initialized || (size.x != this->size().x || size.y != this->size().y))
+            return matrix(std::abs(size.x), std::abs(size.y), c, "make_rectangle");
+
+        if (!is_initialized || !c.equals(_color))
+            return _matrix.fill(this->_color);
+
+        return _matrix;
     }
 
     static bool ccw(const v2 &A, const v2 &B, const v2 &C) {

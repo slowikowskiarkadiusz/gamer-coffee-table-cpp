@@ -13,7 +13,7 @@ tetris_board_actor::tetris_board_actor(v2 center, int seed, bool is_p1,
       garbage_bar_logic_(v2(board_width + 2, size().y - 1 - board_height / 2), v2(1, board_height), {color::white(0.1f)}),
       hold_logic_(v2::zero()),
       static_board_matrix(board_width, board_height),
-      borders_matrix(size().x, size().y) {
+      borders_matrix(size().x, size().y, color::none()) {
     is_taken.resize(board_width, std::vector<bool>(board_height, false));
     write_border(v2(0, size().y - 1), v2(board_width + 1, size().y - 1 - board_height - 1));
     write_border(v2(board_width + 1, size().y - 1), v2(board_width + 1 + garbage_bar_logic_.size.x + 1, size().y - 1 - board_height - 1));
@@ -59,7 +59,8 @@ void tetris_board_actor::update(float deltaTime) {
     }
 }
 
-matrix tetris_board_actor::render() {
+// TODO!!!
+matrix* tetris_board_actor::render() {
     matrix _matrix(size().x, size().y);
     v2 boardOffset(1 + board_width / 2, size().y - 1 - board_height + board_height / 2);
 
@@ -74,9 +75,10 @@ matrix tetris_board_actor::render() {
         boardMatrix.write(current_agent->render(), current_agent->center, 0);
     }
 
-    _matrix.write(boardMatrix, boardOffset);
-    _matrix.write(static_board_matrix, boardOffset, 0);
-    return _matrix.scale(engine::screen_size.x / 32);
+    _matrix.write(&boardMatrix, boardOffset);
+    _matrix.write(&static_board_matrix, boardOffset, 0);
+    _matrix.scale(engine::screen_size.x / 32);
+    return &_matrix;
 }
 
 void tetris_board_actor::stop() {
@@ -278,7 +280,7 @@ int tetris_board_actor::clear_lines() {
             for (int y = line; y > 0; --y) {
                 for (int x = 0; x < board_width; ++x) {
                     is_taken[x][y] = is_taken[x][y - 1];
-                    static_board_matrix.set_pixel(x, y, static_board_matrix.pixels().at(x, y - 1));
+                    static_board_matrix.set_pixel(x, y, static_board_matrix.pixels.at(x, y - 1));
                 }
             }
         }
@@ -293,7 +295,7 @@ int tetris_board_actor::pop_garbage_lines() {
         for (int y = 0; y < board_height - 1; ++y) {
             for (int x = 0; x < board_width; ++x) {
                 is_taken[x][y] = is_taken[x][y + 1];
-                static_board_matrix.set_pixel(x, y, static_board_matrix.pixels().at(x, y + 1));
+                static_board_matrix.set_pixel(x, y, static_board_matrix.pixels.at(x, y + 1));
             }
         }
 

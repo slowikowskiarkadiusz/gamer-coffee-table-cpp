@@ -17,7 +17,7 @@ public:
                        std::function<void(bool)> onDeath);
 
     void update(float deltaTime) override;
-    matrix render() override;
+    matrix *render() override;
     void stop();
     void take_damage(int count);
 

@@ -11,7 +11,7 @@ struct text_actor_opts {
 };
 
 class text_actor : public actor {
-    matrix _inbound = matrix(0, 0);
+    matrix _inbound = matrix(0, 0, color::none(), "text_actor _inbound");
     std::optional<matrix> _outbound;
     int _animation_index_offset = 0;
     bool _do_animate = false;
@@ -31,7 +31,7 @@ public:
     void fixed_update(float) override {
     }
 
-    matrix render() override;
+    matrix *render() override;
 
     void set_animation(bool do_animate);
 

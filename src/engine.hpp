@@ -47,7 +47,7 @@ class engine {
     std::thread fixed_update_thread;
     std::atomic<bool> running = false;
 
-    std::function<void(const grid2d<color>)> on_frame_finished;
+    std::function<void(grid2d<color> *color)> on_frame_finished;
 
     input input_;
     gestures gesture_handler;
@@ -60,16 +60,16 @@ public:
     static engine *instance_ptr;
 
     static v2 screen_size;
-    matrix screen = matrix(screen_size.x, screen_size.y);
+    matrix screen = matrix(screen_size.x, screen_size.y, color::none(), "screen");
     static float delta_time;
     static float fixed_delta_time;
 
-    explicit engine(std::shared_ptr<input_provider> input_provider): input_(std::move(input_provider)) {
+    explicit engine(std::shared_ptr<input_provider> input_provider) : input_(std::move(input_provider)) {
         lastTimestamp = lastFixedTimestamp = now_ms();
         instance_ptr = this;
     }
 
-    static void set_on_frame_finished(const std::function<void(const grid2d<color>)> &callback) {
+    static void set_on_frame_finished(const std::function<void(grid2d<color> *color)> &callback) {
         instance().on_frame_finished = callback;
     }
 

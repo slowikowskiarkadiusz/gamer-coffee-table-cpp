@@ -3,7 +3,7 @@
 
 matrix letter(char c, const color &col, bool reverse) {
     char upper = std::toupper(c);
-    matrix m(4, 5, reverse ? col : color::none());
+    matrix m(4, 5, reverse ? col : color::none(), "letter!!!");
     color fg = reverse ? color::none() : col;
 
     auto set = [&](int x, int y) { m.set_pixel(x, y, fg); };
@@ -411,21 +411,21 @@ matrix letter(char c, const color &col, bool reverse) {
             set(0, 4);
             set(1, 4);
             break;
-        case '.': m = matrix(1, 5);
+        case '.': m = matrix(1, 5, color::none(), "uhh?");
             m.set_pixel(0, 4, fg);
             break;
-        case '-': m = matrix(2, 5);
+        case '-': m = matrix(2, 5, color::none(), "uhh?");
             m.set_pixel(0, 2, fg);
             m.set_pixel(1, 2, fg);
             break;
-        case '+': m = matrix(3, 5);
+        case '+': m = matrix(3, 5, color::none(), "uhh?");
             m.set_pixel(0, 2, fg);
             m.set_pixel(1, 2, fg);
             m.set_pixel(1, 1, fg);
             m.set_pixel(1, 3, fg);
             m.set_pixel(2, 2, fg);
             break;
-        case ' ': m = matrix(1, 5);
+        case ' ': m = matrix(1, 5, color::none(), "uhh?");
             break;
         default:
             // #ifdef prod

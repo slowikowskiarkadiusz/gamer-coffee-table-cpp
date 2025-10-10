@@ -114,8 +114,8 @@ void tank_actor::update(float delta_time) {
     }
 }
 
-matrix tank_actor::render() {
-    return is_visible ? visible_matrix_ : not_visible_matrix_;
+matrix* tank_actor::render() {
+    return is_visible ? &visible_matrix_ : &not_visible_matrix_;
 }
 
 void tank_actor::fixed_update(float fixed_delta_time) {

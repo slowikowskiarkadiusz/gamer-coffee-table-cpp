@@ -43,7 +43,7 @@ public:
 
     virtual void redraw() = 0;
     virtual void update(float delta_time) = 0;
-    virtual matrix render() = 0;
+    virtual matrix *render() = 0;
     virtual void fixed_update(float fixed_delta_time) = 0;
 
 private:

@@ -28,8 +28,8 @@ public:
         return block_rotation;
     }
 
-    matrix render() const {
-        return _matrix;
+    matrix* render() {
+        return &_matrix;
     }
 
     void rotate_block(int by) {
@@ -44,7 +44,7 @@ public:
 
         for (int x = start.x; x < start.x + _matrix.width(); ++x) {
             for (int y = start.y; y < start.y + _matrix.height(); ++y) {
-                if (!_matrix.pixels().at(x - start.x, y - start.y).is_none())
+                if (!_matrix.pixels.at(x - start.x, y - start.y).is_none())
                     coords.emplace_back(x, y);
             }
         }
@@ -126,7 +126,7 @@ private:
 
         for (int i = 0; i < mat.height(); ++i) {
             for (int j = 0; j < mat.width(); ++j) {
-                auto pixel = mat.pixels().at(j, i);
+                auto pixel = mat.pixels.at(j, i);
                 if (degrees == 90)
                     newMatrix.set_pixel(i, mat.width() - 1 - j, pixel);
                 else if (degrees == 180)

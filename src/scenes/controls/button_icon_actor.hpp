@@ -80,7 +80,7 @@ public:
         : actor("button-icon", center, v2::one() * size), mat(make_matrix(size, opts.key_)) {
     }
 
-    matrix render() override { return mat; }
+    matrix *render() override { return &mat; }
 
     void update(float) override {
     }

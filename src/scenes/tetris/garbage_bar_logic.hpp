@@ -93,8 +93,8 @@ public:
         }
     }
 
-    matrix render() const {
-        return blinkOn ? _matrix : blinkOffmatrix;
+    matrix* render() {
+        return blinkOn ? &_matrix : &blinkOffmatrix;
     }
 
 private:

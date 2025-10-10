@@ -3,6 +3,7 @@
 
 actor::actor(const std::string &name, const v2 &center, const v2 &size)
     : _name(name), _center(center.copy()), _size(size), original_size(size), _anchor_offset(v2::zero()) {
+    std::cout << "actor " << name << " created!" << std::endl;
 }
 
 v2 actor::get_center() const {

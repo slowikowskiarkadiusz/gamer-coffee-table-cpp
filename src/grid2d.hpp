@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <cstddef>
 #include <cassert>
+#include <typeinfo>
+#include <cxxabi.h>
+#include <string>
+#include <iostream>
 
 template<typename T>
 class grid2d {
@@ -19,8 +23,14 @@ public:
 
     grid2d() = default;
 
-    grid2d(int w, int h, const T &init = T())
+    grid2d(int w, int h, const T &init = T(), std::string debug_name = "")
         : w_(w), h_(h), data_(std::size_t(w) * h, init) {
+        int status = 0;
+        const char *mangled = typeid(T).name();
+        char *demangled = abi::__cxa_demangle(mangled, nullptr, nullptr, &status);
+        std::string name = status == 0 ? demangled : mangled;
+        std::free(demangled);
+        std::cout << "grid2d = " << name << " " << debug_name << std::endl;
     }
 
     int width() const { return w_; }

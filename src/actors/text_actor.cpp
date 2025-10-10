@@ -29,7 +29,7 @@ void text_actor::update(float delta_time) {
         }
 
         int max = static_cast<int>(_bottom_right.x - _top_left.x);
-        if (offset_index > static_cast<int>(_outbound->pixels().width()) - max) {
+        if (offset_index > static_cast<int>(_outbound->pixels.width()) - max) {
             _animation_runtime = 0;
             return;
         }
@@ -38,15 +38,16 @@ void text_actor::update(float delta_time) {
     }
 }
 
-matrix text_actor::render() {
-    if (!_outbound || !_do_animate) {
-        return _inbound;
-    }
+matrix *text_actor::render() {
+    // if (!_outbound || !_do_animate) {
+    return &_inbound;
+    // }
 
-    return _outbound->snippet(
-        v2(_animation_index_offset, 0),
-        v2(_animation_index_offset + container_size().x, 5)
-    );
+    // TODO fix animation
+    // return _outbound->snippet(
+    // v2(_animation_index_offset, 0),
+    // v2(_animation_index_offset + container_size().x, 5)
+    // );
 }
 
 void text_actor::set_animation(bool do_animate) {
@@ -68,8 +69,8 @@ std::pair<matrix, std::optional<matrix> > text_actor::generate_word_matrix(
     for (const auto &l: letters) total_width += l.width();
     int height = letters[0].height();
 
-    matrix inbound(max, height);
-    matrix outbound(total_width + max, height);
+    matrix inbound(max, height, color::none(), "text actor inbound");
+    matrix outbound(total_width + max, height, color::none(), "text actor inbound");
 
     v2 offset = v2::zero();
     bool exceeds = false;
@@ -91,7 +92,7 @@ std::pair<matrix, std::optional<matrix> > text_actor::generate_word_matrix(
     }
 
     if (anchor_center && last_index < max) {
-        matrix new_inbound(last_index, height);
+        matrix new_inbound(last_index, height, color::none(), "text actor new_inbound");
         new_inbound.write_at_origin(inbound, v2::zero());
         inbound = new_inbound;
     }

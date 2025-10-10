@@ -60,8 +60,8 @@ void bullet_actor::impact() {
     obstacle->remove_at(_center - size() / 2 - v2::one() * 0.5, _center + size() / 2 + v2::one() * 0.5, level);
 }
 
-matrix bullet_actor::render() {
-    return matrix_;
+matrix* bullet_actor::render() {
+    return &matrix_;
 }
 
 void bullet_actor::fixed_update(float fixed_delta_time) {

@@ -27,8 +27,8 @@ void border_actor::redraw() {
 void border_actor::update(float delta_time) {
 }
 
-matrix border_actor::render() {
-    return matrix_;
+matrix *border_actor::render() {
+    return &matrix_;
 }
 
 void border_actor::fixed_update(float fixed_delta_time) {

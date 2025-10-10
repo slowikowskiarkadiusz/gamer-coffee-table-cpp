@@ -21,7 +21,7 @@ void engine::run() {
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<tanks_scene>());
+                open_scene(std::make_shared<pong_scene>());
             }
 
             input_.update(delta_time);
@@ -32,8 +32,9 @@ void engine::run() {
             current_scene->update(delta_time);
 
             for (auto &a: current_scene->actors) {
-                if (a != nullptr)
+                if (a != nullptr) {
                     a->update(delta_time);
+                }
             }
 
             run_asyncable(delta_time);
@@ -44,13 +45,14 @@ void engine::run() {
             }
 
             if (on_frame_finished) {
-                on_frame_finished(screen.pixels());
+                std::cout << "on_frame_finished" << std::endl;
+                on_frame_finished(&screen.pixels);
             }
 
             input_.late_update(delta_time);
             gesture_handler.late_update(delta_time);
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(33));
+            std::this_thread::sleep_for(std::chrono::milliseconds(33 - (lastTimestamp - now_ms())));
         }
     });
 
@@ -67,7 +69,7 @@ void engine::run() {
                 }
             }
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(16));
+            std::this_thread::sleep_for(std::chrono::milliseconds(16 - (lastTimestamp - now_ms())));
         }
     });
 }

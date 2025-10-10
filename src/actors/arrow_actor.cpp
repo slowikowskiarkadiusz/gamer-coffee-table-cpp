@@ -24,8 +24,8 @@ void arrow_actor::update(float delta_time) {
 void arrow_actor::fixed_update(float) {
 }
 
-matrix arrow_actor::render() {
-    return _matrix;
+matrix* arrow_actor::render() {
+    return &_matrix;
 }
 
 void arrow_actor::reset_blinking() {
@@ -41,7 +41,7 @@ void arrow_actor::redraw() {
 matrix arrow_actor::shape(float size_y, const color &c) {
     int width = static_cast<int>(std::ceil(size_y / 2.0f));
     int height = static_cast<int>(size_y);
-    matrix m(width, height);
+    matrix m(width, height, color::none(), "arrow shape");
 
     for (int y = 0; y < height / 2 + 1; ++y) {
         m.set_pixel(0, y, c);

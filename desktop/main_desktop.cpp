@@ -3,7 +3,6 @@
 #include "engine.hpp"
 #include "../src/input/keyboard_input_provider.hpp"
 
-
 int main() {
     std::shared_ptr<keyboard_input_provider> input_provider = std::make_shared<keyboard_input_provider>();
 
@@ -20,18 +19,20 @@ int main() {
         }
     }
 
-    engineObj.set_on_frame_finished([&circles, &window](grid2d<color> frame) {
+    engineObj.set_on_frame_finished([&circles, &window](grid2d<color> *frame) {
+        std::cout << "desktop set_on_frame_finished start" << std::endl;
         window.clear();
 
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                auto matrixPixel = frame.at(x, y);
+                auto matrixPixel = frame->at(x, y);
                 circles[x][y].setFillColor(sf::Color(matrixPixel.r * 255, matrixPixel.g * 255, matrixPixel.b * 255, matrixPixel.a * 255));
                 window.draw(circles[x][y]);
             }
         }
 
         window.display();
+        std::cout << "desktop set_on_frame_finished end" << std::endl;
     });
 
 

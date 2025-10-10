@@ -15,61 +15,60 @@ enum class color_blending {
 };
 
 class matrix {
-protected:
-    grid2d<color> _matrix;
-
 public:
-    matrix(v2 size, const color &default_color = color::none()): matrix(size.x, size.y, default_color) {
+    grid2d<color> pixels;
+
+    matrix(v2 size, const color &default_color = color::none(), std::string debug_name = "") : matrix(size.x, size.y, default_color, debug_name) {
     }
 
-    matrix(int x, int y, const color &default_color = color::none()) {
+    matrix(int x, int y, const color &default_color = color::none(), std::string debug_name = "") {
+        if (debug_name.size() > 0)
+            std::cout << "matrix " << debug_name << std::endl;
         x = std::round(x);
         y = std::round(y);
-        _matrix = grid2d<color>(x, y, default_color);
-    }
-
-    const grid2d<color> &pixels() const {
-        return _matrix;
+        pixels = grid2d<color>(x, y, default_color, "matrix " + debug_name);
     }
 
     const uint width() const {
-        return _matrix.width();
+        return pixels.width();
     }
 
     const uint height() const {
-        return _matrix.height();
+        return pixels.height();
     }
 
     void set_pixel_v2(const v2 &point, const color &color) {
-        _matrix.at(point.x, point.y) = color.copy();
+        pixels.at(point.x, point.y) = color.copy();
     }
 
     void set_pixel(int x, int y, const color &color) {
-        _matrix.at(x, y) = color.copy();
+        pixels.at(x, y) = color.copy();
+    }
+
+    matrix fill(color &color) {
+        pixels.fill(color);
+        return *this;
     }
 
     matrix &write_at_origin(const matrix &other, const v2 &origin) {
-        for (size_t x = 0; x < other._matrix.width(); x++) {
-            for (size_t y = 0; y < other._matrix.height(); y++) {
+        for (size_t x = 0; x < other.pixels.width(); x++) {
+            for (size_t y = 0; y < other.pixels.height(); y++) {
                 int tx = x + origin.x;
                 int ty = y + origin.y;
-                if (tx >= 0 && tx < _matrix.width() && ty >= 0 && ty < _matrix.height()) {
-                    _matrix.at(tx, ty) = other._matrix.at(x, y).copy();
+                if (tx >= 0 && tx < pixels.width() && ty >= 0 && ty < pixels.height()) {
+                    pixels.at(tx, ty) = other.pixels.at(x, y).copy();
                 }
             }
         }
         return *this;
     }
 
-    matrix &write(const matrix &other, const v2 &otherCenter, float otherRotation = 0.0f,
-                  const v2 &otherAnchor = v2::zero(), bool blend_colors = true) {
-        struct OverlayCell {
-            bool has = false;
-            color c{}; // premultiplied accumulator
-        };
-
+    matrix &write(const matrix *other,
+                  const v2 &otherCenter,
+                  float otherRotation = 0.0f,
+                  const v2 &otherAnchor = v2::zero(),
+                  bool blend_colors = true) {
         auto over_blend = [](const color &dst, const color &src) -> color {
-            // standard alpha-over: src over dst
             float sa = src.a, da = dst.a;
             float outA = sa + da * (1.0f - sa);
             if (outA <= 0.0f) return color(0, 0, 0, 0);
@@ -79,75 +78,63 @@ public:
             return color(r, g, b, outA);
         };
 
-        grid2d<OverlayCell> overlay(_matrix.width(), _matrix.height());
-
-        int otherWidth = other._matrix.width();
-        int otherHeight = otherWidth > 0 ? other._matrix.height() : 0;
+        int otherWidth = other->pixels.width();
+        int otherHeight = other->pixels.height();
         if (otherWidth == 0 || otherHeight == 0) return *this;
 
         v2 center(otherWidth / 2.0f, otherHeight / 2.0f);
+        int angle = static_cast<int>(otherRotation) % 360;
+        if (angle < 0) angle += 360;
 
-        for (int x = 0; x < otherWidth; x++) {
-            for (int y = 0; y < otherHeight; y++) {
-                color c = other.pixels().at(x, y);
-                if (c.is_none()) continue;
+        bool useTrig = (angle % 90) != 0;
+        float rad = otherRotation * M_PI / 180.0f;
+        float cs = std::cos(rad), sn = std::sin(rad);
 
-                int dx = x - static_cast<int>(center.x - otherAnchor.x);
-                int dy = y - static_cast<int>(center.y - otherAnchor.y);
+        for (int y = 0; y < otherHeight; y++) {
+            for (int x = 0; x < otherWidth; x++) {
+                color src = other->pixels.at(x, y);
+                if (src.is_none()) continue;
 
-                int rx = 0, ry = 0;
-                int angle = static_cast<int>(otherRotation) % 360;
-                if (angle < 0) angle += 360;
+                float dx = x - center.x + otherAnchor.x;
+                float dy = y - center.y + otherAnchor.y;
 
-                v2 offset = v2::one();
-
-                switch (angle) {
-                    case 0: rx = dx;
-                        ry = dy;
-                        break;
-                    case 90: rx = -dy;
-                        ry = dx;
-                        offset = v2(0, 1);
-                        break;
-                    case 180: rx = -dx;
-                        ry = -dy;
-                        offset = v2::zero();
-                        break;
-                    case 270: rx = dy;
-                        ry = -dx;
-                        offset = v2(1, 0);
-                        break;
-                    default: continue;
-                }
-
-                int finalX = static_cast<int>(std::floor(rx + otherCenter.x + offset.x * 0.5f));
-                int finalY = static_cast<int>(std::floor(ry + otherCenter.y + offset.y * 0.5f));
-
-                if (finalX >= 0 && finalX < static_cast<int>(_matrix.width()) &&
-                    finalY >= 0 && finalY < static_cast<int>(_matrix.height())) {
-                    OverlayCell &cell = overlay.at(finalX, finalY);
-                    if (!cell.has) {
-                        cell.has = true;
-                        cell.c = c;
-                    } else {
-                        // kumulacja bez wektorów
-                        cell.c = over_blend(cell.c, c);
+                float rx, ry;
+                if (useTrig) {
+                    rx = dx * cs - dy * sn;
+                    ry = dx * sn + dy * cs;
+                } else {
+                    switch (angle) {
+                        case 0: rx = dx;
+                            ry = dy;
+                            break;
+                        case 90: rx = -dy;
+                            ry = dx;
+                            break;
+                        case 180: rx = -dx;
+                            ry = -dy;
+                            break;
+                        case 270: rx = dy;
+                            ry = -dx;
+                            break;
+                        default: rx = dx;
+                            ry = dy;
+                            break;
                     }
                 }
-            }
-        }
 
-        // zastosowanie do bufora docelowego
-        for (size_t x = 0; x < overlay.width(); x++) {
-            for (size_t y = 0; y < overlay.height(); y++) {
-                OverlayCell &cell = overlay.at(x, y);
-                if (!cell.has) continue;
+                int finalX = static_cast<int>(std::floor(rx + otherCenter.x));
+                int finalY = static_cast<int>(std::floor(ry + otherCenter.y));
 
-                if (blend_colors) {
-                    _matrix.at(x, y) = over_blend(_matrix.at(x, y), cell.c);
-                } else {
-                    _matrix.at(x, y) = cell.c;
-                }
+                if (finalX < 0 || finalY < 0 ||
+                    finalX >= pixels.width() || finalY >= pixels.height())
+                    continue;
+
+                color &dst = pixels.at(finalX, finalY);
+
+                if (blend_colors)
+                    dst = over_blend(dst, src);
+                else
+                    dst = src;
             }
         }
 
@@ -155,16 +142,17 @@ public:
     }
 
     matrix &rotate(float degrees) {
+        std::cout << "rotate" << std::endl;
         float radians = (degrees * M_PI) / 180.0f;
         float sinA = std::abs(std::sin(radians));
         float cosA = std::abs(std::cos(radians));
 
-        int old_width = _matrix.width();
-        int old_height = _matrix.height();
+        int old_width = pixels.width();
+        int old_height = pixels.height();
         int new_width = std::ceil(old_width * cosA + old_height * sinA);
         int new_height = std::ceil(old_width * sinA + old_height * cosA);
 
-        matrix rotated(new_width, new_height, color::none());
+        matrix rotated(new_width, new_height, color::none(), "rotate");
 
         float cxOld = old_width / 2.0f;
         float cyOld = old_height / 2.0f;
@@ -180,61 +168,63 @@ public:
                 int ry = std::round(std::sin(radians) * dx + std::cos(radians) * dy + cyNew);
 
                 if (rx >= 0 && rx < new_width && ry >= 0 && ry < new_height) {
-                    rotated._matrix.at(rx, ry) = _matrix(x, y);
+                    rotated.pixels.at(rx, ry) = pixels(x, y);
                 }
             }
         }
 
-        _matrix = rotated._matrix;
+        pixels = rotated.pixels;
         return *this;
     }
 
     matrix &scale(const float factor) {
-        int old_width = _matrix.width();
-        int old_height = _matrix.height();
+        std::cout << "scale" << std::endl;
+        int old_width = pixels.width();
+        int old_height = pixels.height();
         int new_width = std::round(old_width * factor);
         int new_height = std::round(old_height * factor);
 
-        matrix scaled(new_width, new_height, color::none());
+        matrix scaled(new_width, new_height, color::none(), "scale");
 
         for (int x = 0; x < new_width; x++) {
             for (int y = 0; y < new_height; y++) {
                 int srcX = std::floor(x / factor);
                 int srcY = std::floor(y / factor);
                 if (srcX < old_width && srcY < old_height) {
-                    scaled._matrix(x, y) = _matrix(srcX, srcY);
+                    scaled.pixels(x, y) = pixels(srcX, srcY);
                 }
             }
         }
 
-        _matrix = scaled._matrix;
+        pixels = scaled.pixels;
         return *this;
     }
 
     matrix snippet(const v2 &from, const v2 &to) const {
-        matrix result(to.x - from.x, to.y - from.y);
+        std::cout << "snippet" << std::endl;
+        matrix result(to.x - from.x, to.y - from.y, color::none(), "snippet");
         for (int x = from.x; x < to.x; x++) {
             for (int y = from.y; y < to.y; y++) {
-                result._matrix.at(x - from.x, y - from.y) = _matrix.at(x, y);
+                result.pixels.at(x - from.x, y - from.y) = pixels.at(x, y);
             }
         }
         return result;
     }
 
     matrix &clear() {
-        for (size_t y = 0; y < _matrix.height(); y++) {
-            for (size_t x = 0; x < _matrix.width(); x++)
-                _matrix.at(x, y) = color::none();
+        for (size_t y = 0; y < pixels.height(); y++) {
+            for (size_t x = 0; x < pixels.width(); x++)
+                pixels.at(x, y) = color::none();
         }
         return *this;
     }
 
     matrix &print_to_console() {
         std::string result = "\n";
-        for (size_t y = 0; y < _matrix.height(); y++) {
+        for (size_t y = 0; y < pixels.height(); y++) {
             result += "|";
-            for (size_t x = 0; x < _matrix.width(); x++) {
-                result += _matrix.at(x, y).is_none() ? "  " : "O ";
+            for (size_t x = 0; x < pixels.width(); x++) {
+                result += pixels.at(x, y).is_none() ? "  " : "O ";
             }
             result += "|\n";
         }

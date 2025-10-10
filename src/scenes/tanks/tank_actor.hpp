@@ -29,7 +29,7 @@ public:
     void move(float delta_time);
     void shoot(float delta_time);
     void update(float delta_time) override;
-    matrix render() override;
+    matrix *render() override;
     void fixed_update(float fixed_delta_time) override;
     ~tank_actor() override;
 

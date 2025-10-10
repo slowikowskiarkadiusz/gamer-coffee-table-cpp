@@ -16,8 +16,8 @@ public:
     hold_logic(v2 center) : center(center), size(default_size), _matrix(matrix(size.x, size.y, color::none())) {
     }
 
-    matrix render() const {
-        return _matrix;
+    matrix* render() {
+        return &_matrix;
     }
 
     std::optional<tetris_shape> use(tetris_shape shape) {

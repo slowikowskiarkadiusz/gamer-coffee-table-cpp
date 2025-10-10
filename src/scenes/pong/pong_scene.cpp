@@ -8,6 +8,7 @@ constexpr float original_ball_speed = 0.007;
 pong_scene::pong_scene() = default;
 
 void pong_scene::init() {
+    std::cout << "pong_scene start" << std::endl;
     auto screen = engine::screen_size;
     size_factor = screen.x / 32;
     p1Paddle = engine::instantiate<rectangle_actor>(v2(screen.x / 2, 3 * size_factor), v2(7, 1) * size_factor);
@@ -17,6 +18,7 @@ void pong_scene::init() {
     ball = engine::instantiate<rectangle_actor>(screen / 2, v2(2, 2) * size_factor, color::white());
     reset_ball();
     print_score();
+    std::cout << "pong_scene end" << std::endl;
 }
 
 void pong_scene::update(float delta_time) {

@@ -13,13 +13,13 @@ private:
 
 public:
     border_actor(v2 from, v2 to, v2 matrix_size, uint depth = 1, ::color color = color::white(0.5))
-        : actor("border", matrix_size / 2, matrix_size), from_(from), to_(to), matrix_(matrix(matrix_size.x, matrix_size.y)), color_(color), depth_(depth) {
+        : actor("border", matrix_size / 2, matrix_size), from_(from), to_(to), matrix_(matrix_size.x, matrix_size.y, color::none(), "border actor"), color_(color), depth_(depth) {
         redraw();
     }
 
     void redraw() override;
     void update(float delta_time) override;
-    matrix render() override;
+    matrix *render() override;
     void fixed_update(float fixed_delta_time) override;
     ~border_actor() override;
 };

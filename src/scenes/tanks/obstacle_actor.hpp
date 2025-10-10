@@ -27,7 +27,7 @@ public:
     void print_taken_by_to_console();
     void print_is_taken_to_console();
     void update(float delta_time) override;
-    matrix render() override;
+    matrix *render() override;
     void fixed_update(float fixed_delta_time) override;
     ~obstacle_actor() override;
 };
