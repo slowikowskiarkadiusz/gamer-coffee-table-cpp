@@ -7,7 +7,8 @@
 
 class engine;
 
-class actor : public std::enable_shared_from_this<actor> {
+class actor : public std::enable_shared_from_this<actor>
+{
 protected:
     std::string _name = "actor";
     v2 _center;

@@ -176,39 +176,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="ughhhh">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="15cdfa2f-f477-4c48-83c7-604282deb477" name="Changes" comment="got pong scene grid2d creation under control">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/desktop/main_desktop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/desktop/main_desktop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/esp32_input_provider.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/esp32/main/main_esp32.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/arrow_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/arrow_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/arrow_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/arrow_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/border_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/border_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/border_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/border_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/letter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/letter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/rectangle_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actors/text_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/actors/text_actor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grid2d.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/grid2d.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/matrix.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/matrix.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/controls/button_icon_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/pong/pong_scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/bullet_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/obstacle_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tanks/tank_actor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/garbage_bar_logic.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/hold_logic.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_block.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_board_actor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/tetris/tetris_scene.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,15 +300,9 @@
       <workItem from="1759693301559" duration="255000" />
       <workItem from="1759693678561" duration="28312000" />
       <workItem from="1760105299593" duration="3583000" />
-      <workItem from="1760118044344" duration="4325000" />
-    </task>
-    <task id="LOCAL-00017" summary="pong has bugs">
-      <option name="closed" value="true" />
-      <created>1753902473864</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1753902473864</updated>
+      <workItem from="1760118044344" duration="8891000" />
+      <workItem from="1760176093126" duration="1358000" />
+      <workItem from="1760794514079" duration="18000" />
     </task>
     <task id="LOCAL-00018" summary="tetris wip">
       <option name="closed" value="true" />
@@ -715,7 +688,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759764123531</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="got pong scene grid2d creation under control">
+      <option name="closed" value="true" />
+      <created>1760123661331</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1760123661331</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +746,6 @@
       <path value="$USER_HOME$/esp/esp-idf/components/spiffs/spiffs" />
       <path value="$USER_HOME$/esp/esp-idf/components/unity/unity" />
     </ignored-roots>
-    <MESSAGE value="rotating" />
     <MESSAGE value="before merging" />
     <MESSAGE value="tank moves" />
     <MESSAGE value="before removing taken_by" />
@@ -790,7 +770,8 @@
     <MESSAGE value="runs both on esp32 and desktop" />
     <MESSAGE value="runs quickly on both" />
     <MESSAGE value="hitting tank with bullet" />
-    <option name="LAST_COMMIT_MESSAGE" value="hitting tank with bullet" />
+    <MESSAGE value="got pong scene grid2d creation under control" />
+    <option name="LAST_COMMIT_MESSAGE" value="got pong scene grid2d creation under control" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

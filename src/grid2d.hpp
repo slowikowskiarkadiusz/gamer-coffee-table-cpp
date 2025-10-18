@@ -9,11 +9,14 @@
 #include <string>
 #include <iostream>
 
-template<typename T>
-class grid2d {
-private:
+template <typename T>
+class grid2d
+{
+public:
+    // private:
     int w_ = 0, h_ = 0;
     std::vector<T> data_;
+    std::string debug_name;
 
 public:
     using reference = typename std::vector<T>::reference;
@@ -24,13 +27,14 @@ public:
     grid2d() = default;
 
     grid2d(int w, int h, const T &init = T(), std::string debug_name = "")
-        : w_(w), h_(h), data_(std::size_t(w) * h, init) {
+        : w_(w), h_(h), data_(std::size_t(w) * h, init)
+    {
         int status = 0;
         const char *mangled = typeid(T).name();
         char *demangled = abi::__cxa_demangle(mangled, nullptr, nullptr, &status);
         std::string name = status == 0 ? demangled : mangled;
         std::free(demangled);
-        std::cout << "grid2d = " << name << " " << debug_name << std::endl;
+        this->debug_name = debug_name;
     }
 
     int width() const { return w_; }
@@ -40,13 +44,15 @@ public:
     reference operator()(int x, int y) { return data_[std::size_t(y) * w_ + x]; }
     const_reference operator()(int x, int y) const { return data_[std::size_t(y) * w_ + x]; }
 
-    reference at(int x, int y) {
-        assert(in_bounds(x,y));
+    reference at(int x, int y)
+    {
+        assert(in_bounds(x, y));
         return (*this)(x, y);
     }
 
-    const_reference at(int x, int y) const {
-        assert(in_bounds(x,y));
+    const_reference at(int x, int y) const
+    {
+        assert(in_bounds(x, y));
         return (*this)(x, y);
     }
 
@@ -56,7 +62,8 @@ public:
     void fill(const T &v) { std::fill(data_.begin(), data_.end(), v); }
 
 private:
-    bool in_bounds(int x, int y) const {
-        return (unsigned) x < (unsigned) w_ && (unsigned) y < (unsigned) h_;
+    bool in_bounds(int x, int y) const
+    {
+        return (unsigned)x < (unsigned)w_ && (unsigned)y < (unsigned)h_;
     }
 };

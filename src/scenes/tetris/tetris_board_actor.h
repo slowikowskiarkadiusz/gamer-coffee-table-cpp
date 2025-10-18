@@ -10,9 +10,12 @@
 #include "hold_logic.hpp"
 #include "../../coroutine/task.hpp"
 
-class tetris_board_actor : public actor {
+class tetris_board_actor : public actor
+{
 public:
-    tetris_board_actor(v2 center, int seed, bool isP1,
+    tetris_board_actor(v2 center,
+                       int seed,
+                       bool isP1,
                        std::function<void(int, bool)> onDealDamage,
                        std::function<void(bool)> onDeath);
 
@@ -30,7 +33,7 @@ private:
     static constexpr int faster_dropping_delay = 100;
     static constexpr int lock_delay = 1000;
 
-    std::vector<std::vector<bool> > is_taken;
+    std::vector<std::vector<bool>> is_taken;
     int block_index = 0;
     std::unique_ptr<tetris_block> current_agent = nullptr;
     std::unique_ptr<tetris_block> current_agent_shadow = nullptr;
@@ -39,6 +42,7 @@ private:
     bool can_drop_again = true;
     matrix static_board_matrix;
     matrix borders_matrix;
+    matrix render_matrix;
     bool continue_dropping = true;
     float drop_timer = 0;
     float lock_delay_timer = 0;
@@ -68,9 +72,11 @@ private:
     tetris_shape generate_block(int seed, int index);
 
 public:
-    void redraw() override {
+    void redraw() override
+    {
     }
 
-    void fixed_update(float fixed_delta_time) override {
+    void fixed_update(float fixed_delta_time) override
+    {
     }
 };

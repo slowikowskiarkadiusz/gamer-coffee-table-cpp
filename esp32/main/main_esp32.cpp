@@ -56,17 +56,21 @@ extern "C" void app_main(void) {
     mxconfig.gpio.oe = 16;
 
     dma_display = new MatrixPanel_I2S_DMA(mxconfig);
-    dma_display->begin();
-    dma_display->setBrightness8(80);
+    // dma_display->begin();
+    // dma_display->setBrightness8(80);
 
     engineObj.run();
 
-    engine::set_on_frame_finished([](grid2d<color> frame) {
+    engine::set_on_frame_finished([](grid2d<color> *frame) {
+        dma_display->begin();
+        vTaskDelay(pdMS_TO_TICKS(3));
         for (int y = 0; y < engine::screen_size.y; y++) {
             for (int x = 0; x < engine::screen_size.x; x++) {
-                draw(x, y, frame.at(x, y));
+                draw(x, y, frame->at(x, y));
             }
         }
+        vTaskDelay(pdMS_TO_TICKS(3));
+        dma_display->stopDMAoutput();
     });
 
     while (true) {
