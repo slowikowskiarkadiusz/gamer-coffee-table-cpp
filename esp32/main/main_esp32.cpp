@@ -41,23 +41,23 @@ extern "C" void app_main(void) {
         PANEL_CHAIN
     );
 
-    mxconfig.gpio.r1 = 4;
-    mxconfig.gpio.g1 = 5;
-    mxconfig.gpio.b1 = 6;
-    mxconfig.gpio.r2 = 7;
-    mxconfig.gpio.g2 = 8;
-    mxconfig.gpio.b2 = 9;
-    mxconfig.gpio.a = 10;
-    mxconfig.gpio.b = 11;
-    mxconfig.gpio.c = 12;
-    mxconfig.gpio.d = 13;
-    mxconfig.gpio.clk = 14;
-    mxconfig.gpio.lat = 15;
-    mxconfig.gpio.oe = 16;
+    mxconfig.gpio.r1  = 4;
+    mxconfig.gpio.g1  = 5;
+    mxconfig.gpio.b1  = 7;
+    mxconfig.gpio.r2  = 8;
+    mxconfig.gpio.g2  = 9;
+    mxconfig.gpio.b2  = 10;
+    mxconfig.gpio.a   = 11;
+    mxconfig.gpio.b   = 12;
+    mxconfig.gpio.c   = 13;
+    mxconfig.gpio.d   = 14;
+    mxconfig.gpio.clk = 15;
+    mxconfig.gpio.lat = 16;
+    mxconfig.gpio.oe  = 17;
 
     dma_display = new MatrixPanel_I2S_DMA(mxconfig);
-    // dma_display->begin();
-    // dma_display->setBrightness8(80);
+    dma_display->begin();
+    dma_display->setBrightness8(80);
 
     engineObj.run();
 

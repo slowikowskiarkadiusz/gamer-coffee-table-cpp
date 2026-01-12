@@ -150,7 +150,7 @@ private:
     static inline std::span<const gpio_num_t> map_key(key k) {
         switch (k) {
             case key::START: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_17};
+                static constexpr gpio_num_t A[]{GPIO_NUM_18};
                 return A;
             }
             case key::P1_DOWN: {

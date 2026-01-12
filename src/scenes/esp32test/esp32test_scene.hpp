@@ -11,5 +11,5 @@ public:
     void fixed_update(float fixed_delta_time) override;
 
 private:
-    void update();
+    std::shared_ptr<rectangle_actor> ball;
 };

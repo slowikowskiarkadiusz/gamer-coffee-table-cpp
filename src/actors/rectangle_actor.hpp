@@ -11,8 +11,8 @@ class rectangle_actor : public actor {
 
 public:
     rectangle_actor(const v2 &center, const v2 &size, const color &col = color::white())
-        : actor("rectangle", center, size), _matrix(make_rectangle(size, col)), _color(col) {
-        is_initialized = true;
+        : actor("rectangle", center, size), _matrix(std::abs(size.x), std::abs(size.y), col, "make_rectangle"), _color(col) {
+        // is_initialized = true;
     }
 
     void update(float a) override {
@@ -70,19 +70,19 @@ public:
 
 protected:
     void redraw() override {
-        _matrix = make_rectangle(size(), _color);
+        _matrix = matrix(std::abs(size().x), std::abs(size().y), _color, "make_rectangle");
     }
 
 private:
-    matrix make_rectangle(const v2 &size, const color &c) {
-        if (!is_initialized || (size.x != this->size().x || size.y != this->size().y))
-            return matrix(std::abs(size.x), std::abs(size.y), c, "make_rectangle");
+    // matrix make_rectangle(const v2 &size, const color &c) {
+    //     if (!is_initialized || (size.x != this->size().x || size.y != this->size().y))
+    //         return matrix(std::abs(size.x), std::abs(size.y), c, "make_rectangle");
 
-        if (!is_initialized || !c.equals(_color))
-            return _matrix.fill(this->_color);
+    //     if (!is_initialized || !c.equals(_color))
+    //         return _matrix.fill(this->_color);
 
-        return _matrix;
-    }
+    //     return _matrix;
+    // }
 
     static bool ccw(const v2 &A, const v2 &B, const v2 &C) {
         return (C.y - A.y) * (B.x - A.x) > (B.y - A.y) * (C.x - A.x);

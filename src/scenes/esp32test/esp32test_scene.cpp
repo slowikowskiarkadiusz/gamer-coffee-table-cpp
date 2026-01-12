@@ -7,6 +7,7 @@
 esp32test_scene::esp32test_scene() = default;
 
 void esp32test_scene::init() {
+    ball = engine::instantiate<rectangle_actor>(engine::screen_size / 2, v2(2, 2), color::white());
 }
 
 void esp32test_scene::update(float delta_time) {}

@@ -4,6 +4,7 @@
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
 #include "scenes/tetris/tetris_scene.hpp"
+#include "scenes/esp32test/esp32test_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
 float engine::delta_time = 0;
@@ -22,7 +23,7 @@ void engine::run()
             lastTimestamp = new_time;
 
             if (!current_scene) {
-                open_scene(std::make_shared<tetris_scene>());
+                open_scene(std::make_shared<esp32test_scene>());
             }
 
             input_.update(delta_time);
@@ -41,11 +42,9 @@ void engine::run()
             run_asyncable(delta_time);
 
             screen.clear();
-            for (std::shared_ptr<actor> a: current_scene->actors) 
-            {                
+            for (std::shared_ptr<actor> a: current_scene->actors) {
                 screen.write(a->render(), a->get_center(), a->get_rotation(), a->get_anchor_offset(), true, a->name());
             }
-
 
             if (on_frame_finished) {
                 on_frame_finished(&screen.pixels);
