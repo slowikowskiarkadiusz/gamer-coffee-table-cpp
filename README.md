@@ -13,5 +13,5 @@ source ~/esp/esp-idf/export.sh
 idf.py -B build-esp32
 
 ls /dev/tty.*
-idf.py -B build-esp32 -p /dev/tty.usbmodem11101 flash monitor
+clear && idf.py -B build-esp32 -p /dev/tty.usbmodem1101 flash monitor
 ```

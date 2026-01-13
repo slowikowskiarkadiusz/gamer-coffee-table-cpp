@@ -38,8 +38,6 @@ public:
 
             if (level != last_level[i]) {
                 if (level == 0 && !keysPress.contains(pin)) {
-                    if (pin == GPIO_NUM_17)
-                        ESP_LOGI("APP", "GPIO_NUM_17");
                     keysDown.insert(pin);
                     keysPress.insert(pin);
                 }
@@ -95,14 +93,18 @@ private:
     }
 
     bool isKey(std::optional<key> k, key_state ks) const {
-        if (!k.has_value()) {
-            switch (ks) {
-                case key_state::Down: return !keysDown.empty();
-                case key_state::Up: return !keysUp.empty();
-                case key_state::Press: return !keysPress.empty();
-            }
-            return false;
-        }
+        return false;
+        // std::cout << " keysDown " << keysDown.size() << std::endl;
+        // std::cout << " keysUp " << keysUp.size() << std::endl;
+        // std::cout << " keysPress " << keysPress.size() << std::endl;
+        // if (!k.has_value()) {
+        //     switch (ks) {
+        //         case key_state::Down: return !keysDown.empty();
+        //         case key_state::Up: return !keysUp.empty();
+        //         case key_state::Press: return !keysPress.empty();
+        //     }
+        //     return false;
+        // }
 
         auto pinsForKey = map_key(*k);
         auto any_match = [&](const auto &S) {
@@ -150,23 +152,28 @@ private:
     static inline std::span<const gpio_num_t> map_key(key k) {
         switch (k) {
             case key::START: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_18};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_17};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_DOWN: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_18};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_18};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_UP: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_19};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_19};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_LEFT: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_20};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_20};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_RIGHT: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_21};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_21};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_ANY_DIRECTION: {
@@ -174,11 +181,13 @@ private:
                 return ensure_init(C, {key::P1_DOWN, key::P1_UP, key::P1_LEFT, key::P1_RIGHT});
             }
             case key::P1_BLUE: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_35};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_35};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_GREEN: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_36};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_36};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P1_ANY: {
@@ -187,18 +196,22 @@ private:
             }
 
             case key::P2_DOWN: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_37};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_37};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P2_UP: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_38};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_38};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P2_LEFT: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_39};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_39};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P2_RIGHT: {
+                // static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
@@ -207,11 +220,13 @@ private:
                 return ensure_init(C, {key::P2_DOWN, key::P2_UP, key::P2_LEFT, key::P2_RIGHT});
             }
             case key::P2_BLUE: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_41};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_41};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P2_GREEN: {
-                static constexpr gpio_num_t A[]{GPIO_NUM_42};
+                // static constexpr gpio_num_t A[]{GPIO_NUM_42};
+                static constexpr gpio_num_t A[]{GPIO_NUM_40};
                 return A;
             }
             case key::P2_ANY: {

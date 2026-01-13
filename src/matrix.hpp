@@ -271,6 +271,9 @@ public:
             }
             result += "|\n";
         }
+
+        std::cout << result << std::endl;
+
         return *this;
     }
 };

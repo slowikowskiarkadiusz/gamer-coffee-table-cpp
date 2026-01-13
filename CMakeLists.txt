@@ -1,10 +1,11 @@
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 cmake_minimum_required(VERSION 3.16)
 
 project(gaming_coffee_table_cpp LANGUAGES C CXX)
 
 option(BUILD_DESKTOP "Build desktop target" ON)
 option(BUILD_ESP32 "Build ESP-IDF target" OFF)
-
 
 if (BUILD_ESP32)
     if (NOT DEFINED ENV{IDF_PATH})

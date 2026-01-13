@@ -1,13 +1,16 @@
 #include <SFML/Graphics.hpp>
 
 #include "../src/input/keyboard_input_provider.hpp"
-#include "engine.hpp"
+#include "desktop_threading_provider.hpp"
 
 int main() {
   std::shared_ptr<keyboard_input_provider> input_provider =
       std::make_shared<keyboard_input_provider>();
 
-  engine engineObj(input_provider);
+  std::shared_ptr<threading_provider> threading_provider =
+      std::make_shared<desktop_threading_provider>();
+
+  engine engineObj(input_provider, threading_provider);
   engineObj.run();
 
   sf::RenderWindow window(
@@ -25,7 +28,7 @@ int main() {
   int frame_count = 0;
 
   auto set_on_frame_finished_action = [&circles, &window,
-                                       &frame_count](grid2d<color>* frame) {
+                                       &frame_count](grid2d<color> *frame) {
     frame_count++;
     frame_count %= 100;
     std::cout << "desktop set_on_frame_finished start "
@@ -60,7 +63,8 @@ int main() {
     sf::Event event;
     while (window.pollEvent(event)) {
       input_provider->sfEventQueue.push(event);
-      if (event.type == sf::Event::Closed) window.close();
+      if (event.type == sf::Event::Closed)
+        window.close();
     }
   }
 
