@@ -11,3 +11,4 @@ cmake-build-esp32
 CMakeFiles
 cmake_install.cmake
 .idea/workspace.xml
+.cache

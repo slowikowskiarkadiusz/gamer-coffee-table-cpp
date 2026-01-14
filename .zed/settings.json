@@ -5,7 +5,6 @@
 {
   "languages": {
     "C++": {
-      "compilationDatabasePath": "build/compile_commands.json",
       "standard": "c++20",
     },
   },

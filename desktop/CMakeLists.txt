@@ -6,8 +6,9 @@ find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
 
 file(GLOB_RECURSE SRC_FILES
         "../src/*.cpp"
-        "../src/*.hpp"
-        "../src/*.h"
+        SRC_FILES
+                "../src/*.hpp"
+                "../src/*.h"
 )
 
 add_executable(${PROJECT_NAME}

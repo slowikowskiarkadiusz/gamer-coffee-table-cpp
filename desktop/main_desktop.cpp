@@ -2,6 +2,7 @@
 
 #include "../src/input/keyboard_input_provider.hpp"
 #include "desktop_threading_provider.hpp"
+#include "engine.hpp"
 
 int main() {
   std::shared_ptr<keyboard_input_provider> input_provider =

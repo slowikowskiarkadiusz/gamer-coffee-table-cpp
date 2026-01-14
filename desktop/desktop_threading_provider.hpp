@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/engine.hpp"
+#include "threading_provider.hpp"
 #include <functional>
 #include <memory>
 #include <thread>

@@ -1,0 +1,14 @@
+CompileFlags:
+  Add:
+    - -isystem
+    - ${PROJECT_ROOT}/esp32/clang_fake
+  Remove:
+    - -mlongcalls
+    - -fno-shrink-wrap
+    - -fno-tree-switch-conversion
+    - -fno-jump-tables
+    - -fstrict-volatile-bitfields
+
+Diagnostics:
+  Suppress:
+    - pp_file_not_found

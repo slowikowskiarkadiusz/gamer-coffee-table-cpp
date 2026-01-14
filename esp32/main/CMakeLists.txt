@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 file(GLOB_RECURSE SRC_FILES
         "../../src/*.cpp"
+        SRC_FILES
         "../../src/*.hpp"
         "../../src/*.h"
 )

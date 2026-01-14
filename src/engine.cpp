@@ -4,6 +4,7 @@
 #include "scenes/esp32test/esp32test_scene.hpp"
 #include "scenes/menu/menu_scene.hpp"
 #include "scenes/pong/pong_scene.hpp"
+#include "scenes/tanks/tanks_scene.hpp"
 #include "scenes/tetris/tetris_scene.hpp"
 
 engine *engine::instance_ptr = nullptr;
@@ -21,7 +22,7 @@ void engine::run() {
       lastTimestamp = new_time;
 
       if (!current_scene) {
-        open_scene(std::make_shared<esp32test_scene>());
+        open_scene(std::make_shared<tetris_scene>());
       }
 
       input_.update(delta_time);
