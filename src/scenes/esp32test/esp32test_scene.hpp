@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "../../engine.hpp"
+#include "actors/rectangle_actor.hpp"
 
 class esp32test_scene : public scene {
 public:

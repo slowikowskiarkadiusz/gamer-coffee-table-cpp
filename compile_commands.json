@@ -1,1 +1,140 @@
-build-desktop/compile_commands.json
+[
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/main_desktop.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/desktop/main_desktop.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/main_desktop.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/main_desktop.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/arrow_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/arrow_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/arrow_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/arrow_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/border_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/border_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/border_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/border_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/letter.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/letter.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/letter.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/letter.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/rectangle_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/rectangle_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/rectangle_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/rectangle_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/text_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/text_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/actors/text_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/actors/text_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/engine.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/engine.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/engine.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/input/gestures.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/input/gestures.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/input/gestures.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/input/gestures.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/input/input.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/input/input.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/input/input.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/input/input.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/controls/controls_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/controls/controls_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/controls/controls_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/controls/controls_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/esp32test/esp32test_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/esp32test/esp32test_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/esp32test/esp32test_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/esp32test/esp32test_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/menu/menu_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/menu/menu_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/menu/menu_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/menu/menu_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/pong/pong_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/pong/pong_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/pong/pong_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/pong/pong_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/snake/snake_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/snake/snake_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/snake/snake_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/snake/snake_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/bullet_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/bullet_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/bullet_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/bullet_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/obstacle_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/obstacle_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/obstacle_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/obstacle_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/tank_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/tank_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/tank_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/tank_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/tanks_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/tanks_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tanks/tanks_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tanks/tanks_scene.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/hold_logic.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/hold_logic.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/hold_logic.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/hold_logic.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_block_colors.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_block_colors.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_block_colors.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_block_colors.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_board_actor.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_board_actor.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_board_actor.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_board_actor.cpp.o"
+},
+{
+  "directory": "/Users/ark/Desktop/gaming_coffee_table_cpp/desktop",
+  "command": "/usr/bin/c++  -I/Users/ark/Desktop/gaming_coffee_table_cpp/desktop/../src -isystem /opt/homebrew/include -std=gnu++20 -arch arm64 -o CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_scene.cpp.o -c /Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_scene.cpp",
+  "file": "/Users/ark/Desktop/gaming_coffee_table_cpp/src/scenes/tetris/tetris_scene.cpp",
+  "output": "desktop/CMakeFiles/gaming_coffee_table_cpp_desktop.dir/__/src/scenes/tetris/tetris_scene.cpp.o"
+}
+]

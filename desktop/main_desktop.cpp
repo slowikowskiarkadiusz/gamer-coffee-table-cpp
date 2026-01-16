@@ -32,8 +32,6 @@ int main() {
                                        &frame_count](grid2d<color> *frame) {
     frame_count++;
     frame_count %= 100;
-    std::cout << "desktop set_on_frame_finished start "
-              << std::to_string(frame_count) << std::endl;
     window.clear();
 
     for (int y = 0; y < engine::screen_size.y; y++) {
@@ -52,10 +50,6 @@ int main() {
     // long size, resident;
     // statm >> size >> resident;
     // long page_size_kb = sysconf(_SC_PAGE_SIZE) / 1024;
-    // std::cout << "Memory (MB): " << (resident * page_size_kb) / 1024.0 <<
-    // std::endl;
-    std::cout << "desktop set_on_frame_finished end "
-              << std::to_string(frame_count) << std::endl;
   };
 
   engineObj.set_on_frame_finished(set_on_frame_finished_action);

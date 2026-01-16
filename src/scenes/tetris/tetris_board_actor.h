@@ -43,6 +43,7 @@ private:
     matrix static_board_matrix;
     matrix borders_matrix;
     matrix render_matrix;
+    matrix return_matrix;
     bool continue_dropping = true;
     float drop_timer = 0;
     float lock_delay_timer = 0;

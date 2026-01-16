@@ -3,6 +3,7 @@
 #include "../../src/engine.hpp"
 #include "./esp32_input_provider.hpp"
 #include "./esp32_threading_provider.hpp"
+#include "ESP32-HUB75-MatrixPanel-I2S-DMA.h"
 
 #define PANEL_RES_X 64
 #define PANEL_RES_Y 32
@@ -24,7 +25,7 @@ void print_to_console(grid2d<color> frame) {
 
 void draw(int x, int y, color color_) {
   uint16_t c =
-      dma_display->color565(color_.r * 255, color_.g * 255, color_.b * 255);
+      dma_display->color565(color_.r * 255 * color_.a, color_.g * 255 * color_.a, color_.b * 255 * color_.a);
 
   if (y < 32) {
     dma_display->drawPixel(x, y, c);
@@ -82,12 +83,6 @@ extern "C" void app_main(void) {
   });
 
   while (true) {
-    if (input::is_any_key_down()) {
-      ESP_LOGI("APP", "any key DOWN!");
-    }
-    if (input::is_key_down(key::START))
-      ESP_LOGI("APP", "START DOWN!");
-
     vTaskDelay(pdMS_TO_TICKS(1));
   }
 }

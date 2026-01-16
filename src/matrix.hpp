@@ -150,8 +150,8 @@ public:
                     }
                 }
 
-                int finalX = static_cast<int>(std::floor(rx + otherCenter.x));
-                int finalY = static_cast<int>(std::floor(ry + otherCenter.y));
+                int finalX = static_cast<int>(std::ceil(rx + otherCenter.x));
+                int finalY = static_cast<int>(std::ceil(ry + otherCenter.y));
 
                 if (finalX < 0 || finalY < 0 ||
                     finalX >= pixels.width() || finalY >= pixels.height())

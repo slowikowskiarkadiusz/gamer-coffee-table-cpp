@@ -16,7 +16,8 @@ tetris_board_actor::tetris_board_actor(v2 center,
       hold_logic_(v2::zero()),
       static_board_matrix(board_width, board_height),
       borders_matrix(size().x, size().y, color::none()),
-      render_matrix(size().x, size().y)
+      render_matrix(size().x, size().y),
+      return_matrix(size().x, size().y)
 {
     is_taken.resize(board_width, std::vector<bool>(board_height, false));
     write_border(v2(0, size().y - 1), v2(board_width + 1, size().y - 1 - board_height - 1));
@@ -26,7 +27,7 @@ tetris_board_actor::tetris_board_actor(v2 center,
     write_border(v2(0, size().y - 1 - board_height - 1 - hold_logic_.get_size().y - 1),
                  v2(1 + hold_logic_.get_size().x, size().y - 1 - board_height - 1));
 
-    render_matrix.scale(engine::screen_size.x / 32);
+    std::cout << "render_matrix " << render_matrix.height() << " " << render_matrix.width() << std::endl;
 
     spawn();
 }
@@ -90,7 +91,10 @@ void tetris_board_actor::update(float deltaTime)
 
 matrix *tetris_board_actor::render()
 {
-    return &render_matrix;
+    return_matrix = matrix(render_matrix.width(), render_matrix.height());
+    return_matrix.write_at_origin(render_matrix, v2::zero());
+    return_matrix.scale(engine::screen_size.x / 32);
+    return &return_matrix;
 }
 
 void tetris_board_actor::stop()
@@ -179,7 +183,7 @@ void tetris_board_actor::write_border(v2 from, v2 to)
         for (int y = start.y; y <= end.y; ++y)
         {
             if (x == start.x || x == end.x || y == start.y || y == end.y)
-                borders_matrix.set_pixel(x, y, color::white(0.2f));
+                borders_matrix.set_pixel(x, y, color::white());
         }
     }
 }
