@@ -14,30 +14,30 @@ void esp32test_scene::init() {
 void esp32test_scene::update(float delta_time) {
   // std::cout << "aa!" << std::endl;
   if (input::is_key_down(key::P1_DOWN))
-    // ESP_LOGI("APP", "key::P1_DOWN DOWN!");
-    std::cout << "GPIO_NUM_35 DOWN!" << std::endl;
+    std::cout << "key::P1_DOWN DOWN!" << std::endl;
   if (input::is_key_down(key::P1_UP))
-    // ESP_LOGI("APP", "key::P1_UP DOWN!");
-    std::cout << "GPIO_NUM_36 DOWN!" << std::endl;
+    std::cout << "key::P1_UP DOWN!" << std::endl;
   if (input::is_key_down(key::P1_LEFT))
-    // ESP_LOGI("APP", "key::P1_LEFT DOWN!");
-    std::cout << "GPIO_NUM_37 DOWN!" << std::endl;
+    std::cout << "key::P1_LEFT DOWN!" << std::endl;
   if (input::is_key_down(key::P1_RIGHT))
-    // ESP_LOGI("APP", "key::P1_RIGHT DOWN!");
-    std::cout << "GPIO_NUM_39 DOWN!" << std::endl;
+    std::cout << "key::P1_RIGHT DOWN!" << std::endl;
+  if (input::is_key_down(key::P1_BLUE))
+    std::cout << "key::P1_BLUE DOWN!" << std::endl;
+  if (input::is_key_down(key::P1_GREEN))
+    std::cout << "key::P1_GREEN DOWN!" << std::endl;
 
   if (input::is_key_up(key::P1_DOWN))
-    // ESP_LOGI("APP", "key::P1_DOWN UP!");
     std::cout << "key::P1_DOWN UP!" << std::endl;
   if (input::is_key_up(key::P1_UP))
-    // ESP_LOGI("APP", "key::P1_UP UP!");
     std::cout << "key::P1_UP UP!" << std::endl;
   if (input::is_key_up(key::P1_LEFT))
-    // ESP_LOGI("APP", "key::P1_LEFT UP!");
     std::cout << "key::P1_LEFT UP!" << std::endl;
   if (input::is_key_up(key::P1_RIGHT))
-    // ESP_LOGI("APP", "key::P1_RIGHT UP!");
     std::cout << "key::P1_RIGHT UP!" << std::endl;
+  if (input::is_key_up(key::P1_BLUE))
+    std::cout << "key::P1_BLUE UP!" << std::endl;
+  if (input::is_key_up(key::P1_GREEN))
+    std::cout << "key::P1_GREEN UP!" << std::endl;
 }
 
 void esp32test_scene::fixed_update(float fixed_delta_time) {}
